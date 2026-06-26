@@ -1,0 +1,14 @@
+---
+import Page from "../layouts/Page.astro";
+import Breadcrumb from "../components/Breadcrumb.astro";
+import Marcas from "../sections/Marcas.astro";
+import { site } from "../data/site";
+---
+
+<Page
+  title={`Marcas | ${site.shortName}`}
+  description="Representantes de Bekaert para el mercado industrial y distribuidores de Crosby, SuperLoop, StrongLoop y más marcas líderes."
+>
+  <Breadcrumb current="Marcas" />
+  <Marcas />
+</Page>

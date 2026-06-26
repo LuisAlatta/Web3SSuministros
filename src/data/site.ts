@@ -47,11 +47,11 @@ export const socials = [
 export const GA_MEASUREMENT_ID = "";
 
 export const nav = [
-  { label: "Inicio", href: "#inicio" },
-  { label: "Nosotros", href: "#nosotros" },
-  { label: "Categorías", href: "#categorias" },
-  { label: "Marcas", href: "#marcas" },
-  { label: "Líneas", href: "#lineas" },
-  { label: "Catálogo", href: "#catalogo" },
-  { label: "Contacto", href: "#contacto" },
+  { label: "Inicio", href: "/" },
+  { label: "Nosotros", href: "/nosotros" },
+  { label: "Categorías", href: "/categorias" },
+  { label: "Marcas", href: "/marcas" },
+  { label: "Líneas", href: "/lineas" },
+  { label: "Catálogo", href: "/catalogo" },
+  { label: "Contacto", href: "/contacto" },
 ] as const;

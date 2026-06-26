@@ -1,0 +1,14 @@
+---
+import Page from "../layouts/Page.astro";
+import Breadcrumb from "../components/Breadcrumb.astro";
+import Contacto from "../sections/Contacto.astro";
+import { site } from "../data/site";
+---
+
+<Page
+  title={`Contacto | ${site.shortName}`}
+  description="Contáctanos por WhatsApp o correo. Villa Aviación Mz. F Lt. 5, Cerro Colorado, Arequipa. Entregas a todo el Perú."
+>
+  <Breadcrumb current="Contacto" />
+  <Contacto />
+</Page>

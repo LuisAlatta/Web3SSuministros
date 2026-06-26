@@ -3,11 +3,15 @@ import { Image } from "astro:assets";
 import logo from "../assets/logo/logo-3s-mark.png";
 import { nav, whatsapps, waLink } from "../data/site";
 import Icon from "./Icon.astro";
+
+const path = (Astro.url.pathname.replace(/\/+$/, "") || "/").toLowerCase();
+const isActive = (href: string) =>
+  href === "/" ? path === "/" : path === href || path.startsWith(href + "/");
 ---
 
 <header class="hdr" data-header>
   <div class="hdr-inner container-wide">
-    <a href="#inicio" class="hdr-logo" aria-label="3S Suministros — Inicio">
+    <a href="/" class="hdr-logo" aria-label="3S Suministros — Inicio">
       <Image
         src={logo}
         alt="3S Suministros y Servicios del Sur"
@@ -21,7 +25,13 @@ import Icon from "./Icon.astro";
     </a>
 
     <nav class="hdr-nav" aria-label="Navegación principal">
-      {nav.map((l) => <a href={l.href}>{l.label}</a>)}
+      {
+        nav.map((l) => (
+          <a href={l.href} aria-current={isActive(l.href) ? "page" : undefined}>
+            {l.label}
+          </a>
+        ))
+      }
     </nav>
 
     <div class="hdr-actions">
@@ -48,7 +58,13 @@ import Icon from "./Icon.astro";
   <!-- Panel móvil -->
   <div class="hdr-mobile" data-mobile hidden>
     <nav aria-label="Navegación móvil">
-      {nav.map((l) => <a href={l.href} data-mlink>{l.label}</a>)}
+      {
+        nav.map((l) => (
+          <a href={l.href} data-mlink aria-current={isActive(l.href) ? "page" : undefined}>
+            {l.label}
+          </a>
+        ))
+      }
     </nav>
     <a
       class="btn btn-amber"
@@ -168,11 +184,16 @@ import Icon from "./Icon.astro";
     background: var(--amber);
     transition: width var(--dur) var(--ease-out);
   }
-  .hdr-nav a:hover {
+  .hdr-nav a:hover,
+  .hdr-nav a[aria-current="page"] {
     color: var(--text);
   }
-  .hdr-nav a:hover::after {
+  .hdr-nav a:hover::after,
+  .hdr-nav a[aria-current="page"]::after {
     width: 100%;
+  }
+  .hdr-nav a[aria-current="page"] {
+    color: var(--amber);
   }
   .hdr-actions {
     display: flex;
@@ -214,6 +235,9 @@ import Icon from "./Icon.astro";
     padding: 0.7rem 0;
     border-bottom: 1px solid var(--line);
     color: var(--text);
+  }
+  .hdr-mobile nav a[aria-current="page"] {
+    color: var(--amber);
   }
 
   @media (min-width: 940px) {

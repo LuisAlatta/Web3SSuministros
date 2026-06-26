@@ -1,0 +1,14 @@
+---
+import Page from "../layouts/Page.astro";
+import Breadcrumb from "../components/Breadcrumb.astro";
+import Nosotros from "../sections/Nosotros.astro";
+import { site } from "../data/site";
+---
+
+<Page
+  title={`Nosotros | ${site.shortName}`}
+  description="Quiénes somos: especialistas en abastecimiento de suministros industriales en Arequipa. Misión, visión y sectores que atendemos."
+>
+  <Breadcrumb current="Nosotros" />
+  <Nosotros />
+</Page>

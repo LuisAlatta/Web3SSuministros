@@ -1,0 +1,14 @@
+---
+import Page from "../layouts/Page.astro";
+import Breadcrumb from "../components/Breadcrumb.astro";
+import Catalogo from "../sections/Catalogo.astro";
+import { site } from "../data/site";
+---
+
+<Page
+  title={`Catálogo y galería | ${site.shortName}`}
+  description="Descarga el catálogo 2024 y el catálogo de izaje Bekaert. Galería de productos, trabajos realizados y testimonios de clientes."
+>
+  <Breadcrumb current="Catálogo" />
+  <Catalogo />
+</Page>

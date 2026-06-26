@@ -1,0 +1,14 @@
+---
+import Page from "../layouts/Page.astro";
+import Breadcrumb from "../components/Breadcrumb.astro";
+import Lineas from "../sections/Lineas.astro";
+import { site } from "../data/site";
+---
+
+<Page
+  title={`Líneas destacadas | ${site.shortName}`}
+  description="Elementos de izaje Bekaert (estrobos, cadenas, eslingas) y almohadillas HARDPAD Crane en UHMW para estabilizadores de grúa."
+>
+  <Breadcrumb current="Líneas destacadas" />
+  <Lineas />
+</Page>

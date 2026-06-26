@@ -1,28 +1,10 @@
 ---
-import Base from "../layouts/Base.astro";
-import Header from "../components/Header.astro";
-import Footer from "../components/Footer.astro";
-import WhatsAppFab from "../components/WhatsAppFab.astro";
+import Page from "../layouts/Page.astro";
 import Hero from "../sections/Hero.astro";
-import Nosotros from "../sections/Nosotros.astro";
-import Categorias from "../sections/Categorias.astro";
-import Marcas from "../sections/Marcas.astro";
-import Lineas from "../sections/Lineas.astro";
-import Catalogo from "../sections/Catalogo.astro";
-import Contacto from "../sections/Contacto.astro";
+import HomeIntro from "../sections/HomeIntro.astro";
 ---
 
-<Base>
-  <Header />
-  <main id="contenido">
-    <Hero />
-    <Nosotros />
-    <Categorias />
-    <Marcas />
-    <Lineas />
-    <Catalogo />
-    <Contacto />
-  </main>
-  <Footer />
-  <WhatsAppFab />
-</Base>
+<Page>
+  <Hero />
+  <HomeIntro />
+</Page>

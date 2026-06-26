@@ -1,0 +1,50 @@
+---
+import Icon from "./Icon.astro";
+interface Props {
+  current: string;
+}
+const { current } = Astro.props;
+---
+
+<nav class="crumb plate" aria-label="Ruta de navegación">
+  <div class="container crumb-inner">
+    <a href="/">Inicio</a>
+    <Icon name="arrow" size={14} />
+    <span aria-current="page">{current}</span>
+  </div>
+  <div class="hazard-bar crumb-hazard"></div>
+</nav>
+
+<style>
+  .crumb {
+    position: relative;
+    border-bottom: 1px solid var(--line);
+  }
+  .crumb-inner {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding-block: 1.1rem;
+    font-family: var(--font-display);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-size: 0.82rem;
+  }
+  .crumb-inner a {
+    color: var(--text-dim);
+    transition: color var(--dur-fast) var(--ease-out);
+  }
+  .crumb-inner a:hover {
+    color: var(--amber);
+  }
+  .crumb-inner :global(svg) {
+    color: var(--text-dim);
+  }
+  .crumb-inner span {
+    color: var(--amber);
+  }
+  .crumb-hazard {
+    height: 4px;
+    opacity: 0.8;
+  }
+</style>
