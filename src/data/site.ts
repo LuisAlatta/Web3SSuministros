@@ -37,10 +37,10 @@ export function waLink(intl: string, message: string = defaultWaMessage) {
   return `https://wa.me/${intl}?text=${encodeURIComponent(message)}`;
 }
 
-/* Redes sociales — reemplazar "#" por las URLs reales cuando se tengan */
+/* Redes sociales */
 export const socials = [
-  { label: "Facebook", url: "#", icon: "facebook" },
-  { label: "Instagram", url: "#", icon: "instagram" },
+  { label: "Facebook", url: "https://www.facebook.com/share/18r83L3S6p/", icon: "facebook" },
+  { label: "TikTok", url: "https://www.tiktok.com/@3s.suministros.y2", icon: "tiktok" },
 ] as const;
 
 /* Google Analytics — pegar el ID de medición (G-XXXXXXX) para activarlo */
