@@ -25,7 +25,10 @@ import Icon from "../components/Icon.astro";
 
     <div class="nos-grid">
       <article class="surface nos-card reveal">
-        <span class="nos-ic"><Icon name="hook" size={26} /></span>
+        <div class="nos-card-top">
+          <span class="nos-ic"><Icon name="shield" size={24} /></span>
+          <span class="nos-idx">01</span>
+        </div>
         <h3>Misión</h3>
         <p>
           Brindar soluciones de abastecimiento de suministros industriales,
@@ -36,7 +39,10 @@ import Icon from "../components/Icon.astro";
       </article>
 
       <article class="surface nos-card reveal reveal-2">
-        <span class="nos-ic"><Icon name="globe" size={26} /></span>
+        <div class="nos-card-top">
+          <span class="nos-ic"><Icon name="globe" size={24} /></span>
+          <span class="nos-idx">02</span>
+        </div>
         <h3>Visión</h3>
         <p>
           Ser reconocidos por nuestros clientes y proveedores como una empresa
@@ -83,30 +89,40 @@ import Icon from "../components/Icon.astro";
   .nos-card {
     padding: clamp(1.5rem, 3vw, 2.4rem);
     position: relative;
-    overflow: hidden;
+    box-shadow: var(--edge-hi);
+    transition: border-color var(--dur) var(--ease-out),
+      transform var(--dur) var(--ease-out);
   }
-  .nos-card::before {
-    content: "";
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 4px;
-    height: 100%;
-    background: var(--amber);
+  .nos-card:hover {
+    border-color: var(--amber-line);
+    transform: translateY(-3px);
+  }
+  .nos-card-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: var(--space-lg);
   }
   .nos-ic {
     display: inline-grid;
     place-items: center;
-    width: 56px;
-    height: 56px;
+    width: 52px;
+    height: 52px;
     border-radius: var(--radius);
     background: var(--amber-tint);
     color: var(--amber);
-    margin-bottom: 1.1rem;
+  }
+  .nos-idx {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 2.2rem;
+    line-height: 1;
+    color: var(--steel-700);
+    letter-spacing: 0.02em;
   }
   .nos-card p {
     color: var(--text-muted);
-    margin-top: 0.6rem;
+    margin-top: var(--space-xs);
   }
 
   .nos-sectores {

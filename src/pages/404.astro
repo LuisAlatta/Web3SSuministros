@@ -1,0 +1,68 @@
+---
+import Page from "../layouts/Page.astro";
+import Icon from "../components/Icon.astro";
+import { site } from "../data/site";
+---
+
+<Page
+  title={`Página no encontrada | ${site.shortName}`}
+  description="La página que buscas no existe o fue movida."
+>
+  <section class="nf plate">
+    <div class="container nf-inner">
+      <p class="nf-code">404</p>
+      <h1>Esta página no está en stock</h1>
+      <p class="lead">
+        La dirección que buscas no existe o fue movida. Volvamos a un terreno
+        firme.
+      </p>
+      <div class="nf-actions">
+        <a class="btn btn-amber" href="/">
+          <Icon name="arrow" size={18} /> Volver al inicio
+        </a>
+        <a class="btn btn-ghost" href="/catalogo">
+          <Icon name="doc" size={18} /> Ver catálogo
+        </a>
+      </div>
+    </div>
+    <div class="hazard-bar nf-hazard"></div>
+  </section>
+</Page>
+
+<style>
+  .nf {
+    position: relative;
+    min-height: 64vh;
+    display: grid;
+    align-items: center;
+    padding-block: var(--space-4xl);
+    overflow: hidden;
+  }
+  .nf-inner {
+    max-width: 640px;
+  }
+  .nf-code {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: clamp(5rem, 3rem + 14vw, 12rem);
+    line-height: 0.85;
+    color: var(--steel-700);
+    letter-spacing: -0.02em;
+  }
+  .nf h1 {
+    font-size: clamp(1.8rem, 1.3rem + 2.4vw, 3rem);
+    margin: var(--space-md) 0 var(--space-sm);
+  }
+  .nf-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-sm);
+    margin-top: var(--space-xl);
+  }
+  .nf-hazard {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    opacity: 0.85;
+  }
+</style>

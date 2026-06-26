@@ -167,22 +167,31 @@ const accesos = [
     border-radius: var(--radius-lg);
     background: linear-gradient(180deg, var(--steel-850), var(--steel-900));
     padding: clamp(1.5rem, 3vw, 2rem);
+    box-shadow: var(--edge-hi);
     transition: transform var(--dur) var(--ease-out),
-      border-color var(--dur) var(--ease-out);
+      border-color var(--dur) var(--ease-out),
+      box-shadow var(--dur) var(--ease-out);
   }
   .acc-card:hover {
     transform: translateY(-4px);
     border-color: var(--amber-line);
+    box-shadow: var(--edge-hi), var(--shadow-card);
   }
   .acc-ic {
     display: inline-grid;
     place-items: center;
-    width: 54px;
-    height: 54px;
+    width: 52px;
+    height: 52px;
     border-radius: var(--radius);
     background: var(--amber-tint);
     color: var(--amber);
-    margin-bottom: 1.1rem;
+    margin-bottom: var(--space-md);
+    transition: background var(--dur) var(--ease-out),
+      color var(--dur) var(--ease-out);
+  }
+  .acc-card:hover .acc-ic {
+    background: var(--amber);
+    color: var(--on-amber);
   }
   .acc-card h3 {
     font-size: 1.3rem;

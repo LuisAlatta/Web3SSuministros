@@ -16,5 +16,8 @@
     "@fontsource/oswald": "^5.1.1",
     "astro": "^5.1.1",
     "sharp": "^0.33.5"
+  },
+  "devDependencies": {
+    "playwright": "^1.61.1"
   }
 }

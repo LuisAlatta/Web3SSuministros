@@ -78,8 +78,11 @@ import Icon from "../components/Icon.astro";
           {
             hardpad.benefits.map((b) => (
               <div class="hp-benefit">
-                <strong>{b.title}</strong>
-                <span>{b.desc}</span>
+                <span class="hp-benefit-ic"><Icon name="check" size={16} /></span>
+                <div>
+                  <strong>{b.title}</strong>
+                  <span>{b.desc}</span>
+                </div>
               </div>
             ))
           }
@@ -248,8 +251,20 @@ import Icon from "../components/Icon.astro";
     margin-top: 0.4rem;
   }
   .hp-benefit {
-    border-left: 2px solid var(--amber);
-    padding-left: 0.9rem;
+    display: flex;
+    gap: var(--space-sm);
+    align-items: flex-start;
+  }
+  .hp-benefit-ic {
+    flex: none;
+    width: 26px;
+    height: 26px;
+    margin-top: 2px;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    background: var(--amber-tint);
+    color: var(--amber);
   }
   .hp-benefit strong {
     display: block;
@@ -258,7 +273,7 @@ import Icon from "../components/Icon.astro";
     letter-spacing: 0.03em;
     font-size: 0.98rem;
   }
-  .hp-benefit span {
+  .hp-benefit > div span {
     color: var(--text-dim);
     font-size: 0.88rem;
   }

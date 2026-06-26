@@ -90,14 +90,19 @@ const hasSocial = socials.some((s) => s.url !== "#");
     margin-top: 1.2rem;
   }
   .ft-social a {
-    width: 40px;
-    height: 40px;
+    width: 44px;
+    height: 44px;
     display: grid;
     place-items: center;
     border-radius: var(--radius);
     border: 1px solid var(--line-strong);
     color: var(--text-muted);
-    transition: all var(--dur) var(--ease-out);
+    transition: color var(--dur) var(--ease-out),
+      border-color var(--dur) var(--ease-out),
+      background var(--dur) var(--ease-out);
+  }
+  .ft-social a:hover {
+    background: var(--amber-tint);
   }
   .ft-social a:hover {
     color: var(--amber);
