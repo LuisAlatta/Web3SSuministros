@@ -1,0 +1,184 @@
+---
+import { sectores, stats } from "../data/content";
+import Icon from "../components/Icon.astro";
+---
+
+<section id="nosotros" class="section" aria-labelledby="nos-h">
+  <div class="container">
+    <div class="nos-head">
+      <div class="reveal">
+        <p class="eyebrow">Quiénes somos</p>
+        <h2 id="nos-h">
+          Especialistas en abastecimiento de<br /><span class="amber"
+            >suministros industriales</span
+          >
+        </h2>
+      </div>
+      <p class="lead reveal reveal-2">
+        Somos una empresa orientada al desarrollo de soluciones que se adaptan a
+        la necesidad específica de cada cliente. Representamos y distribuimos
+        reconocidas marcas que cumplen normativas nacionales e internacionales,
+        y somos socios estratégicos de las principales empresas y proyectos del
+        país.
+      </p>
+    </div>
+
+    <div class="nos-grid">
+      <article class="surface nos-card reveal">
+        <span class="nos-ic"><Icon name="hook" size={26} /></span>
+        <h3>Misión</h3>
+        <p>
+          Brindar soluciones de abastecimiento de suministros industriales,
+          comprendiendo las necesidades de nuestros clientes para satisfacerlos
+          a cabalidad —con seriedad, dedicación y profesionalismo— ofreciéndoles
+          productos y servicios de calidad.
+        </p>
+      </article>
+
+      <article class="surface nos-card reveal reveal-2">
+        <span class="nos-ic"><Icon name="globe" size={26} /></span>
+        <h3>Visión</h3>
+        <p>
+          Ser reconocidos por nuestros clientes y proveedores como una empresa
+          líder en la gestión de abastecimiento de suministros para el sector
+          industrial y minero.
+        </p>
+      </article>
+    </div>
+
+    <div class="nos-sectores reveal">
+      <p class="nos-sub">Atendemos sectores clave</p>
+      <ul>
+        {sectores.map((s) => <li>{s}</li>)}
+      </ul>
+    </div>
+
+    <dl class="nos-stats">
+      {
+        stats.map((s, i) => (
+          <div class={`nos-stat reveal reveal-${i + 1}`}>
+            <dt>{s.value}</dt>
+            <dd>{s.label}</dd>
+          </div>
+        ))
+      }
+    </dl>
+  </div>
+</section>
+
+<style>
+  .nos-head {
+    display: grid;
+    gap: 1.5rem;
+    margin-bottom: clamp(2.5rem, 5vw, 4rem);
+  }
+  .nos-head h2 {
+    margin-top: 0.9rem;
+  }
+  .nos-grid {
+    display: grid;
+    gap: 1.4rem;
+    grid-template-columns: 1fr;
+  }
+  .nos-card {
+    padding: clamp(1.5rem, 3vw, 2.4rem);
+    position: relative;
+    overflow: hidden;
+  }
+  .nos-card::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 4px;
+    height: 100%;
+    background: var(--amber);
+  }
+  .nos-ic {
+    display: inline-grid;
+    place-items: center;
+    width: 56px;
+    height: 56px;
+    border-radius: var(--radius);
+    background: var(--amber-tint);
+    color: var(--amber);
+    margin-bottom: 1.1rem;
+  }
+  .nos-card p {
+    color: var(--text-muted);
+    margin-top: 0.6rem;
+  }
+
+  .nos-sectores {
+    margin-top: clamp(2.5rem, 5vw, 4rem);
+  }
+  .nos-sub {
+    font-family: var(--font-display);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-wide);
+    color: var(--text-dim);
+    font-size: 0.82rem;
+    margin-bottom: 1rem;
+  }
+  .nos-sectores ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.7rem;
+  }
+  .nos-sectores li {
+    font-family: var(--font-display);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    font-size: 0.92rem;
+    padding: 0.55rem 1.1rem;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    background: var(--steel-900);
+    transition: border-color var(--dur) var(--ease-out),
+      color var(--dur) var(--ease-out);
+  }
+  .nos-sectores li:hover {
+    border-color: var(--amber-line);
+    color: var(--amber);
+  }
+
+  .nos-stats {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1px;
+    margin-top: clamp(2.8rem, 5vw, 4.5rem);
+    background: var(--line);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+  }
+  .nos-stat {
+    background: var(--steel-900);
+    padding: clamp(1.5rem, 3vw, 2.2rem);
+    text-align: center;
+  }
+  .nos-stat dt {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: clamp(2.4rem, 1.5rem + 3vw, 3.6rem);
+    color: var(--amber);
+    line-height: 1;
+  }
+  .nos-stat dd {
+    color: var(--text-muted);
+    font-size: 0.92rem;
+    margin-top: 0.7rem;
+    max-width: 26ch;
+    margin-inline: auto;
+  }
+
+  @media (min-width: 760px) {
+    .nos-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+    .nos-stats {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+</style>

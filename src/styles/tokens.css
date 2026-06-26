@@ -1,0 +1,81 @@
+/* ============================================================
+   3S Suministros — Design Tokens
+   Dirección: Industrial Heavy-Duty Premium
+   Negro carbón + plancha estriada + ámbar de seguridad
+   ============================================================ */
+:root {
+  /* — Color: superficies oscuras — */
+  --ink: #0c0d0f;
+  --ink-2: #101216;
+  --steel-900: #15181d;
+  --steel-850: #1a1e24;
+  --steel-800: #1f242b;
+  --steel-700: #2a313a;
+  --steel-600: #3a434f;
+
+  /* — Color: marca (ámbar de seguridad) — */
+  --amber: #f4a81d;
+  --amber-bright: #ffbf3f;
+  --amber-deep: #c2820c;
+  --amber-tint: rgba(244, 168, 29, 0.12);
+  --amber-line: rgba(244, 168, 29, 0.32);
+
+  /* — Color: texto — */
+  --text: #f5f5f4;
+  --text-muted: #aab1bb;
+  --text-dim: #7c838d;
+  --on-amber: #1a1205;
+
+  /* — Líneas y bordes — */
+  --line: rgba(255, 255, 255, 0.08);
+  --line-strong: rgba(255, 255, 255, 0.14);
+
+  /* — Tipografía — */
+  --font-display: "Oswald", "Arial Narrow", sans-serif;
+  --font-body: "Inter Variable", "Inter", system-ui, -apple-system, sans-serif;
+
+  --text-xs: 0.78rem;
+  --text-sm: 0.875rem;
+  --text-base: clamp(1rem, 0.97rem + 0.16vw, 1.0625rem);
+  --text-lg: clamp(1.0625rem, 1rem + 0.4vw, 1.2rem);
+  --text-h3: clamp(1.25rem, 1.05rem + 0.85vw, 1.7rem);
+  --text-h2: clamp(1.9rem, 1.3rem + 2.5vw, 3.25rem);
+  --text-display: clamp(2.6rem, 1.2rem + 6.4vw, 6rem);
+
+  --leading-tight: 1.04;
+  --leading-snug: 1.22;
+  --leading-body: 1.62;
+  --tracking-wide: 0.14em;
+  --tracking-wider: 0.24em;
+
+  /* — Layout — */
+  --container: 1200px;
+  --container-wide: 1340px;
+  --gutter: clamp(1.1rem, 0.6rem + 2.4vw, 2.5rem);
+  --space-section: clamp(4.5rem, 3rem + 6vw, 9rem);
+
+  /* — Forma — */
+  --radius-xs: 3px;
+  --radius: 6px;
+  --radius-lg: 12px;
+  --radius-xl: 18px;
+
+  /* — Sombra / profundidad — */
+  --shadow-sm: 0 2px 8px -3px rgba(0, 0, 0, 0.5);
+  --shadow-card: 0 18px 40px -22px rgba(0, 0, 0, 0.75);
+  --shadow-amber: 0 14px 34px -14px rgba(244, 168, 29, 0.45);
+
+  /* — Movimiento — */
+  --dur-fast: 150ms;
+  --dur: 300ms;
+  --dur-slow: 620ms;
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+
+  /* — Texturas reutilizables — */
+  --hazard: repeating-linear-gradient(
+    -45deg,
+    var(--amber) 0 16px,
+    var(--ink) 16px 32px
+  );
+}

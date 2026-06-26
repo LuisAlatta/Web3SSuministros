@@ -1,0 +1,260 @@
+/* ============================================================
+   Base + utilidades globales
+   ============================================================ */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+  scroll-padding-top: 84px;
+}
+
+body {
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  line-height: var(--leading-body);
+  color: var(--text);
+  background: var(--ink);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+
+img,
+picture,
+svg,
+video {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
+}
+
+/* El atributo [hidden] debe ganar a cualquier display de componente */
+[hidden] {
+  display: none !important;
+}
+
+:focus-visible {
+  outline: 2px solid var(--amber);
+  outline-offset: 3px;
+  border-radius: var(--radius-xs);
+}
+
+::selection {
+  background: var(--amber);
+  color: var(--on-amber);
+}
+
+/* — Tipografía — */
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  line-height: var(--leading-tight);
+  text-transform: uppercase;
+  letter-spacing: 0.005em;
+}
+
+h2 {
+  font-size: var(--text-h2);
+}
+h3 {
+  font-size: var(--text-h3);
+}
+
+p {
+  text-wrap: pretty;
+}
+
+strong {
+  color: var(--text);
+  font-weight: 600;
+}
+
+/* — Layout — */
+.container {
+  width: 100%;
+  max-width: var(--container);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+.container-wide {
+  width: 100%;
+  max-width: var(--container-wide);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.section {
+  padding-block: var(--space-section);
+  position: relative;
+}
+
+/* — Eyebrow / kicker — */
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: var(--text-sm);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wider);
+  color: var(--amber);
+}
+.eyebrow::before {
+  content: "";
+  width: 28px;
+  height: 2px;
+  background: var(--amber);
+}
+
+.lead {
+  font-size: var(--text-lg);
+  color: var(--text-muted);
+  max-width: 60ch;
+}
+
+/* — Botones — */
+.btn {
+  --btn-pad-y: 0.85rem;
+  --btn-pad-x: 1.6rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  padding: var(--btn-pad-y) var(--btn-pad-x);
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  border: 1px solid transparent;
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: transform var(--dur-fast) var(--ease-out),
+    background var(--dur) var(--ease-out), box-shadow var(--dur) var(--ease-out),
+    color var(--dur) var(--ease-out);
+  will-change: transform;
+}
+.btn:active {
+  transform: translateY(1px);
+}
+.btn-amber {
+  background: var(--amber);
+  color: var(--on-amber);
+  box-shadow: var(--shadow-amber);
+}
+.btn-amber:hover {
+  background: var(--amber-bright);
+  transform: translateY(-2px);
+}
+.btn-ghost {
+  background: transparent;
+  color: var(--text);
+  border-color: var(--line-strong);
+}
+.btn-ghost:hover {
+  border-color: var(--amber);
+  color: var(--amber);
+  transform: translateY(-2px);
+}
+
+/* — Superficies (paneles) — */
+.surface {
+  background: linear-gradient(180deg, var(--steel-850), var(--steel-900));
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+}
+
+/* — Barra de peligro (hazard) — */
+.hazard-bar {
+  height: 8px;
+  width: 100%;
+  background: var(--hazard);
+  background-size: 45.25px 45.25px;
+}
+
+/* — Textura de plancha estriada (diamond plate) — */
+.plate {
+  background-color: var(--ink-2);
+  background-image: linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.025) 25%,
+      transparent 25%,
+      transparent 50%,
+      rgba(255, 255, 255, 0.025) 50%,
+      rgba(255, 255, 255, 0.025) 75%,
+      transparent 75%
+    ),
+    linear-gradient(
+      45deg,
+      rgba(255, 255, 255, 0.025) 25%,
+      transparent 25%,
+      transparent 50%,
+      rgba(255, 255, 255, 0.025) 50%,
+      rgba(255, 255, 255, 0.025) 75%,
+      transparent 75%
+    );
+  background-size: 22px 22px;
+}
+
+/* — Texto resaltado en ámbar — */
+.amber {
+  color: var(--amber);
+}
+
+/* — Reveal on scroll — */
+.reveal {
+  opacity: 0;
+  transform: translateY(26px);
+  transition: opacity var(--dur-slow) var(--ease-out),
+    transform var(--dur-slow) var(--ease-out);
+}
+.reveal[data-visible] {
+  opacity: 1;
+  transform: none;
+}
+.reveal-2 {
+  transition-delay: 90ms;
+}
+.reveal-3 {
+  transition-delay: 180ms;
+}
+.reveal-4 {
+  transition-delay: 270ms;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
+}

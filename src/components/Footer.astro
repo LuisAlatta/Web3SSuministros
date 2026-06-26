@@ -1,0 +1,151 @@
+---
+import { Image } from "astro:assets";
+import logo from "../assets/logo/logo-3s.png";
+import { site, nav, whatsapps, waLink, socials } from "../data/site";
+import Icon from "../components/Icon.astro";
+
+const year = new Date().getFullYear();
+const hasSocial = socials.some((s) => s.url !== "#");
+---
+
+<footer class="ft">
+  <div class="hazard-bar"></div>
+  <div class="container ft-inner">
+    <div class="ft-brand">
+      <Image src={logo} alt="3S Suministros y Servicios del Sur" width={150} />
+      <p>
+        Gestión de abastecimiento de suministros industriales en Arequipa.
+        Representantes de Bekaert y socios estratégicos de la industria peruana.
+      </p>
+      {
+        hasSocial && (
+          <div class="ft-social">
+            {socials.map((s) => (
+              <a href={s.url} target="_blank" rel="noopener" aria-label={s.label}>
+                <Icon name={s.icon} size={18} />
+              </a>
+            ))}
+          </div>
+        )
+      }
+    </div>
+
+    <nav class="ft-col" aria-label="Navegación del pie">
+      <h4>Navegación</h4>
+      <ul>
+        {nav.map((l) => <li><a href={l.href}>{l.label}</a></li>)}
+      </ul>
+    </nav>
+
+    <div class="ft-col">
+      <h4>Contacto</h4>
+      <ul>
+        <li><a href={`mailto:${site.email}`}>{site.email}</a></li>
+        {
+          whatsapps.map((w) => (
+            <li>
+              <a href={waLink(w.intl)} target="_blank" rel="noopener">
+                {w.label}: {w.display}
+              </a>
+            </li>
+          ))
+        }
+        <li class="ft-addr">{site.address.full}</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="container ft-bottom">
+    <p>© {year} {site.legalName} · RUC {site.ruc}</p>
+    <p class="ft-credit">
+      Desarrollo web: <a href={waLink(whatsapps[0].intl, "Hola Luis, vi la web de 3S y quiero una página para mi empresa.")} target="_blank" rel="noopener">Luis Fernando Alatta</a>
+    </p>
+  </div>
+</footer>
+
+<style>
+  .ft {
+    background: var(--ink-2);
+    border-top: 1px solid var(--line);
+  }
+  .ft-inner {
+    display: grid;
+    gap: 2.4rem;
+    grid-template-columns: 1fr;
+    padding-block: clamp(2.8rem, 5vw, 4rem) 2.4rem;
+  }
+  .ft-brand img {
+    width: 138px;
+    height: auto;
+    margin-bottom: 1.1rem;
+  }
+  .ft-brand p {
+    color: var(--text-dim);
+    max-width: 42ch;
+    font-size: 0.92rem;
+  }
+  .ft-social {
+    display: flex;
+    gap: 0.6rem;
+    margin-top: 1.2rem;
+  }
+  .ft-social a {
+    width: 40px;
+    height: 40px;
+    display: grid;
+    place-items: center;
+    border-radius: var(--radius);
+    border: 1px solid var(--line-strong);
+    color: var(--text-muted);
+    transition: all var(--dur) var(--ease-out);
+  }
+  .ft-social a:hover {
+    color: var(--amber);
+    border-color: var(--amber-line);
+  }
+  .ft-col h4 {
+    font-size: 0.92rem;
+    letter-spacing: 0.06em;
+    color: var(--text);
+    margin-bottom: 1.1rem;
+  }
+  .ft-col ul {
+    display: grid;
+    gap: 0.6rem;
+  }
+  .ft-col a {
+    color: var(--text-dim);
+    font-size: 0.92rem;
+    transition: color var(--dur-fast) var(--ease-out);
+  }
+  .ft-col a:hover {
+    color: var(--amber);
+  }
+  .ft-addr {
+    color: var(--text-dim);
+    font-size: 0.88rem;
+    max-width: 30ch;
+  }
+  .ft-bottom {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem 1.5rem;
+    justify-content: space-between;
+    padding-block: 1.4rem;
+    border-top: 1px solid var(--line);
+    color: var(--text-dim);
+    font-size: 0.84rem;
+  }
+  .ft-credit a {
+    color: var(--text-muted);
+  }
+  .ft-credit a:hover {
+    color: var(--amber);
+  }
+
+  @media (min-width: 760px) {
+    .ft-inner {
+      grid-template-columns: 1.6fr 1fr 1.2fr;
+    }
+  }
+</style>

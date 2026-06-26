@@ -1,0 +1,384 @@
+---
+import { Image } from "astro:assets";
+import cover from "../assets/img/catalogo-cover.jpg";
+import flyerIzaje from "../assets/img/flyer-izaje.jpeg";
+import flyerHardpad from "../assets/img/flyer-hardpad.jpeg";
+import hardpadStack from "../assets/img/hardpad-stack.jpeg";
+import hardpadTop from "../assets/img/hardpad-top.jpeg";
+import hardpadSpecs from "../assets/img/hardpad-specs.jpeg";
+import { testimonios } from "../data/content";
+import Icon from "../components/Icon.astro";
+
+const gallery = [
+  { src: flyerIzaje, alt: "Accesorios de izaje con marcas Crosby, SuperLoop y StrongLoop" },
+  { src: hardpadTop, alt: "Almohadilla HARDPAD Crane vista superior" },
+  { src: flyerHardpad, alt: "Línea HARDPAD Crane: alta resistencia y durabilidad" },
+  { src: hardpadStack, alt: "Almohadillas HARDPAD apiladas con asas de transporte" },
+  { src: hardpadSpecs, alt: "Ficha técnica y beneficios de las almohadillas HARDPAD" },
+];
+---
+
+<section id="catalogo" class="section" aria-labelledby="cat2-h">
+  <div class="container">
+    <header class="cg-head reveal">
+      <p class="eyebrow">Catálogo y galería</p>
+      <h2 id="cat2-h">Conoce nuestro <span class="amber">catálogo</span> y trabajos</h2>
+    </header>
+
+    <div class="cg-top">
+      <!-- Catálogo principal -->
+      <article class="cat-feature reveal">
+        <div class="cat-cover">
+          <Image
+            src={cover}
+            alt="Portada del Catálogo 2024 de 3S Suministros"
+            widths={[300, 480, 640]}
+            sizes="(min-width: 760px) 320px, 80vw"
+            loading="lazy"
+          />
+        </div>
+        <div class="cat-feature-body">
+          <h3>Catálogo 2024</h3>
+          <p>
+            Revisa nuestras categorías de negocio, marcas y productos en el
+            catálogo completo de 3S Suministros y Servicios del Sur.
+          </p>
+          <div class="cat-feature-actions">
+            <a class="btn btn-amber" href="/catalogos/catalogo-3s-suministros-2024.pdf" target="_blank" rel="noopener">
+              <Icon name="doc" size={18} /> Ver catálogo
+            </a>
+            <a class="btn btn-ghost" href="/catalogos/catalogo-3s-suministros-2024.pdf" download>
+              <Icon name="download" size={18} /> Descargar PDF
+            </a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Documentos secundarios -->
+      <div class="cat-docs">
+        <a class="cat-doc reveal reveal-2" href="/catalogos/elementos-de-izaje-bekaert.pdf" target="_blank" rel="noopener">
+          <span class="cat-doc-ic"><Icon name="hook" size={22} /></span>
+          <span class="cat-doc-txt">
+            <strong>Elementos de Izaje — Bekaert</strong>
+            <em>Estrobos, cadenas y accesorios certificados</em>
+          </span>
+          <Icon name="download" size={18} class="cat-doc-arrow" />
+        </a>
+        <a class="cat-doc reveal reveal-3" href="/catalogos/brochure-3s-suministros.pdf" target="_blank" rel="noopener">
+          <span class="cat-doc-ic"><Icon name="doc" size={22} /></span>
+          <span class="cat-doc-txt">
+            <strong>Brochure corporativo</strong>
+            <em>Quiénes somos, misión y visión</em>
+          </span>
+          <Icon name="download" size={18} class="cat-doc-arrow" />
+        </a>
+      </div>
+    </div>
+
+    <!-- Galería -->
+    <p class="cg-sub reveal">Galería de productos y trabajos</p>
+    <div class="gallery">
+      {
+        gallery.map((g, i) => (
+          <button
+            class={`gal-item reveal reveal-${(i % 3) + 1}`}
+            data-lightbox={g.src.src}
+            data-alt={g.alt}
+            aria-label={`Ampliar: ${g.alt}`}
+          >
+            <Image src={g.src} alt={g.alt} widths={[260, 420, 560]} sizes="(min-width: 760px) 33vw, 50vw" loading="lazy" />
+            <span class="gal-zoom"><Icon name="arrow" size={18} /></span>
+          </button>
+        ))
+      }
+    </div>
+
+    <!-- Testimonios -->
+    <p class="cg-sub reveal">Lo que dicen nuestros clientes</p>
+    <div class="testi-grid">
+      {
+        testimonios.map((t, i) => (
+          <figure class={`testi reveal reveal-${i + 1}`}>
+            <span class="testi-stars" aria-hidden="true">
+              <Icon name="star" size={16} fill />
+              <Icon name="star" size={16} fill />
+              <Icon name="star" size={16} fill />
+              <Icon name="star" size={16} fill />
+              <Icon name="star" size={16} fill />
+            </span>
+            <blockquote>{t.quote}</blockquote>
+            <figcaption>
+              <strong>{t.author}</strong>
+              <span>{t.company}</span>
+            </figcaption>
+          </figure>
+        ))
+      }
+    </div>
+  </div>
+
+  <!-- Lightbox -->
+  <div class="lb" data-lb hidden role="dialog" aria-modal="true" aria-label="Imagen ampliada">
+    <button class="lb-close" data-lb-close aria-label="Cerrar"><Icon name="close" size={26} /></button>
+    <img data-lb-img src="" alt="" />
+  </div>
+</section>
+
+<script is:inline>
+  (() => {
+    const lb = document.querySelector("[data-lb]");
+    const img = document.querySelector("[data-lb-img]");
+    const close = document.querySelector("[data-lb-close]");
+    const open = (src, alt) => {
+      img.src = src;
+      img.alt = alt || "";
+      lb.hidden = false;
+      document.body.style.overflow = "hidden";
+    };
+    const hide = () => {
+      lb.hidden = true;
+      img.src = "";
+      document.body.style.overflow = "";
+    };
+    document.querySelectorAll("[data-lightbox]").forEach((b) =>
+      b.addEventListener("click", () =>
+        open(b.getAttribute("data-lightbox"), b.getAttribute("data-alt"))
+      )
+    );
+    close.addEventListener("click", hide);
+    lb.addEventListener("click", (e) => {
+      if (e.target === lb) hide();
+    });
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && !lb.hidden) hide();
+    });
+  })();
+</script>
+
+<style>
+  .cg-head {
+    margin-bottom: clamp(2rem, 4vw, 3rem);
+  }
+  .cg-head h2 {
+    margin-top: 0.9rem;
+  }
+  .cg-top {
+    display: grid;
+    gap: 1.4rem;
+    grid-template-columns: 1fr;
+  }
+  .cat-feature {
+    display: grid;
+    gap: 1.6rem;
+    grid-template-columns: 1fr;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-xl);
+    background: linear-gradient(180deg, var(--steel-850), var(--steel-900));
+    padding: clamp(1.4rem, 3vw, 2.2rem);
+  }
+  .cat-cover img {
+    width: 100%;
+    border-radius: var(--radius);
+    border: 1px solid var(--line-strong);
+  }
+  .cat-feature-body h3 {
+    font-size: 1.7rem;
+  }
+  .cat-feature-body p {
+    color: var(--text-muted);
+    margin: 0.8rem 0 1.4rem;
+  }
+  .cat-feature-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+  }
+  .cat-docs {
+    display: grid;
+    gap: 1rem;
+    align-content: start;
+  }
+  .cat-doc {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.2rem 1.3rem;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    background: var(--steel-900);
+    transition: border-color var(--dur) var(--ease-out),
+      transform var(--dur) var(--ease-out);
+  }
+  .cat-doc:hover {
+    border-color: var(--amber-line);
+    transform: translateY(-3px);
+  }
+  .cat-doc-ic {
+    width: 48px;
+    height: 48px;
+    flex: none;
+    display: grid;
+    place-items: center;
+    border-radius: var(--radius);
+    background: var(--amber-tint);
+    color: var(--amber);
+  }
+  .cat-doc-txt {
+    display: grid;
+    flex: 1;
+  }
+  .cat-doc-txt strong {
+    font-family: var(--font-display);
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    font-size: 1rem;
+  }
+  .cat-doc-txt em {
+    font-style: normal;
+    color: var(--text-dim);
+    font-size: 0.86rem;
+  }
+  .cat-doc-arrow {
+    color: var(--text-dim);
+    flex: none;
+  }
+
+  .cg-sub {
+    font-family: var(--font-display);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-wide);
+    color: var(--text-dim);
+    font-size: 0.82rem;
+    margin: clamp(2.6rem, 5vw, 4rem) 0 1.2rem;
+  }
+
+  .gallery {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.9rem;
+  }
+  .gal-item {
+    position: relative;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    overflow: hidden;
+    cursor: pointer;
+    padding: 0;
+    background: var(--steel-900);
+    aspect-ratio: 1 / 1;
+  }
+  .gal-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform var(--dur-slow) var(--ease-out);
+  }
+  .gal-item:hover img {
+    transform: scale(1.06);
+  }
+  .gal-zoom {
+    position: absolute;
+    right: 0.6rem;
+    bottom: 0.6rem;
+    width: 36px;
+    height: 36px;
+    display: grid;
+    place-items: center;
+    background: var(--amber);
+    color: var(--on-amber);
+    border-radius: 50%;
+    transform: rotate(-45deg);
+    opacity: 0;
+    transition: opacity var(--dur) var(--ease-out);
+  }
+  .gal-item:hover .gal-zoom {
+    opacity: 1;
+  }
+
+  .testi-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.2rem;
+  }
+  .testi {
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    background: var(--steel-900);
+    padding: clamp(1.4rem, 3vw, 2rem);
+  }
+  .testi-stars {
+    display: inline-flex;
+    gap: 2px;
+    color: var(--amber);
+    margin-bottom: 0.9rem;
+  }
+  .testi blockquote {
+    font-size: 1.02rem;
+    line-height: 1.55;
+    color: var(--text);
+  }
+  .testi figcaption {
+    margin-top: 1.1rem;
+    padding-top: 0.9rem;
+    border-top: 1px solid var(--line);
+  }
+  .testi figcaption strong {
+    display: block;
+    font-family: var(--font-display);
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+  }
+  .testi figcaption span {
+    color: var(--text-dim);
+    font-size: 0.86rem;
+  }
+
+  /* Lightbox */
+  .lb {
+    position: fixed;
+    inset: 0;
+    z-index: 200;
+    background: rgba(8, 9, 10, 0.92);
+    display: grid;
+    place-items: center;
+    padding: clamp(1rem, 4vw, 3rem);
+    backdrop-filter: blur(4px);
+  }
+  .lb img {
+    max-width: min(900px, 92vw);
+    max-height: 86vh;
+    width: auto;
+    border-radius: var(--radius);
+    border: 1px solid var(--line-strong);
+  }
+  .lb-close {
+    position: absolute;
+    top: 1.2rem;
+    right: 1.2rem;
+    width: 48px;
+    height: 48px;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    border: 1px solid var(--line-strong);
+    background: var(--steel-850);
+    color: var(--text);
+    cursor: pointer;
+  }
+
+  @media (min-width: 760px) {
+    .cg-top {
+      grid-template-columns: 1.3fr 1fr;
+    }
+    .cat-feature {
+      grid-template-columns: 0.8fr 1.2fr;
+      align-items: center;
+    }
+    .gallery {
+      grid-template-columns: repeat(3, 1fr);
+    }
+    .testi-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+</style>

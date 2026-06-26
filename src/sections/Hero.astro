@@ -1,0 +1,198 @@
+---
+import { Image } from "astro:assets";
+import flyerIzaje from "../assets/img/flyer-izaje.jpeg";
+import { site, whatsapps, waLink } from "../data/site";
+import { normativas } from "../data/content";
+import Icon from "../components/Icon.astro";
+---
+
+<section id="inicio" class="hero plate" aria-labelledby="hero-h">
+  <div class="hero-glow" aria-hidden="true"></div>
+
+  <div class="container-wide hero-grid">
+    <div class="hero-copy">
+      <p class="eyebrow reveal">
+        Suministros industriales · Arequipa · RUC {site.ruc}
+      </p>
+
+      <h1 id="hero-h" class="hero-title reveal reveal-2">
+        El socio <span class="amber">estratégico</span><br />para tu empresa
+      </h1>
+
+      <p class="lead reveal reveal-3">
+        Gestión de abastecimiento de suministros industriales para minería,
+        construcción, petróleo, gas, energía e industria. Representantes de
+        <strong>Bekaert</strong> y distribuidores de marcas líderes, con respaldo
+        de calidad y entregas a todo el Perú.
+      </p>
+
+      <div class="hero-cta reveal reveal-4">
+        <a
+          class="btn btn-amber"
+          href={waLink(whatsapps[0].intl)}
+          target="_blank"
+          rel="noopener"
+        >
+          <Icon name="whatsapp" size={19} /> Solicitar cotización
+        </a>
+        <a class="btn btn-ghost" href="#catalogo">
+          <Icon name="doc" size={18} /> Ver catálogo
+        </a>
+      </div>
+
+      <ul class="hero-norms reveal reveal-4" aria-label="Normativas que cumplen nuestros productos">
+        <li><Icon name="shield" size={16} /> Cumplen normas</li>
+        {normativas.map((n) => <li class="norm">{n}</li>)}
+      </ul>
+    </div>
+
+    <div class="hero-visual reveal reveal-3" aria-hidden="false">
+      <div class="hero-frame">
+        <Image
+          src={flyerIzaje}
+          alt="Accesorios de izaje 3S Suministros: grilletes, estrobos y cadenas con las mejores marcas"
+          widths={[360, 540, 720]}
+          sizes="(min-width: 980px) 420px, 80vw"
+          loading="eager"
+          fetchpriority="high"
+        />
+      </div>
+      <div class="hero-chip">
+        <span class="hero-chip-k">Entregas</span>
+        <span class="hero-chip-v">a todo el Perú</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="hazard-bar hero-hazard" aria-hidden="true"></div>
+</section>
+
+<style>
+  .hero {
+    position: relative;
+    overflow: hidden;
+    padding-top: clamp(2.5rem, 4vw, 4.5rem);
+    padding-bottom: clamp(3rem, 5vw, 6rem);
+  }
+  .hero-glow {
+    position: absolute;
+    top: -20%;
+    right: -10%;
+    width: 60vw;
+    height: 60vw;
+    max-width: 720px;
+    max-height: 720px;
+    background: radial-gradient(
+      circle,
+      rgba(244, 168, 29, 0.16),
+      transparent 62%
+    );
+    pointer-events: none;
+  }
+  .hero-grid {
+    display: grid;
+    gap: clamp(2.5rem, 5vw, 4rem);
+    align-items: center;
+    position: relative;
+    z-index: 1;
+  }
+  .hero-title {
+    font-size: var(--text-display);
+    margin: 1.1rem 0 1.4rem;
+    letter-spacing: -0.01em;
+  }
+  .hero-cta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.9rem;
+    margin-top: 2rem;
+  }
+  .hero-norms {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.55rem;
+    margin-top: 2.4rem;
+    color: var(--text-dim);
+    font-size: 0.85rem;
+  }
+  .hero-norms li:first-child {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    color: var(--text-muted);
+    font-family: var(--font-display);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-right: 0.3rem;
+  }
+  .norm {
+    font-family: var(--font-display);
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    color: var(--text);
+    border: 1px solid var(--line-strong);
+    border-radius: var(--radius-xs);
+    padding: 0.2rem 0.6rem;
+    font-size: 0.78rem;
+  }
+
+  .hero-visual {
+    position: relative;
+    justify-self: center;
+    max-width: 440px;
+    width: 100%;
+  }
+  .hero-frame {
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+    border: 1px solid var(--line-strong);
+    box-shadow: var(--shadow-card);
+    transform: rotate(-1.6deg);
+    transition: transform var(--dur-slow) var(--ease-out);
+  }
+  .hero-visual:hover .hero-frame {
+    transform: rotate(0deg);
+  }
+  .hero-frame img {
+    width: 100%;
+    height: auto;
+  }
+  .hero-chip {
+    position: absolute;
+    left: -14px;
+    bottom: 26px;
+    background: var(--amber);
+    color: var(--on-amber);
+    padding: 0.7rem 1.1rem;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-amber);
+    display: grid;
+    line-height: 1.1;
+    transform: rotate(-1.6deg);
+  }
+  .hero-chip-k {
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    opacity: 0.8;
+  }
+  .hero-chip-v {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 1.15rem;
+    text-transform: uppercase;
+  }
+  .hero-hazard {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    opacity: 0.9;
+  }
+
+  @media (min-width: 980px) {
+    .hero-grid {
+      grid-template-columns: 1.15fr 0.85fr;
+    }
+  }
+</style>

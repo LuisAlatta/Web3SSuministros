@@ -1,0 +1,315 @@
+---
+import { site, whatsapps, waLink, socials } from "../data/site";
+import Icon from "../components/Icon.astro";
+
+const mapsEmbed = `https://www.google.com/maps?q=${encodeURIComponent(
+  site.address.mapsQuery
+)}&hl=es&z=15&output=embed`;
+const mapsLink = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
+  site.address.mapsQuery
+)}`;
+---
+
+<section id="contacto" class="section plate" aria-labelledby="con-h">
+  <div class="container">
+    <header class="con-head reveal">
+      <p class="eyebrow">Contacto</p>
+      <h2 id="con-h">Hablemos de tu <span class="amber">próximo proyecto</span></h2>
+      <p class="lead">
+        Cuéntanos qué necesitas y te respondemos a la brevedad. Atención
+        personalizada y entregas a todo el Perú.
+      </p>
+    </header>
+
+    <div class="con-grid">
+      <!-- Formulario -->
+      <form class="con-form surface reveal" data-form>
+        <div class="field">
+          <label for="f-name">Nombre / Empresa</label>
+          <input id="f-name" name="name" type="text" required autocomplete="name" placeholder="Tu nombre o empresa" />
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label for="f-phone">Teléfono</label>
+            <input id="f-phone" name="phone" type="tel" autocomplete="tel" placeholder="9XX XXX XXX" />
+          </div>
+          <div class="field">
+            <label for="f-email">Correo</label>
+            <input id="f-email" name="email" type="email" autocomplete="email" placeholder="correo@empresa.com" />
+          </div>
+        </div>
+        <div class="field">
+          <label for="f-msg">¿Qué necesitas?</label>
+          <textarea id="f-msg" name="message" rows="4" required placeholder="Ej: Necesito cotizar 4 estrobos de 1/2'' y un HARDPAD de 80×80."></textarea>
+        </div>
+        <div class="con-actions">
+          <button type="submit" class="btn btn-amber" data-send-wa>
+            <Icon name="whatsapp" size={19} /> Enviar por WhatsApp
+          </button>
+          <button type="button" class="btn btn-ghost" data-send-mail>
+            <Icon name="mail" size={18} /> Enviar por correo
+          </button>
+        </div>
+        <p class="con-hint">Tu mensaje se abrirá en WhatsApp o tu correo, listo para enviar.</p>
+      </form>
+
+      <!-- Datos + mapa -->
+      <div class="con-aside">
+        <ul class="con-info reveal reveal-2">
+          <li>
+            <span class="ci-ic"><Icon name="pin" size={20} /></span>
+            <div>
+              <strong>Dirección</strong>
+              <a href={mapsLink} target="_blank" rel="noopener">{site.address.full}</a>
+            </div>
+          </li>
+          <li>
+            <span class="ci-ic"><Icon name="mail" size={20} /></span>
+            <div>
+              <strong>Correo</strong>
+              <a href={`mailto:${site.email}`}>{site.email}</a>
+            </div>
+          </li>
+          <li>
+            <span class="ci-ic"><Icon name="phone" size={20} /></span>
+            <div>
+              <strong>WhatsApp</strong>
+              <span class="ci-phones">
+                {
+                  whatsapps.map((w) => (
+                    <a href={waLink(w.intl)} target="_blank" rel="noopener">
+                      {w.display}
+                    </a>
+                  ))
+                }
+              </span>
+            </div>
+          </li>
+          <li>
+            <span class="ci-ic"><Icon name="truck" size={20} /></span>
+            <div>
+              <strong>Cobertura</strong>
+              <span>Entregas a todo el Perú · {site.hours}</span>
+            </div>
+          </li>
+        </ul>
+
+        {
+          socials.some((s) => s.url !== "#") && (
+            <div class="con-social reveal reveal-3">
+              {socials.map((s) => (
+                <a href={s.url} target="_blank" rel="noopener" aria-label={s.label}>
+                  <Icon name={s.icon} size={20} />
+                </a>
+              ))}
+            </div>
+          )
+        }
+
+        <div class="con-map reveal reveal-3">
+          <iframe
+            title="Ubicación de 3S Suministros en Cerro Colorado, Arequipa"
+            src={mapsEmbed}
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            allowfullscreen></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script is:inline define:vars={{ waIntl: whatsapps[0].intl, mail: site.email }}>
+  (() => {
+    const form = document.querySelector("[data-form]");
+    if (!form) return;
+    const compose = () => {
+      const d = new FormData(form);
+      const name = (d.get("name") || "").toString().trim();
+      const phone = (d.get("phone") || "").toString().trim();
+      const email = (d.get("email") || "").toString().trim();
+      const msg = (d.get("message") || "").toString().trim();
+      const body =
+        `Hola 3S Suministros, soy ${name || "(sin nombre)"}.\n\n` +
+        `${msg || "(sin mensaje)"}\n\n` +
+        `Tel: ${phone || "-"} · Correo: ${email || "-"}`;
+      return { name, body };
+    };
+    const valid = () => form.reportValidity();
+
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      if (!valid()) return;
+      const { body } = compose();
+      window.open(
+        `https://wa.me/${waIntl}?text=${encodeURIComponent(body)}`,
+        "_blank",
+        "noopener"
+      );
+    });
+    form.querySelector("[data-send-mail]").addEventListener("click", () => {
+      if (!valid()) return;
+      const { name, body } = compose();
+      const subject = `Consulta web — ${name || "Cliente"}`;
+      window.location.href = `mailto:${mail}?subject=${encodeURIComponent(
+        subject
+      )}&body=${encodeURIComponent(body)}`;
+    });
+  })();
+</script>
+
+<style>
+  .con-head {
+    max-width: 720px;
+    margin-bottom: clamp(2.2rem, 4vw, 3.4rem);
+  }
+  .con-head h2 {
+    margin: 0.9rem 0 1.2rem;
+  }
+  .con-grid {
+    display: grid;
+    gap: 1.6rem;
+    grid-template-columns: 1fr;
+  }
+  .con-form {
+    padding: clamp(1.5rem, 3vw, 2.4rem);
+    display: grid;
+    gap: 1.1rem;
+  }
+  .field {
+    display: grid;
+    gap: 0.45rem;
+  }
+  .field-row {
+    display: grid;
+    gap: 1.1rem;
+    grid-template-columns: 1fr;
+  }
+  label {
+    font-family: var(--font-display);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+  }
+  input,
+  textarea {
+    width: 100%;
+    font-family: var(--font-body);
+    font-size: 1rem;
+    color: var(--text);
+    background: var(--ink-2);
+    border: 1px solid var(--line-strong);
+    border-radius: var(--radius);
+    padding: 0.8rem 0.95rem;
+    transition: border-color var(--dur) var(--ease-out);
+  }
+  input::placeholder,
+  textarea::placeholder {
+    color: var(--text-dim);
+  }
+  input:focus,
+  textarea:focus {
+    outline: none;
+    border-color: var(--amber);
+  }
+  textarea {
+    resize: vertical;
+  }
+  .con-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+    margin-top: 0.3rem;
+  }
+  .con-hint {
+    font-size: 0.82rem;
+    color: var(--text-dim);
+  }
+
+  .con-info {
+    display: grid;
+    gap: 1.3rem;
+    margin-bottom: 1.4rem;
+  }
+  .con-info li {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+  }
+  .ci-ic {
+    width: 46px;
+    height: 46px;
+    flex: none;
+    display: grid;
+    place-items: center;
+    border-radius: var(--radius);
+    background: var(--amber-tint);
+    color: var(--amber);
+  }
+  .con-info strong {
+    display: block;
+    font-family: var(--font-display);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    font-size: 0.92rem;
+    margin-bottom: 0.15rem;
+  }
+  .con-info a,
+  .con-info span {
+    color: var(--text-muted);
+  }
+  .con-info a:hover {
+    color: var(--amber);
+  }
+  .ci-phones {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.3rem 1rem;
+  }
+
+  .con-social {
+    display: flex;
+    gap: 0.7rem;
+    margin-bottom: 1.4rem;
+  }
+  .con-social a {
+    width: 44px;
+    height: 44px;
+    display: grid;
+    place-items: center;
+    border-radius: var(--radius);
+    border: 1px solid var(--line-strong);
+    color: var(--text-muted);
+    transition: all var(--dur) var(--ease-out);
+  }
+  .con-social a:hover {
+    color: var(--amber);
+    border-color: var(--amber-line);
+  }
+
+  .con-map {
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    border: 1px solid var(--line-strong);
+    height: 280px;
+  }
+  .con-map iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+    filter: grayscale(0.3) contrast(1.05);
+  }
+
+  @media (min-width: 480px) {
+    .field-row {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+  @media (min-width: 900px) {
+    .con-grid {
+      grid-template-columns: 1.1fr 0.9fr;
+      align-items: start;
+    }
+  }
+</style>
