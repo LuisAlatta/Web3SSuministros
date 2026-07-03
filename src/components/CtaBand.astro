@@ -1,0 +1,64 @@
+---
+import { whatsapps, waLink } from "../data/site";
+import Icon from "./Icon.astro";
+
+interface Props {
+  title?: string;
+  text?: string;
+}
+const {
+  title = "¿Listo para abastecer tu operación?",
+  text = "Cotiza con nosotros y recibe atención personalizada. Entregas a todo el Perú.",
+} = Astro.props;
+---
+
+<section class="section cta-band" aria-labelledby="cta-h">
+  <div class="container cta-inner reveal">
+    <div>
+      <h2 id="cta-h">{title}</h2>
+      <p>{text}</p>
+    </div>
+    <div class="cta-actions">
+      <a
+        class="btn btn-amber"
+        href={waLink(whatsapps[0].intl)}
+        target="_blank"
+        rel="noopener"
+      >
+        <Icon name="whatsapp" size={19} /> Cotizar ahora
+      </a>
+      <a class="btn btn-ghost" href="/contacto">
+        <Icon name="mail" size={18} /> Contacto
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .cta-inner {
+    display: grid;
+    gap: 1.8rem;
+    align-items: center;
+    border: 1px solid var(--amber-line);
+    border-radius: var(--radius-xl);
+    padding: clamp(1.8rem, 4vw, 3rem);
+    background: linear-gradient(100deg, var(--amber-tint), transparent 70%);
+  }
+  .cta-inner h2 {
+    font-size: clamp(1.5rem, 1.1rem + 1.8vw, 2.3rem);
+  }
+  .cta-inner p {
+    color: var(--text-muted);
+    margin-top: var(--space-xs);
+  }
+  .cta-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.9rem;
+  }
+  @media (min-width: 860px) {
+    .cta-inner {
+      grid-template-columns: 1.5fr auto;
+    }
+  }
+</style>

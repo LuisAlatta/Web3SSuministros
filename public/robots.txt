@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://3s-suministros.com/sitemap-index.xml
+Sitemap: https://web3s-suministros.vercel.app/sitemap-index.xml

@@ -107,6 +107,22 @@ export const marcasSecundarias = [
   { name: "Pavco", note: "Tubería y accesorios PVC" },
 ] as const;
 
+/* Muro de marcas que distribuye 3S, agrupadas por rubro (según catálogo) */
+export const marcasPorRubro = [
+  {
+    rubro: "Herramientas y medición",
+    marcas: ["Bosch", "Makita", "DeWalt", "Stanley", "Milwaukee", "Truper", "Bahco", "Fluke", "Mitutoyo"],
+  },
+  {
+    rubro: "Seguridad industrial (EPP)",
+    marcas: ["3M", "MSA", "Steelpro", "DuPont Tyvek", "Ansell", "Delta Plus", "Showa", "Segpro"],
+  },
+  {
+    rubro: "Izaje y materiales",
+    marcas: ["Bekaert", "Crosby", "SuperLoop", "StrongLoop", "Lonatex", "Titán", "Pavco"],
+  },
+] as const;
+
 /* Líneas destacadas */
 export const lineaIzaje = {
   title: "Elementos de Izaje",

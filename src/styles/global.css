@@ -20,7 +20,7 @@ body {
   font-size: var(--text-base);
   line-height: var(--leading-body);
   color: var(--text);
-  background: var(--ink);
+  background: var(--bg);
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
   overflow-x: hidden;
@@ -117,7 +117,7 @@ strong {
   font-size: var(--text-sm);
   text-transform: uppercase;
   letter-spacing: var(--tracking-wider);
-  color: var(--amber);
+  color: var(--amber-deep);
 }
 .eyebrow::before {
   content: "";
@@ -175,16 +175,16 @@ strong {
 }
 .btn-ghost:hover {
   border-color: var(--amber);
-  color: var(--amber);
+  color: var(--amber-deep);
   transform: translateY(-2px);
 }
 
 /* — Superficies (paneles) — */
 .surface {
-  background: linear-gradient(180deg, var(--steel-850), var(--steel-900));
+  background: var(--steel-900);
   border: 1px solid var(--line);
   border-radius: var(--radius-lg);
-  box-shadow: var(--edge-hi);
+  box-shadow: var(--shadow-card);
 }
 
 /* — Barra de peligro (hazard) — */
@@ -195,33 +195,19 @@ strong {
   background-size: 45.25px 45.25px;
 }
 
-/* — Textura de plancha estriada (diamond plate) — */
+/* — Banda alterna clara (rítmo entre secciones) — */
 .plate {
+  background-color: var(--bg-2);
+}
+/* En contexto oscuro, .plate vuelve a ser carbón con textura sutil */
+.on-dark.plate,
+.on-dark .plate {
   background-color: var(--ink-2);
-  background-image: linear-gradient(
-      135deg,
-      rgba(255, 255, 255, 0.025) 25%,
-      transparent 25%,
-      transparent 50%,
-      rgba(255, 255, 255, 0.025) 50%,
-      rgba(255, 255, 255, 0.025) 75%,
-      transparent 75%
-    ),
-    linear-gradient(
-      45deg,
-      rgba(255, 255, 255, 0.025) 25%,
-      transparent 25%,
-      transparent 50%,
-      rgba(255, 255, 255, 0.025) 50%,
-      rgba(255, 255, 255, 0.025) 75%,
-      transparent 75%
-    );
-  background-size: 22px 22px;
 }
 
-/* — Texto resaltado en ámbar — */
+/* — Texto resaltado en ámbar (deep sobre claro, brillante en .on-dark) — */
 .amber {
-  color: var(--amber);
+  color: var(--amber-deep);
 }
 
 /* — Reveal on scroll — */

@@ -1,0 +1,147 @@
+---
+import { Image } from "astro:assets";
+import imgHerr from "../assets/img/ln-herramientas.jpg";
+import imgSeg from "../assets/img/ln-seguridad.jpg";
+import imgElec from "../assets/img/ln-electricos.jpg";
+import imgTrans from "../assets/img/ln-transmision.jpg";
+import imgMetal from "../assets/img/ln-metal.jpg";
+import imgIzaje from "../assets/img/hardpad-top.jpeg";
+import Icon from "../components/Icon.astro";
+
+const areas = [
+  { img: imgSeg, title: "Seguridad Industrial", desc: "EPPs y contención de derrames", href: "/categorias" },
+  { img: imgElec, title: "Equipos Eléctricos", desc: "Cables, motores e iluminación", href: "/categorias" },
+  { img: imgHerr, title: "Herramientas", desc: "Manuales, eléctricas e hidráulicas", href: "/categorias" },
+  { img: imgIzaje, title: "Sistemas de Izaje", desc: "Estrobos, cadenas y HARDPAD", href: "/lineas" },
+  { img: imgTrans, title: "Transmisión de Potencia", desc: "Rodamientos, reductores y correas", href: "/categorias" },
+  { img: imgMetal, title: "Ferretería y Estructural", desc: "Pernería, tubería y planchas", href: "/categorias" },
+];
+---
+
+<section class="section plate" aria-labelledby="areas-h">
+  <div class="container">
+    <header class="areas-head reveal">
+      <p class="eyebrow">Áreas de abastecimiento</p>
+      <h2 id="areas-h">Una amplia variedad de <span class="amber">suministros</span> a tu disposición</h2>
+    </header>
+
+    <div class="areas-grid">
+      {
+        areas.map((a, i) => (
+          <a class={`area reveal reveal-${(i % 3) + 1}`} href={a.href}>
+            <div class="area-media">
+              <Image src={a.img} alt={a.title} widths={[360, 560]} sizes="(min-width:900px) 33vw, 90vw" loading="lazy" />
+              <span class="area-scrim" />
+            </div>
+            <div class="area-body">
+              <h3>{a.title}</h3>
+              <p>{a.desc}</p>
+              <span class="area-link">Ver más <Icon name="arrow" size={16} /></span>
+            </div>
+          </a>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .areas-head {
+    max-width: 720px;
+    margin-bottom: clamp(2rem, 4vw, 3rem);
+  }
+  .areas-head h2 {
+    margin-top: var(--space-sm);
+  }
+  .areas-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.2rem;
+  }
+  .area {
+    position: relative;
+    display: block;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    background: var(--ink);
+    box-shadow: var(--shadow-sm);
+    isolation: isolate;
+    min-height: 260px;
+    transition: transform var(--dur) var(--ease-out),
+      box-shadow var(--dur) var(--ease-out);
+  }
+  .area:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-card);
+  }
+  .area-media {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+  }
+  .area-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform var(--dur-slow) var(--ease-out);
+  }
+  .area:hover .area-media img {
+    transform: scale(1.06);
+  }
+  .area-scrim {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      0deg,
+      rgba(12, 14, 18, 0.92) 8%,
+      rgba(12, 14, 18, 0.55) 45%,
+      rgba(12, 14, 18, 0.25) 100%
+    );
+  }
+  .area-body {
+    position: relative;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: clamp(1.3rem, 3vw, 1.7rem);
+    min-height: 260px;
+    color: #f4f4f3;
+  }
+  .area-body h3 {
+    font-size: 1.32rem;
+  }
+  .area-body p {
+    color: #cbd1d9;
+    font-size: 0.9rem;
+    margin-top: 0.3rem;
+  }
+  .area-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    margin-top: var(--space-md);
+    font-family: var(--font-display);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-size: 0.82rem;
+    color: var(--amber);
+  }
+  .area-link :global(svg) {
+    transition: transform var(--dur) var(--ease-out);
+  }
+  .area:hover .area-link :global(svg) {
+    transform: translateX(4px);
+  }
+
+  @media (min-width: 640px) {
+    .areas-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+  @media (min-width: 940px) {
+    .areas-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+</style>

@@ -1,5 +1,5 @@
 ---
-import { marcaPrincipal, marcasSecundarias } from "../data/content";
+import { marcaPrincipal, marcasPorRubro } from "../data/content";
 import { whatsapps, waLink } from "../data/site";
 import Icon from "../components/Icon.astro";
 ---
@@ -12,7 +12,7 @@ import Icon from "../components/Icon.astro";
     </header>
 
     <!-- Bekaert destacado -->
-    <article class="bekaert reveal">
+    <article class="bekaert reveal on-dark">
       <div class="bekaert-glow" aria-hidden="true"></div>
       <div class="bekaert-body">
         <span class="bekaert-badge">Marca destacada</span>
@@ -39,13 +39,15 @@ import Icon from "../components/Icon.astro";
       </ul>
     </article>
 
-    <p class="mar-sub reveal">También distribuimos</p>
-    <div class="mar-grid">
+    <p class="mar-sub reveal">También trabajamos con marcas líderes</p>
+    <div class="mar-rubros">
       {
-        marcasSecundarias.map((m, i) => (
-          <div class={`mar-chip reveal reveal-${(i % 3) + 1}`}>
-            <strong>{m.name}</strong>
-            <span>{m.note}</span>
+        marcasPorRubro.map((g, i) => (
+          <div class={`mar-rubro reveal reveal-${(i % 3) + 1}`}>
+            <h3>{g.rubro}</h3>
+            <ul class="mar-wall">
+              {g.marcas.map((m) => <li>{m}</li>)}
+            </ul>
           </div>
         ))
       }
@@ -69,7 +71,8 @@ import Icon from "../components/Icon.astro";
     padding: clamp(1.8rem, 4vw, 3.4rem);
     border-radius: var(--radius-xl);
     border: 1px solid var(--amber-line);
-    background: linear-gradient(150deg, var(--steel-850), var(--ink-2) 80%);
+    background: linear-gradient(150deg, var(--ink-2), var(--ink) 85%);
+    box-shadow: var(--shadow-lg);
   }
   .bekaert-glow {
     position: absolute;
@@ -149,35 +152,45 @@ import Icon from "../components/Icon.astro";
     font-size: 0.82rem;
     margin: clamp(2.4rem, 4vw, 3.4rem) 0 1.1rem;
   }
-  .mar-grid {
+  .mar-rubros {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1rem;
+    grid-template-columns: 1fr;
+    gap: 1.2rem;
   }
-  .mar-chip {
+  .mar-rubro {
     border: 1px solid var(--line);
-    border-radius: var(--radius);
-    padding: 1.1rem 1.3rem;
+    border-radius: var(--radius-lg);
+    padding: clamp(1.3rem, 3vw, 1.8rem);
     background: var(--steel-900);
-    transition: border-color var(--dur) var(--ease-out),
-      transform var(--dur) var(--ease-out);
+    box-shadow: var(--shadow-sm);
   }
-  .mar-chip:hover {
-    border-color: var(--amber-line);
-    transform: translateY(-3px);
+  .mar-rubro h3 {
+    font-size: 0.82rem;
+    letter-spacing: var(--tracking-wide);
+    color: var(--amber-deep);
+    margin-bottom: var(--space-md);
   }
-  .mar-chip strong {
-    display: block;
+  .mar-wall {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.55rem;
+  }
+  .mar-wall li {
     font-family: var(--font-display);
-    font-weight: 700;
+    font-weight: 600;
     text-transform: uppercase;
-    letter-spacing: 0.04em;
-    font-size: 1.25rem;
+    letter-spacing: 0.03em;
+    font-size: 0.88rem;
     color: var(--text);
+    padding: 0.4rem 0.85rem;
+    border: 1px solid var(--line-strong);
+    border-radius: var(--radius-xs);
+    transition: border-color var(--dur) var(--ease-out),
+      color var(--dur) var(--ease-out);
   }
-  .mar-chip span {
-    color: var(--text-dim);
-    font-size: 0.86rem;
+  .mar-wall li:hover {
+    border-color: var(--amber);
+    color: var(--amber-deep);
   }
 
   @media (min-width: 860px) {
@@ -185,7 +198,7 @@ import Icon from "../components/Icon.astro";
       grid-template-columns: 1.3fr 0.7fr;
       align-items: center;
     }
-    .mar-grid {
+    .mar-rubros {
       grid-template-columns: repeat(3, 1fr);
     }
   }

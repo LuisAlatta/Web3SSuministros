@@ -11,7 +11,7 @@ export const site = {
   attention: "Sra. Naydu",
   email: "ventas@3s-suministros.com",
   emailAlt: "3S.Suministros24@gmail.com",
-  domain: "https://3s-suministros.com",
+  domain: "https://web3s-suministros.vercel.app",
   address: {
     line: "Villa Aviación Mz. F Lt. 5",
     district: "Cerro Colorado",
@@ -27,7 +27,6 @@ export const site = {
 export const whatsapps = [
   { label: "Ventas", display: "986 759 523", intl: "51986759523" },
   { label: "Comercial", display: "903 306 833", intl: "51903306833" },
-  { label: "Atención", display: "968 833 381", intl: "51968833381" },
 ] as const;
 
 export const defaultWaMessage =

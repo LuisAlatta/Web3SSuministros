@@ -198,11 +198,16 @@ const mapsLink = `https://www.google.com/maps/search/?api=1&query=${encodeURICom
     font-family: var(--font-body);
     font-size: 1rem;
     color: var(--text);
-    background: var(--ink-2);
+    background: var(--bg-2);
     border: 1px solid var(--line-strong);
     border-radius: var(--radius);
     padding: 0.8rem 0.95rem;
-    transition: border-color var(--dur) var(--ease-out);
+    transition: border-color var(--dur) var(--ease-out),
+      background var(--dur) var(--ease-out);
+  }
+  input:focus,
+  textarea:focus {
+    background: #fff;
   }
   input::placeholder,
   textarea::placeholder {

@@ -1,69 +1,74 @@
 /* ============================================================
    3S Suministros — Design Tokens
-   Dirección: Industrial Heavy-Duty Premium
-   Negro carbón + plancha estriada + ámbar de seguridad
+   Dirección: corporativo industrial claro (referencia EFC)
+   Fondo claro y serio + acento ámbar de marca + anclas en carbón.
+   Tema claro por defecto; usar .on-dark para bandas oscuras.
    ============================================================ */
 :root {
-  /* — Color: superficies oscuras — */
-  --ink: #0c0d0f;
-  --ink-2: #101216;
-  --steel-900: #15181d;
-  --steel-850: #1a1e24;
-  --steel-800: #1f242b;
-  --steel-700: #2a313a;
-  --steel-600: #3a434f;
+  /* — Neutrales claros — */
+  --bg: #f3f3f1; /* fondo de página (papel cálido muy sutil) */
+  --bg-2: #ececeb; /* banda alterna */
+  --ink: #14171c; /* carbón para bandas oscuras / footer / overlay */
+  --ink-2: #1c1f26;
 
-  /* — Color: marca (ámbar de seguridad) — */
-  --amber: #f4a81d;
-  --amber-bright: #ffbf3f;
-  --amber-deep: #c2820c;
-  --amber-tint: rgba(244, 168, 29, 0.12);
-  --amber-line: rgba(244, 168, 29, 0.32);
+  /* Superficies (nombres "steel" conservados; ahora claros) */
+  --steel-900: #ffffff; /* tarjeta base */
+  --steel-850: #ffffff; /* tarjeta (top del degradado) */
+  --steel-800: #f6f6f5;
+  --steel-700: #e4e5e8; /* gris claro para números/acentos tenues */
+  --steel-600: #d5d7dc;
 
-  /* — Color: texto — */
-  --text: #f5f5f4;
-  --text-muted: #b2b9c2;
-  --text-dim: #8d949e;
-  --on-amber: #181103;
+  /* — Marca (ámbar de seguridad) — */
+  --amber: #ef9f0a;
+  --amber-bright: #ffb52e;
+  --amber-deep: #b06f05; /* ámbar legible como texto sobre claro (AA) */
+  --amber-tint: rgba(239, 159, 10, 0.13);
+  --amber-line: rgba(239, 159, 10, 0.4);
 
-  /* — Líneas y bordes — */
-  --line: rgba(255, 255, 255, 0.08);
-  --line-strong: rgba(255, 255, 255, 0.14);
+  /* — Texto sobre claro — */
+  --text: #191c21;
+  --text-muted: #545b64;
+  --text-dim: #767d87;
+  --on-amber: #17110a;
+
+  /* — Líneas y bordes (sobre claro) — */
+  --line: rgba(20, 23, 28, 0.11);
+  --line-strong: rgba(20, 23, 28, 0.2);
 
   /* — Tipografía — */
   --font-display: "Oswald", "Arial Narrow", sans-serif;
   --font-body: "Inter Variable", "Inter", system-ui, -apple-system, sans-serif;
 
-  --text-xs: 0.78rem;
-  --text-sm: 0.875rem;
-  --text-base: clamp(1rem, 0.97rem + 0.16vw, 1.0625rem);
-  --text-lg: clamp(1.0625rem, 1rem + 0.4vw, 1.2rem);
-  --text-h3: clamp(1.25rem, 1.05rem + 0.85vw, 1.7rem);
-  --text-h2: clamp(1.9rem, 1.3rem + 2.5vw, 3.25rem);
-  --text-display: clamp(2.6rem, 1.2rem + 6.4vw, 6rem);
+  --text-xs: 0.75rem;
+  --text-sm: 0.84rem;
+  --text-base: clamp(0.95rem, 0.92rem + 0.14vw, 1.02rem);
+  --text-lg: clamp(1.04rem, 0.99rem + 0.28vw, 1.16rem);
+  --text-h3: clamp(1.12rem, 1rem + 0.6vw, 1.42rem);
+  --text-h2: clamp(1.6rem, 1.2rem + 1.85vw, 2.5rem);
+  --text-display: clamp(2.1rem, 1.35rem + 3.4vw, 4rem);
 
-  --leading-tight: 1.04;
-  --leading-snug: 1.22;
+  --leading-tight: 1.08;
+  --leading-snug: 1.24;
   --leading-body: 1.62;
   --tracking-wide: 0.14em;
-  --tracking-wider: 0.24em;
+  --tracking-wider: 0.22em;
 
-  /* — Espaciado (escala 4pt, nombres semánticos) — */
-  --space-2xs: 0.25rem; /* 4 */
-  --space-xs: 0.5rem; /* 8 */
-  --space-sm: 0.75rem; /* 12 */
-  --space-md: 1rem; /* 16 */
-  --space-lg: 1.5rem; /* 24 */
-  --space-xl: 2rem; /* 32 */
-  --space-2xl: 3rem; /* 48 */
-  --space-3xl: 4rem; /* 64 */
-  --space-4xl: 6rem; /* 96 */
+  /* — Espaciado (escala 4pt) — */
+  --space-2xs: 0.25rem;
+  --space-xs: 0.5rem;
+  --space-sm: 0.75rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2rem;
+  --space-2xl: 3rem;
+  --space-3xl: 4rem;
+  --space-4xl: 6rem;
 
   /* — Layout — */
-  --container: 1200px;
-  --container-wide: 1340px;
+  --container: 1180px;
+  --container-wide: 1320px;
   --gutter: clamp(1.1rem, 0.6rem + 2.4vw, 2.5rem);
-  --space-section: clamp(4.5rem, 3rem + 6vw, 9rem);
+  --space-section: clamp(3.75rem, 2.6rem + 5vw, 7rem);
 
   /* — Forma — */
   --radius-xs: 3px;
@@ -71,25 +76,44 @@
   --radius-lg: 12px;
   --radius-xl: 18px;
 
-  /* — Sombra / profundidad — */
-  --shadow-sm: 0 2px 8px -3px rgba(0, 0, 0, 0.5);
-  --shadow-card: 0 18px 40px -22px rgba(0, 0, 0, 0.75);
-  --shadow-lg: 0 32px 70px -30px rgba(0, 0, 0, 0.85);
-  --shadow-amber: 0 14px 34px -14px rgba(244, 168, 29, 0.4);
-  /* realce sutil en el borde superior de las superficies (luz cenital) */
-  --edge-hi: inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  /* — Sombra / profundidad (sobre claro) — */
+  --shadow-sm: 0 1px 3px rgba(20, 23, 28, 0.08);
+  --shadow-card: 0 14px 34px -18px rgba(20, 23, 28, 0.22);
+  --shadow-lg: 0 28px 60px -26px rgba(20, 23, 28, 0.3);
+  --shadow-amber: 0 12px 26px -12px rgba(239, 159, 10, 0.42);
+  --edge-hi: inset 0 1px 0 rgba(255, 255, 255, 0.6);
 
   /* — Movimiento — */
   --dur-fast: 150ms;
-  --dur: 300ms;
+  --dur: 280ms;
   --dur-slow: 620ms;
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
 
-  /* — Texturas reutilizables — */
+  /* — Textura hazard — */
   --hazard: repeating-linear-gradient(
     -45deg,
     var(--amber) 0 16px,
     var(--ink) 16px 32px
   );
+}
+
+/* ============================================================
+   Contexto oscuro: invierte los mismos tokens.
+   Aplicar .on-dark a hero, footer, paneles/bandas oscuras.
+   ============================================================ */
+.on-dark {
+  --steel-900: #14171c;
+  --steel-850: #1c2027;
+  --steel-800: #242932;
+  --steel-700: #3a434f;
+  --steel-600: #47515e;
+  --text: #f4f4f3;
+  --text-muted: #b9c0c9;
+  --text-dim: #8b929c;
+  --line: rgba(255, 255, 255, 0.1);
+  --line-strong: rgba(255, 255, 255, 0.2);
+  --amber-deep: var(--amber);
+  --edge-hi: inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  color: var(--text);
 }

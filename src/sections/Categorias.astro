@@ -68,7 +68,7 @@ import Icon from "../components/Icon.astro";
     border: 1px solid var(--line);
     border-radius: var(--radius-lg);
     padding: clamp(1.4rem, 3vw, 2rem);
-    box-shadow: var(--edge-hi);
+    box-shadow: var(--shadow-sm);
     transition: transform var(--dur) var(--ease-out),
       border-color var(--dur) var(--ease-out),
       box-shadow var(--dur) var(--ease-out);
@@ -76,7 +76,7 @@ import Icon from "../components/Icon.astro";
   .cat-card:hover {
     transform: translateY(-4px);
     border-color: var(--amber-line);
-    box-shadow: var(--edge-hi), var(--shadow-card);
+    box-shadow: var(--shadow-card);
   }
   .cat-card-top {
     display: flex;

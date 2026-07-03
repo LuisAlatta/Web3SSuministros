@@ -1,5 +1,7 @@
 ---
-import { sectores, stats } from "../data/content";
+import { Image } from "astro:assets";
+import mineria from "../assets/img/mineria-peru.jpg";
+import { sectores, stats, normativas } from "../data/content";
 import Icon from "../components/Icon.astro";
 ---
 
@@ -52,11 +54,22 @@ import Icon from "../components/Icon.astro";
       </article>
     </div>
 
-    <div class="nos-sectores reveal">
-      <p class="nos-sub">Atendemos sectores clave</p>
-      <ul>
-        {sectores.map((s) => <li>{s}</li>)}
-      </ul>
+    <div class="nos-sectores reveal on-dark">
+      <div class="nos-sectores-media" aria-hidden="true">
+        <Image src={mineria} alt="" widths={[640, 960, 1280]} sizes="100vw" loading="lazy" />
+        <span class="nos-sectores-scrim"></span>
+      </div>
+      <div class="nos-sectores-body">
+        <p class="eyebrow">Sectores que atendemos</p>
+        <h3>Socios estratégicos de la industria peruana</h3>
+        <ul class="nos-sect-list">
+          {sectores.map((s) => <li>{s}</li>)}
+        </ul>
+        <p class="nos-norm">
+          Nuestros productos cumplen normas
+          <span>{normativas.join(" · ")}</span>
+        </p>
+      </div>
     </div>
 
     <dl class="nos-stats">
@@ -89,13 +102,15 @@ import Icon from "../components/Icon.astro";
   .nos-card {
     padding: clamp(1.5rem, 3vw, 2.4rem);
     position: relative;
-    box-shadow: var(--edge-hi);
+    box-shadow: var(--shadow-sm);
     transition: border-color var(--dur) var(--ease-out),
-      transform var(--dur) var(--ease-out);
+      transform var(--dur) var(--ease-out),
+      box-shadow var(--dur) var(--ease-out);
   }
   .nos-card:hover {
     border-color: var(--amber-line);
     transform: translateY(-3px);
+    box-shadow: var(--shadow-card);
   }
   .nos-card-top {
     display: flex;
@@ -126,36 +141,74 @@ import Icon from "../components/Icon.astro";
   }
 
   .nos-sectores {
+    position: relative;
     margin-top: clamp(2.5rem, 5vw, 4rem);
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+    isolation: isolate;
+    box-shadow: var(--shadow-lg);
   }
-  .nos-sub {
-    font-family: var(--font-display);
-    text-transform: uppercase;
-    letter-spacing: var(--tracking-wide);
-    color: var(--text-dim);
-    font-size: 0.82rem;
-    margin-bottom: 1rem;
+  .nos-sectores-media {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
   }
-  .nos-sectores ul {
+  .nos-sectores-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 30%;
+  }
+  .nos-sectores-scrim {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      95deg,
+      rgba(12, 14, 18, 0.94) 0%,
+      rgba(12, 14, 18, 0.78) 45%,
+      rgba(12, 14, 18, 0.4) 100%
+    );
+  }
+  .nos-sectores-body {
+    padding: clamp(1.8rem, 4vw, 3rem);
+    max-width: 640px;
+  }
+  .nos-sectores-body h3 {
+    margin: var(--space-sm) 0 var(--space-lg);
+    font-size: var(--text-h3);
+  }
+  .nos-sect-list {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.7rem;
+    gap: 0.6rem;
   }
-  .nos-sectores li {
+  .nos-sect-list li {
     font-family: var(--font-display);
     font-weight: 500;
     text-transform: uppercase;
     letter-spacing: 0.04em;
-    font-size: 0.92rem;
-    padding: 0.55rem 1.1rem;
-    border: 1px solid var(--line);
+    font-size: 0.86rem;
+    padding: 0.45rem 1rem;
+    border: 1px solid var(--line-strong);
     border-radius: 999px;
-    background: var(--steel-900);
     transition: border-color var(--dur) var(--ease-out),
       color var(--dur) var(--ease-out);
   }
-  .nos-sectores li:hover {
-    border-color: var(--amber-line);
+  .nos-sect-list li:hover {
+    border-color: var(--amber);
+    color: var(--amber);
+  }
+  .nos-norm {
+    margin-top: var(--space-lg);
+    font-size: 0.85rem;
+    color: var(--text-dim);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  .nos-norm span {
+    font-family: var(--font-display);
+    letter-spacing: 0.06em;
     color: var(--amber);
   }
 

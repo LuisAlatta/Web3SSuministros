@@ -1,37 +1,10 @@
 ---
+import { Image } from "astro:assets";
+import equipo from "../assets/img/equipo.jpg";
 import { stats } from "../data/content";
-import { whatsapps, waLink } from "../data/site";
 import Icon from "../components/Icon.astro";
-
-const accesos = [
-  {
-    href: "/nosotros",
-    icon: "shield",
-    title: "Nosotros",
-    desc: "Quiénes somos, misión, visión y los sectores que atendemos.",
-  },
-  {
-    href: "/categorias",
-    icon: "gear",
-    title: "Categorías",
-    desc: "Seis líneas de productos industriales en un solo proveedor.",
-  },
-  {
-    href: "/marcas",
-    icon: "star",
-    title: "Marcas",
-    desc: "Representantes de Bekaert y distribuidores de marcas líderes.",
-  },
-  {
-    href: "/lineas",
-    icon: "hook",
-    title: "Líneas destacadas",
-    desc: "Elementos de izaje y almohadillas HARDPAD Crane.",
-  },
-];
 ---
 
-<!-- Presentación -->
 <section class="section" aria-labelledby="intro-h">
   <div class="container intro">
     <div class="intro-text reveal">
@@ -40,17 +13,30 @@ const accesos = [
         Tu socio en <span class="amber">abastecimiento industrial</span> en Arequipa
       </h2>
       <p class="lead">
-        En 3S Suministros y Servicios del Sur desarrollamos soluciones de
-        abastecimiento que se adaptan a la necesidad de cada cliente.
-        Representamos y distribuimos marcas reconocidas que cumplen normativas
-        nacionales e internacionales, y somos socios estratégicos de las
-        principales empresas y proyectos del país.
+        En 3S Suministros desarrollamos soluciones de abastecimiento que se
+        adaptan a la necesidad de cada cliente. Representamos y distribuimos
+        marcas reconocidas que cumplen normativas nacionales e internacionales,
+        y somos socios estratégicos de las principales empresas y proyectos del
+        país.
       </p>
       <a class="btn btn-ghost" href="/nosotros">
         Conócenos <Icon name="arrow" size={18} />
       </a>
     </div>
-    <dl class="intro-stats reveal reveal-2">
+
+    <div class="intro-visual reveal reveal-2">
+      <Image
+        src={equipo}
+        alt="Equipo de ingenieros de 3S Suministros en planta industrial"
+        widths={[420, 640, 820]}
+        sizes="(min-width: 760px) 44vw, 90vw"
+        loading="lazy"
+      />
+    </div>
+  </div>
+
+  <div class="container">
+    <dl class="intro-stats reveal">
       {
         stats.map((s) => (
           <div class="intro-stat">
@@ -63,72 +49,40 @@ const accesos = [
   </div>
 </section>
 
-<!-- Accesos a las secciones -->
-<section class="section plate" aria-labelledby="acc-h">
-  <div class="container">
-    <header class="acc-head reveal">
-      <p class="eyebrow">Explora la web</p>
-      <h2 id="acc-h">Todo lo que necesitas, <span class="amber">organizado</span></h2>
-    </header>
-    <div class="acc-grid">
-      {
-        accesos.map((a, i) => (
-          <a class={`acc-card reveal reveal-${(i % 4) + 1}`} href={a.href}>
-            <span class="acc-ic"><Icon name={a.icon} size={26} /></span>
-            <h3>{a.title}</h3>
-            <p>{a.desc}</p>
-            <span class="acc-link">
-              Ver más <Icon name="arrow" size={16} />
-            </span>
-          </a>
-        ))
-      }
-    </div>
-  </div>
-</section>
-
-<!-- CTA -->
-<section class="section cta-band" aria-labelledby="cta-h">
-  <div class="container cta-inner reveal">
-    <div>
-      <h2 id="cta-h">¿Listo para abastecer tu operación?</h2>
-      <p>Cotiza con nosotros y recibe atención personalizada. Entregas a todo el Perú.</p>
-    </div>
-    <div class="cta-actions">
-      <a
-        class="btn btn-amber"
-        href={waLink(whatsapps[0].intl)}
-        target="_blank"
-        rel="noopener"
-      >
-        <Icon name="whatsapp" size={19} /> Cotizar ahora
-      </a>
-      <a class="btn btn-ghost" href="/contacto">
-        <Icon name="mail" size={18} /> Contacto
-      </a>
-    </div>
-  </div>
-</section>
-
 <style>
   .intro {
     display: grid;
     gap: clamp(2rem, 4vw, 3.5rem);
     align-items: center;
+    margin-bottom: clamp(2.5rem, 5vw, 4rem);
   }
   .intro-text h2 {
-    margin: 0.9rem 0 1.2rem;
+    margin: var(--space-sm) 0 var(--space-md);
   }
   .intro-text .btn {
-    margin-top: 1.6rem;
+    margin-top: var(--space-lg);
   }
+  .intro-visual {
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-card);
+  }
+  .intro-visual img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    aspect-ratio: 4 / 3;
+  }
+
   .intro-stats {
     display: grid;
+    grid-template-columns: 1fr;
     gap: 1px;
     background: var(--line);
     border: 1px solid var(--line);
     border-radius: var(--radius-lg);
     overflow: hidden;
+    box-shadow: var(--shadow-sm);
   }
   .intro-stat {
     background: var(--steel-900);
@@ -140,8 +94,8 @@ const accesos = [
   .intro-stat dt {
     font-family: var(--font-display);
     font-weight: 700;
-    font-size: clamp(2rem, 1.4rem + 2vw, 2.8rem);
-    color: var(--amber);
+    font-size: clamp(1.9rem, 1.4rem + 1.8vw, 2.6rem);
+    color: var(--amber-deep);
     line-height: 1;
     flex: none;
   }
@@ -150,116 +104,12 @@ const accesos = [
     font-size: 0.92rem;
   }
 
-  .acc-head {
-    margin-bottom: clamp(2rem, 4vw, 3rem);
-  }
-  .acc-head h2 {
-    margin-top: 0.9rem;
-  }
-  .acc-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 1.2rem;
-  }
-  .acc-card {
-    display: block;
-    border: 1px solid var(--line);
-    border-radius: var(--radius-lg);
-    background: linear-gradient(180deg, var(--steel-850), var(--steel-900));
-    padding: clamp(1.5rem, 3vw, 2rem);
-    box-shadow: var(--edge-hi);
-    transition: transform var(--dur) var(--ease-out),
-      border-color var(--dur) var(--ease-out),
-      box-shadow var(--dur) var(--ease-out);
-  }
-  .acc-card:hover {
-    transform: translateY(-4px);
-    border-color: var(--amber-line);
-    box-shadow: var(--edge-hi), var(--shadow-card);
-  }
-  .acc-ic {
-    display: inline-grid;
-    place-items: center;
-    width: 52px;
-    height: 52px;
-    border-radius: var(--radius);
-    background: var(--amber-tint);
-    color: var(--amber);
-    margin-bottom: var(--space-md);
-    transition: background var(--dur) var(--ease-out),
-      color var(--dur) var(--ease-out);
-  }
-  .acc-card:hover .acc-ic {
-    background: var(--amber);
-    color: var(--on-amber);
-  }
-  .acc-card h3 {
-    font-size: 1.3rem;
-    margin-bottom: 0.5rem;
-  }
-  .acc-card p {
-    color: var(--text-muted);
-    font-size: 0.94rem;
-    margin-bottom: 1.1rem;
-  }
-  .acc-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.4rem;
-    font-family: var(--font-display);
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
-    font-size: 0.84rem;
-    color: var(--amber);
-  }
-  .acc-card:hover .acc-link :global(svg) {
-    transform: translateX(4px);
-  }
-  .acc-link :global(svg) {
-    transition: transform var(--dur) var(--ease-out);
-  }
-
-  .cta-band {
-    border-top: 1px solid var(--line);
-  }
-  .cta-inner {
-    display: grid;
-    gap: 1.8rem;
-    align-items: center;
-    border: 1px solid var(--amber-line);
-    border-radius: var(--radius-xl);
-    padding: clamp(1.8rem, 4vw, 3rem);
-    background: linear-gradient(100deg, var(--amber-tint), transparent 70%);
-  }
-  .cta-inner h2 {
-    font-size: clamp(1.6rem, 1.2rem + 2vw, 2.6rem);
-  }
-  .cta-inner p {
-    color: var(--text-muted);
-    margin-top: 0.7rem;
-  }
-  .cta-actions {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.9rem;
-  }
-
   @media (min-width: 760px) {
     .intro {
-      grid-template-columns: 1.3fr 1fr;
+      grid-template-columns: 1.05fr 0.95fr;
     }
-    .acc-grid {
-      grid-template-columns: repeat(2, 1fr);
-    }
-  }
-  @media (min-width: 1040px) {
-    .acc-grid {
-      grid-template-columns: repeat(4, 1fr);
-    }
-  }
-  @media (min-width: 860px) {
-    .cta-inner {
-      grid-template-columns: 1.5fr auto;
+    .intro-stats {
+      grid-template-columns: repeat(3, 1fr);
     }
   }
 </style>
