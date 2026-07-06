@@ -1,39 +1,40 @@
 /* ============================================================
    3S Suministros — Design Tokens
-   Dirección: corporativo industrial claro (referencia EFC)
-   Fondo claro y serio + acento ámbar de marca + anclas en carbón.
+   Paleta oficial: azul carbón (#1A202C / #2D3748) + ámbar de
+   marca (#FBBF24) con acento amarillo suave (#FDE68A) sobre
+   neutrales fríos (#E5E7EB / #FFFFFF).
    Tema claro por defecto; usar .on-dark para bandas oscuras.
    ============================================================ */
 :root {
-  /* — Neutrales claros — */
-  --bg: #f3f3f1; /* fondo de página (papel cálido muy sutil) */
-  --bg-2: #ececeb; /* banda alterna */
-  --ink: #14171c; /* carbón para bandas oscuras / footer / overlay */
-  --ink-2: #1c1f26;
+  /* — Neutrales claros (paleta: #E5E7EB / #FFFFFF) — */
+  --bg: #f5f6f8; /* fondo de página (blanco frío muy sutil) */
+  --bg-2: #e5e7eb; /* banda alterna (gris claro de paleta) */
+  --ink: #1a202c; /* azul carbón para bandas oscuras / footer / overlay */
+  --ink-2: #2d3748; /* pizarra oscura secundaria */
 
   /* Superficies (nombres "steel" conservados; ahora claros) */
   --steel-900: #ffffff; /* tarjeta base */
   --steel-850: #ffffff; /* tarjeta (top del degradado) */
-  --steel-800: #f6f6f5;
-  --steel-700: #e4e5e8; /* gris claro para números/acentos tenues */
-  --steel-600: #d5d7dc;
+  --steel-800: #f5f6f8;
+  --steel-700: #e5e7eb; /* gris claro para números/acentos tenues */
+  --steel-600: #d3d7de;
 
-  /* — Marca (ámbar de seguridad) — */
-  --amber: #ef9f0a;
-  --amber-bright: #ffb52e;
-  --amber-deep: #b06f05; /* ámbar legible como texto sobre claro (AA) */
-  --amber-tint: rgba(239, 159, 10, 0.13);
-  --amber-line: rgba(239, 159, 10, 0.4);
+  /* — Marca (ámbar de seguridad #FBBF24) — */
+  --amber: #fbbf24;
+  --amber-bright: #ffce52;
+  --amber-deep: #8a6708; /* ámbar legible como texto sobre claro (AA) */
+  --amber-tint: rgba(251, 191, 36, 0.15);
+  --amber-line: rgba(251, 191, 36, 0.42);
 
   /* — Texto sobre claro — */
-  --text: #191c21;
-  --text-muted: #545b64;
-  --text-dim: #767d87;
-  --on-amber: #17110a;
+  --text: #1a202c;
+  --text-muted: #4a5568;
+  --text-dim: #718096;
+  --on-amber: #1a202c;
 
   /* — Líneas y bordes (sobre claro) — */
-  --line: rgba(20, 23, 28, 0.11);
-  --line-strong: rgba(20, 23, 28, 0.2);
+  --line: rgba(26, 32, 44, 0.12);
+  --line-strong: rgba(26, 32, 44, 0.2);
 
   /* — Tipografía — */
   --font-display: "Oswald", "Arial Narrow", sans-serif;
@@ -77,10 +78,10 @@
   --radius-xl: 18px;
 
   /* — Sombra / profundidad (sobre claro) — */
-  --shadow-sm: 0 1px 3px rgba(20, 23, 28, 0.08);
-  --shadow-card: 0 14px 34px -18px rgba(20, 23, 28, 0.22);
-  --shadow-lg: 0 28px 60px -26px rgba(20, 23, 28, 0.3);
-  --shadow-amber: 0 12px 26px -12px rgba(239, 159, 10, 0.42);
+  --shadow-sm: 0 1px 3px rgba(26, 32, 44, 0.08);
+  --shadow-card: 0 14px 34px -18px rgba(26, 32, 44, 0.22);
+  --shadow-lg: 0 28px 60px -26px rgba(26, 32, 44, 0.3);
+  --shadow-amber: 0 12px 26px -12px rgba(251, 191, 36, 0.42);
   --edge-hi: inset 0 1px 0 rgba(255, 255, 255, 0.6);
 
   /* — Movimiento — */
@@ -103,14 +104,14 @@
    Aplicar .on-dark a hero, footer, paneles/bandas oscuras.
    ============================================================ */
 .on-dark {
-  --steel-900: #14171c;
-  --steel-850: #1c2027;
-  --steel-800: #242932;
-  --steel-700: #3a434f;
-  --steel-600: #47515e;
-  --text: #f4f4f3;
-  --text-muted: #b9c0c9;
-  --text-dim: #8b929c;
+  --steel-900: #1a202c;
+  --steel-850: #232b3a;
+  --steel-800: #2d3748;
+  --steel-700: #3d4a5f;
+  --steel-600: #4a5568;
+  --text: #f7f8fa;
+  --text-muted: #cbd2dc;
+  --text-dim: #939caa;
   --line: rgba(255, 255, 255, 0.1);
   --line-strong: rgba(255, 255, 255, 0.2);
   --amber-deep: var(--amber);
