@@ -19,28 +19,30 @@ import Icon from "../components/Icon.astro";
     <div class="hero-scrim"></div>
   </div>
 
-  <div class="container hero-inner">
-    <p class="eyebrow reveal">Suministros industriales · Arequipa · Perú</p>
-    <h1 id="hero-h" class="hero-title reveal reveal-2">
-      El socio <span class="amber">estratégico</span> para tu empresa
-    </h1>
-    <p class="lead reveal reveal-3">
-      Abastecemos suministros industriales para minería, construcción, petróleo,
-      gas, energía e industria. Representantes de <strong>Bekaert</strong> y
-      distribuidores de marcas líderes, con entregas a todo el Perú.
-    </p>
-    <div class="hero-cta reveal reveal-4">
-      <a
-        class="btn btn-amber"
-        href={waLink(whatsapps[0].intl)}
-        target="_blank"
-        rel="noopener"
-      >
-        <Icon name="whatsapp" size={19} /> Solicitar cotización
-      </a>
-      <a class="btn btn-ghost" href="/catalogo">
-        <Icon name="doc" size={18} /> Ver catálogo
-      </a>
+  <div class="container">
+    <div class="hero-inner">
+      <p class="eyebrow reveal">Suministros industriales · Arequipa · Perú</p>
+      <h1 id="hero-h" class="hero-title reveal reveal-2">
+        El socio <span class="amber">estratégico</span> para tu empresa
+      </h1>
+      <p class="lead reveal reveal-3">
+        Abastecemos suministros industriales para minería, construcción, petróleo,
+        gas, energía e industria. Representantes de <strong>Bekaert</strong> y
+        distribuidores de marcas líderes, con entregas a todo el Perú.
+      </p>
+      <div class="hero-cta reveal reveal-4">
+        <a
+          class="btn btn-amber"
+          href={waLink(whatsapps[0].intl)}
+          target="_blank"
+          rel="noopener"
+        >
+          <Icon name="whatsapp" size={19} /> Solicitar cotización
+        </a>
+        <a class="btn btn-ghost" href="/catalogo">
+          <Icon name="doc" size={18} /> Ver catálogo
+        </a>
+      </div>
     </div>
   </div>
 </section>
