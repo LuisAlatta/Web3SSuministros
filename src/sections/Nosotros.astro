@@ -76,7 +76,7 @@ import Icon from "../components/Icon.astro";
       {
         stats.map((s, i) => (
           <div class={`nos-stat reveal reveal-${i + 1}`}>
-            <dt>{s.value}</dt>
+            <dt data-count>{s.value}</dt>
             <dd>{s.label}</dd>
           </div>
         ))

@@ -13,6 +13,7 @@ import Icon from "../components/Icon.astro";
 
     <!-- Bekaert destacado -->
     <article class="bekaert reveal on-dark">
+      <div class="hazard-bar bekaert-hazard" aria-hidden="true"></div>
       <div class="bekaert-glow" aria-hidden="true"></div>
       <div class="bekaert-body">
         <span class="bekaert-badge">Marca destacada</span>
@@ -73,6 +74,13 @@ import Icon from "../components/Icon.astro";
     border: 1px solid var(--amber-line);
     background: linear-gradient(150deg, var(--ink-2), var(--ink) 85%);
     box-shadow: var(--shadow-lg);
+  }
+  .bekaert-hazard {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
   }
   .bekaert-glow {
     position: absolute;

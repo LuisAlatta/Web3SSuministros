@@ -117,6 +117,55 @@ const jsonLd = {
         );
         els.forEach((el) => io.observe(el));
       })();
+
+      // Conteo animado de cifras (respeta reduced-motion)
+      (() => {
+        const nums = document.querySelectorAll("[data-count]");
+        if (!nums.length) return;
+        const reduce = window.matchMedia(
+          "(prefers-reduced-motion: reduce)"
+        ).matches;
+        const parse = (raw) => {
+          const m = raw.match(/^(\D*)(\d+)(.*)$/);
+          if (!m) return null;
+          return { pre: m[1], target: parseInt(m[2], 10), suf: m[3] };
+        };
+        const run = (el) => {
+          const raw = el.textContent.trim();
+          const p = parse(raw);
+          if (!p) return;
+          // Si no se puede animar, dejar el valor final (nunca en 0)
+          if (reduce || document.hidden || !("requestAnimationFrame" in window))
+            return;
+          const dur = 1100;
+          let start = null;
+          const ease = (t) => 1 - Math.pow(1 - t, 3);
+          const step = (ts) => {
+            if (start === null) start = ts;
+            const t = Math.min((ts - start) / dur, 1);
+            el.textContent = p.pre + Math.round(ease(t) * p.target) + p.suf;
+            if (t < 1) requestAnimationFrame(step);
+          };
+          el.textContent = p.pre + "0" + p.suf;
+          requestAnimationFrame(step);
+        };
+        if (!("IntersectionObserver" in window)) {
+          nums.forEach(run);
+          return;
+        }
+        const io = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((e) => {
+              if (e.isIntersecting) {
+                run(e.target);
+                io.unobserve(e.target);
+              }
+            });
+          },
+          { threshold: 0.6 }
+        );
+        nums.forEach((el) => io.observe(el));
+      })();
     </script>
 
     <style>

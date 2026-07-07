@@ -40,7 +40,7 @@ import Icon from "../components/Icon.astro";
       {
         stats.map((s) => (
           <div class="intro-stat">
-            <dt>{s.value}</dt>
+            <dt data-count>{s.value}</dt>
             <dd>{s.label}</dd>
           </div>
         ))
