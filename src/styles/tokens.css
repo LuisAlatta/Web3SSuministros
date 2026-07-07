@@ -11,6 +11,7 @@
   --bg-2: #e5e7eb; /* banda alterna (gris claro de paleta) */
   --ink: #1a202c; /* azul carbón para bandas oscuras / footer / overlay */
   --ink-2: #2d3748; /* pizarra oscura secundaria */
+  --ink-rgb: 26, 32, 44; /* base para scrims sobre foto (rgba con alfa) */
 
   /* Superficies (nombres "steel" conservados; ahora claros) */
   --steel-900: #ffffff; /* tarjeta base */
@@ -21,6 +22,7 @@
 
   /* — Marca (ámbar de seguridad #FBBF24) — */
   --amber: #fbbf24;
+  --amber-rgb: 251, 191, 36; /* base para sombras/brillos ámbar (rgba con alfa) */
   --amber-bright: #ffce52;
   --amber-deep: #8a6708; /* ámbar legible como texto sobre claro (AA) */
   --amber-tint: rgba(251, 191, 36, 0.15);

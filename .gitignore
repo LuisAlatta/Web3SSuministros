@@ -20,6 +20,10 @@ npm-debug.log*
 .DS_Store
 Thumbs.db
 
+# herramientas locales (no versionar)
+.claude/
+.impeccable.md
+
 # Material original del cliente (referencia; assets ya copiados a src/ y public/)
 archivos/
 scratch_imgs/

@@ -207,7 +207,7 @@ const mapsLink = `https://www.google.com/maps/search/?api=1&query=${encodeURICom
   }
   input:focus,
   textarea:focus {
-    background: #fff;
+    background: var(--steel-900);
   }
   input::placeholder,
   textarea::placeholder {
@@ -286,7 +286,8 @@ const mapsLink = `https://www.google.com/maps/search/?api=1&query=${encodeURICom
     border-radius: var(--radius);
     border: 1px solid var(--line-strong);
     color: var(--text-muted);
-    transition: all var(--dur) var(--ease-out);
+    transition: color var(--dur) var(--ease-out),
+      border-color var(--dur) var(--ease-out);
   }
   .con-social a:hover {
     color: var(--amber);

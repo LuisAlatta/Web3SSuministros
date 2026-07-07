@@ -165,7 +165,7 @@ strong {
 .btn-amber:hover {
   background: linear-gradient(180deg, var(--amber-bright), var(--amber-bright));
   transform: translateY(-2px);
-  box-shadow: var(--shadow-amber), 0 18px 40px -16px rgba(244, 168, 29, 0.55),
+  box-shadow: var(--shadow-amber), 0 18px 40px -16px rgba(var(--amber-rgb), 0.5),
     inset 0 1px 0 rgba(255, 255, 255, 0.32);
 }
 .btn-ghost {
