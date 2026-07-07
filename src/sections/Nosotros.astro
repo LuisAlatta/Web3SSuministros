@@ -27,11 +27,9 @@ import Icon from "../components/Icon.astro";
 
     <div class="nos-grid">
       <article class="surface nos-card reveal">
-        <div class="nos-card-top">
-          <span class="nos-ic"><Icon name="shield" size={24} /></span>
-          <span class="nos-idx">01</span>
-        </div>
+        <span class="nos-ic"><Icon name="shield" size={24} /></span>
         <h3>Misión</h3>
+        <span class="nos-rule" aria-hidden="true"></span>
         <p>
           Brindar soluciones de abastecimiento de suministros industriales,
           comprendiendo las necesidades de nuestros clientes para satisfacerlos
@@ -41,11 +39,9 @@ import Icon from "../components/Icon.astro";
       </article>
 
       <article class="surface nos-card reveal reveal-2">
-        <div class="nos-card-top">
-          <span class="nos-ic"><Icon name="globe" size={24} /></span>
-          <span class="nos-idx">02</span>
-        </div>
+        <span class="nos-ic"><Icon name="globe" size={24} /></span>
         <h3>Visión</h3>
+        <span class="nos-rule" aria-hidden="true"></span>
         <p>
           Ser reconocidos por nuestros clientes y proveedores como una empresa
           líder en la gestión de abastecimiento de suministros para el sector
@@ -112,12 +108,6 @@ import Icon from "../components/Icon.astro";
     transform: translateY(-3px);
     box-shadow: var(--shadow-card);
   }
-  .nos-card-top {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: var(--space-lg);
-  }
   .nos-ic {
     display: inline-grid;
     place-items: center;
@@ -126,18 +116,28 @@ import Icon from "../components/Icon.astro";
     border-radius: var(--radius);
     background: var(--amber-tint);
     color: var(--amber);
+    margin-bottom: var(--space-md);
+    transition: background var(--dur) var(--ease-out),
+      color var(--dur) var(--ease-out);
   }
-  .nos-idx {
-    font-family: var(--font-display);
-    font-weight: 700;
-    font-size: 2.2rem;
-    line-height: 1;
-    color: var(--steel-700);
-    letter-spacing: 0.02em;
+  .nos-card:hover .nos-ic {
+    background: var(--amber);
+    color: var(--on-amber);
+  }
+  .nos-rule {
+    display: block;
+    height: 3px;
+    width: 34px;
+    margin: 0.85rem 0 1.1rem;
+    background: var(--amber);
+    border-radius: 2px;
+    transition: width var(--dur) var(--ease-out);
+  }
+  .nos-card:hover .nos-rule {
+    width: 60px;
   }
   .nos-card p {
     color: var(--text-muted);
-    margin-top: var(--space-xs);
   }
 
   .nos-sectores {
