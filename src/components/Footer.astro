@@ -1,6 +1,6 @@
 ---
 import { Image } from "astro:assets";
-import logo from "../assets/logo/logo-3s.png";
+import logo from "../assets/logo/logo-3s-badge.png";
 import { site, nav, whatsapps, waLink, socials } from "../data/site";
 import Icon from "../components/Icon.astro";
 
@@ -12,7 +12,9 @@ const hasSocial = socials.some((s) => s.url !== "#");
   <div class="hazard-bar"></div>
   <div class="container ft-inner">
     <div class="ft-brand">
-      <Image src={logo} alt="3S Suministros y Servicios del Sur" width={150} />
+      <div class="ft-logo-chip">
+        <Image src={logo} alt="3S Suministros y Servicios del Sur" width={220} />
+      </div>
       <p>
         Gestión de abastecimiento de suministros industriales en Arequipa.
         Representantes de Bekaert y socios estratégicos de la industria peruana.
@@ -74,10 +76,18 @@ const hasSocial = socials.some((s) => s.url !== "#");
     grid-template-columns: 1fr;
     padding-block: clamp(2.8rem, 5vw, 4rem) 2.4rem;
   }
-  .ft-brand img {
-    width: 138px;
+  .ft-logo-chip {
+    display: inline-flex;
+    background: #ffffff;
+    padding: 0.85rem 1.1rem;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-card);
+    margin-bottom: 1.2rem;
+  }
+  .ft-logo-chip img {
+    width: 132px;
     height: auto;
-    margin-bottom: 1.1rem;
+    display: block;
   }
   .ft-brand p {
     color: var(--text-dim);
