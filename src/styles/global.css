@@ -147,7 +147,7 @@ strong {
   text-transform: uppercase;
   letter-spacing: 0.08em;
   border: 1px solid transparent;
-  border-radius: var(--radius);
+  border-radius: 999px;
   cursor: pointer;
   transition: transform var(--dur-fast) var(--ease-out),
     background var(--dur) var(--ease-out), box-shadow var(--dur) var(--ease-out),
