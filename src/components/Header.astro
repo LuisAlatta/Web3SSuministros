@@ -1,6 +1,7 @@
 ---
 import { Image } from "astro:assets";
 import logo from "../assets/logo/logo-3s-badge.png";
+import wordmark from "../assets/logo/logo3s-horizontal.png";
 import { nav, whatsapps, waLink } from "../data/site";
 import Icon from "./Icon.astro";
 
@@ -13,9 +14,18 @@ const isActive = (href: string) =>
   <div class="hdr-inner container-wide">
     <a href="/" class="hdr-logo" aria-label="3S Suministros — Inicio">
       <Image
+        class="hdr-logo-badge"
         src={logo}
         alt="3S Suministros y Servicios del Sur"
         width={180}
+        densities={[1.5, 2]}
+        loading="eager"
+      />
+      <Image
+        class="hdr-logo-wordmark"
+        src={wordmark}
+        alt="3S Suministros"
+        width={360}
         densities={[1.5, 2]}
         loading="eager"
       />
@@ -38,8 +48,7 @@ const isActive = (href: string) =>
         target="_blank"
         rel="noopener"
       >
-        <Icon name="whatsapp" size={18} />
-        Cotizar
+        Cotiza aquí
       </a>
       <button
         class="hdr-burger"
@@ -127,14 +136,25 @@ const isActive = (href: string) =>
   .hdr-logo {
     display: inline-flex;
     align-items: center;
+    gap: 0.7rem;
   }
-  .hdr-logo img {
+  .hdr-logo-badge {
     height: 56px;
     width: auto;
     transition: transform var(--dur) var(--ease-out);
   }
-  .hdr-logo:hover img {
+  .hdr-logo:hover .hdr-logo-badge {
     transform: scale(1.04);
+  }
+  .hdr-logo-wordmark {
+    height: 30px;
+    width: auto;
+    display: none;
+  }
+  @media (min-width: 560px) {
+    .hdr-logo-wordmark {
+      display: block;
+    }
   }
   .hdr-nav {
     display: none;
