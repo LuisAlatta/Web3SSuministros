@@ -49,8 +49,14 @@ export const nav = [
   { label: "Inicio", href: "/" },
   { label: "Nosotros", href: "/nosotros" },
   { label: "Categorías", href: "/categorias" },
+  { label: "Productos", href: "/productos" },
   { label: "Marcas", href: "/marcas" },
   { label: "Líneas", href: "/lineas" },
-  { label: "Catálogo", href: "/catalogo" },
+  { label: "Novedades", href: "/novedades" },
   { label: "Contacto", href: "/contacto" },
+] as const;
+
+/* Enlaces extra que no van en el menú principal pero sí en el footer */
+export const navExtra = [
+  { label: "Catálogo y galería", href: "/catalogo" },
 ] as const;

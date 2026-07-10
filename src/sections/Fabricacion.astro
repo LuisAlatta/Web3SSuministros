@@ -1,0 +1,129 @@
+---
+import { whatsapps, waLink } from "../data/site";
+import Icon from "../components/Icon.astro";
+
+const puntos = [
+  {
+    icon: "hook",
+    title: "Eslingas a medida",
+    desc: "Eslingas sintéticas Strongloop fabricadas a pedido según tu carga y largo.",
+  },
+  {
+    icon: "bolts",
+    title: "Línea propia HARDPAD",
+    desc: "Almohadillas de apoyo en UHMW en la medida y capacidad que requiere tu grúa.",
+  },
+  {
+    icon: "gear",
+    title: "Abastecimiento especial",
+    desc: "¿No lo ves en la web? Lo conseguimos y te lo entregamos a todo el Perú.",
+  },
+];
+---
+
+<section class="section" aria-labelledby="fab-h">
+  <div class="container">
+    <article class="fab reveal on-dark">
+      <div class="hazard-bar fab-hazard" aria-hidden="true"></div>
+      <div class="fab-body">
+        <p class="eyebrow">Soluciones a medida</p>
+        <h2 id="fab-h">Fabricamos y conseguimos <span class="amber">lo que tu operación necesita</span></h2>
+        <p class="fab-intro">
+          No solo distribuimos: desarrollamos soluciones de abastecimiento que se
+          adaptan a la necesidad específica de cada cliente, con respaldo técnico
+          y trazabilidad.
+        </p>
+        <a
+          class="btn btn-amber"
+          href={waLink(whatsapps[1].intl, "Hola 3S, necesito una solución a medida (fabricación / abastecimiento especial).")}
+          target="_blank"
+          rel="noopener"
+        >
+          <Icon name="whatsapp" size={18} /> Cuéntanos qué necesitas
+        </a>
+      </div>
+      <ul class="fab-points">
+        {
+          puntos.map((p) => (
+            <li>
+              <span class="fab-ic"><Icon name={p.icon} size={20} /></span>
+              <div>
+                <strong>{p.title}</strong>
+                <span>{p.desc}</span>
+              </div>
+            </li>
+          ))
+        }
+      </ul>
+    </article>
+  </div>
+</section>
+
+<style>
+  .fab {
+    position: relative;
+    overflow: hidden;
+    display: grid;
+    gap: clamp(1.8rem, 4vw, 3rem);
+    padding: clamp(1.8rem, 4vw, 3.2rem);
+    border-radius: var(--radius-xl);
+    border: 1px solid var(--amber-line);
+    background: linear-gradient(150deg, var(--ink-2), var(--ink) 85%);
+    box-shadow: var(--shadow-lg);
+  }
+  .fab-hazard {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+  }
+  .fab-body h2 {
+    margin: 0.8rem 0 1rem;
+    font-size: clamp(1.7rem, 1.2rem + 2vw, 2.6rem);
+  }
+  .fab-intro {
+    color: var(--text-muted);
+    max-width: 56ch;
+    margin-bottom: 1.6rem;
+  }
+  .fab-points {
+    display: grid;
+    gap: 1.2rem;
+    align-content: center;
+  }
+  .fab-points li {
+    display: flex;
+    gap: 0.9rem;
+    align-items: flex-start;
+  }
+  .fab-ic {
+    flex: none;
+    width: 44px;
+    height: 44px;
+    display: grid;
+    place-items: center;
+    border-radius: var(--radius);
+    background: var(--amber-tint);
+    color: var(--amber);
+  }
+  .fab-points strong {
+    display: block;
+    font-family: var(--font-display);
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    font-size: 1rem;
+    margin-bottom: 0.2rem;
+  }
+  .fab-points span {
+    color: var(--text-dim);
+    font-size: 0.9rem;
+  }
+
+  @media (min-width: 860px) {
+    .fab {
+      grid-template-columns: 1.2fr 0.8fr;
+      align-items: center;
+    }
+  }
+</style>

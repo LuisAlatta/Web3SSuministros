@@ -1,49 +1,98 @@
 ---
 import { Image } from "astro:assets";
-import heroImg from "../assets/img/hero-mina.jpg";
+import heroMina from "../assets/img/hero-mina.jpg";
+import mineria from "../assets/img/mineria-peru.jpg";
+import hardpadTop from "../assets/img/hardpad-top.jpeg";
 import { whatsapps, waLink } from "../data/site";
 import { normativas } from "../data/content";
 import Icon from "../components/Icon.astro";
+
+const slides = [
+  {
+    img: heroMina,
+    eyebrow: "Suministros industriales · Arequipa · Perú",
+    title: 'El socio <span class="amber">estratégico</span> para tu empresa',
+    lead: "Abastecemos minería, construcción, petróleo, gas, energía e industria. Representantes de Bekaert y distribuidores de marcas líderes, con entregas a todo el Perú.",
+    primary: { label: "Solicitar cotización", href: waLink(whatsapps[0].intl), wa: true },
+    secondary: { label: "Ver productos", href: "/productos", icon: "arrow" },
+  },
+  {
+    img: hardpadTop,
+    eyebrow: "Elementos de izaje certificados",
+    title: 'Izaje con respaldo <span class="amber">Bekaert</span>',
+    lead: "Estrobos SuperLoop, cadenas grado 8 y eslingas Strongloop con Carga Límite de Trabajo certificada bajo norma ASME B30.9, OSHA y ASTM.",
+    primary: { label: "Cotizar izaje", href: waLink(whatsapps[0].intl, "Hola 3S, quiero cotizar elementos de izaje."), wa: true },
+    secondary: { label: "Ver líneas", href: "/lineas", icon: "arrow" },
+  },
+  {
+    img: mineria,
+    eyebrow: "Un solo proveedor",
+    title: 'Todo tu abastecimiento, <span class="amber">en un solo lugar</span>',
+    lead: "Herramientas, seguridad, izaje, transmisión de potencia, contención de derrames y ferretería. Más de 60 tipos de producto listos para cotizar.",
+    primary: { label: "Explorar productos", href: "/productos", wa: false, icon: "arrow" },
+    secondary: { label: "Contáctanos", href: "/contacto", icon: "arrow" },
+  },
+];
 ---
 
-<section id="inicio" class="hero on-dark" aria-labelledby="hero-h">
-  <div class="hero-media" aria-hidden="true">
-    <Image
-      src={heroImg}
-      alt=""
-      widths={[768, 1280, 1920]}
-      sizes="100vw"
-      loading="eager"
-      fetchpriority="high"
-    />
-    <div class="hero-scrim"></div>
+<section id="inicio" class="hero on-dark" aria-label="Presentación" data-hero>
+  <div class="hero-slides">
+    {
+      slides.map((s, i) => (
+        <div class="hero-slide" data-slide data-active={i === 0 ? "" : undefined}>
+          <div class="hero-media" aria-hidden="true">
+            <Image
+              src={s.img}
+              alt=""
+              widths={[768, 1280, 1920]}
+              sizes="100vw"
+              loading={i === 0 ? "eager" : "lazy"}
+              fetchpriority={i === 0 ? "high" : undefined}
+            />
+            <div class="hero-scrim" />
+          </div>
+          <div class="container">
+            <div class="hero-inner">
+              <p class="eyebrow">{s.eyebrow}</p>
+              {i === 0 ? (
+                <h1 id="hero-h" class="hero-title" set:html={s.title} />
+              ) : (
+                <p class="hero-title" set:html={s.title} />
+              )}
+              <p class="lead">{s.lead}</p>
+              <div class="hero-cta">
+                <a
+                  class="btn btn-amber"
+                  href={s.primary.href}
+                  target={s.primary.wa ? "_blank" : undefined}
+                  rel={s.primary.wa ? "noopener" : undefined}
+                >
+                  {s.primary.wa ? <Icon name="whatsapp" size={19} /> : <Icon name={s.primary.icon} size={18} />}
+                  {s.primary.label}
+                </a>
+                <a class="btn btn-ghost" href={s.secondary.href}>
+                  {s.secondary.label} <Icon name={s.secondary.icon} size={18} />
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      ))
+    }
   </div>
 
-  <div class="container">
-    <div class="hero-inner">
-      <p class="eyebrow reveal">Suministros industriales · Arequipa · Perú</p>
-      <h1 id="hero-h" class="hero-title reveal reveal-2">
-        El socio <span class="amber">estratégico</span> para tu empresa
-      </h1>
-      <p class="lead reveal reveal-3">
-        Abastecemos suministros industriales para minería, construcción, petróleo,
-        gas, energía e industria. Representantes de <strong>Bekaert</strong> y
-        distribuidores de marcas líderes, con entregas a todo el Perú.
-      </p>
-      <div class="hero-cta reveal reveal-4">
-        <a
-          class="btn btn-amber"
-          href={waLink(whatsapps[0].intl)}
-          target="_blank"
-          rel="noopener"
-        >
-          <Icon name="whatsapp" size={19} /> Solicitar cotización
-        </a>
-        <a class="btn btn-ghost" href="/catalogo">
-          <Icon name="doc" size={18} /> Ver catálogo
-        </a>
-      </div>
-    </div>
+  <div class="hero-dots" role="tablist" aria-label="Elegir presentación">
+    {
+      slides.map((_, i) => (
+        <button
+          class="hero-dot"
+          data-dot
+          data-active={i === 0 ? "" : undefined}
+          type="button"
+          aria-label={`Ir a la presentación ${i + 1}`}
+        />
+      ))
+    }
   </div>
 </section>
 
@@ -57,15 +106,81 @@ import Icon from "../components/Icon.astro";
   </div>
 </div>
 
+<script is:inline>
+  (() => {
+    const root = document.querySelector("[data-hero]");
+    if (!root) return;
+    const slides = [...root.querySelectorAll("[data-slide]")];
+    const dots = [...root.querySelectorAll("[data-dot]")];
+    if (slides.length < 2) return;
+
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    let idx = 0;
+    let timer = null;
+    const DELAY = 6000;
+
+    const go = (n) => {
+      idx = (n + slides.length) % slides.length;
+      slides.forEach((s, i) =>
+        i === idx ? s.setAttribute("data-active", "") : s.removeAttribute("data-active")
+      );
+      dots.forEach((d, i) =>
+        i === idx ? d.setAttribute("data-active", "") : d.removeAttribute("data-active")
+      );
+    };
+    const start = () => {
+      if (reduce) return;
+      stop();
+      timer = window.setInterval(() => go(idx + 1), DELAY);
+    };
+    const stop = () => {
+      if (timer) window.clearInterval(timer);
+      timer = null;
+    };
+
+    dots.forEach((d, i) =>
+      d.addEventListener("click", () => {
+        go(i);
+        start();
+      })
+    );
+    root.addEventListener("mouseenter", stop);
+    root.addEventListener("mouseleave", start);
+    root.addEventListener("focusin", stop);
+    root.addEventListener("focusout", start);
+    start();
+  })();
+</script>
+
 <style>
   .hero {
     position: relative;
-    display: grid;
-    align-items: center;
-    min-height: clamp(500px, 72vh, 660px);
-    padding-block: var(--space-3xl);
+    min-height: clamp(520px, 74vh, 680px);
     overflow: hidden;
     isolation: isolate;
+  }
+  .hero-slides {
+    position: relative;
+    height: 100%;
+    min-height: inherit;
+  }
+  .hero-slide {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    align-items: center;
+    padding-block: var(--space-3xl);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 600ms var(--ease-out), visibility 600ms var(--ease-out);
+  }
+  .hero-slide[data-active] {
+    opacity: 1;
+    visibility: visible;
+  }
+  /* El primer slide define la altura del bloque (los demás quedan absolutos encima) */
+  .hero-slide:first-child {
+    position: relative;
   }
   .hero-media {
     position: absolute;
@@ -98,6 +213,9 @@ import Icon from "../components/Icon.astro";
     letter-spacing: -0.005em;
     margin: var(--space-md) 0 var(--space-md);
     text-wrap: balance;
+    font-family: var(--font-display);
+    font-weight: 700;
+    line-height: 1.02;
   }
   .hero .lead {
     color: var(--text-muted);
@@ -108,6 +226,30 @@ import Icon from "../components/Icon.astro";
     flex-wrap: wrap;
     gap: var(--space-sm);
     margin-top: var(--space-xl);
+  }
+
+  .hero-dots {
+    position: absolute;
+    left: 50%;
+    bottom: 1.2rem;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 0.5rem;
+    z-index: 3;
+  }
+  .hero-dot {
+    width: 30px;
+    height: 5px;
+    border: none;
+    border-radius: 3px;
+    background: rgba(255, 255, 255, 0.35);
+    cursor: pointer;
+    padding: 0;
+    transition: background var(--dur) var(--ease-out), width var(--dur) var(--ease-out);
+  }
+  .hero-dot[data-active] {
+    background: var(--amber);
+    width: 44px;
   }
 
   .hero-band {
@@ -142,5 +284,11 @@ import Icon from "../components/Icon.astro";
     padding: 0.2rem 0.55rem;
     border: 1px solid rgba(23, 17, 10, 0.28);
     border-radius: var(--radius-xs);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero-slide {
+      transition: none;
+    }
   }
 </style>

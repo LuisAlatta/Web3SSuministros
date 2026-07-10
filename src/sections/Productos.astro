@@ -1,0 +1,310 @@
+---
+import { productos, productosCategorias } from "../data/content";
+import { whatsapps, waLink } from "../data/site";
+import Icon from "../components/Icon.astro";
+
+const catLabel = (key: string) =>
+  productosCategorias.find((c) => c.key === key)?.label ?? key;
+---
+
+<section id="productos" class="section" aria-labelledby="prod-h">
+  <div class="container">
+    <header class="prod-head reveal">
+      <p class="eyebrow">Catálogo de productos</p>
+      <h2 id="prod-h">
+        Explora nuestros <span class="amber">productos</span>
+      </h2>
+      <p class="lead">
+        Más de 60 tipos de producto para minería, construcción e industria. Busca
+        lo que necesitas o filtra por categoría — y cotízalo al instante por
+        WhatsApp.
+      </p>
+    </header>
+
+    <!-- Buscador -->
+    <div class="prod-search reveal">
+      <span class="prod-search-ic" aria-hidden="true">
+        <Icon name="arrow" size={18} />
+      </span>
+      <input
+        type="search"
+        id="prod-q"
+        data-q
+        placeholder="Buscar producto o marca… (ej: estrobo, guantes, Fluke)"
+        autocomplete="off"
+        aria-label="Buscar productos"
+      />
+    </div>
+
+    <!-- Filtros por categoría -->
+    <div class="prod-filters reveal" role="tablist" aria-label="Filtrar por categoría">
+      <button class="chip is-active" data-filter="all" type="button">Todos</button>
+      {
+        productosCategorias.map((c) => (
+          <button class="chip" data-filter={c.key} type="button">
+            <Icon name={c.icon} size={15} /> {c.label}
+          </button>
+        ))
+      }
+    </div>
+
+    <p class="prod-count" data-count-label aria-live="polite"></p>
+
+    <!-- Grid de productos -->
+    <div class="prod-grid" data-grid>
+      {
+        productos.map((p) => (
+          <article
+            class="prod-card"
+            data-item
+            data-cat={p.cat}
+            data-name={`${p.name} ${p.marca}`.toLowerCase()}
+          >
+            <div class="prod-card-top">
+              <span class="prod-badge">{catLabel(p.cat)}</span>
+              {p.marca && <span class="prod-marca">{p.marca}</span>}
+            </div>
+            <h3>{p.name}</h3>
+            <a
+              class="prod-cta"
+              href={waLink(whatsapps[0].intl, `Hola 3S, quiero cotizar: ${p.name}.`)}
+              target="_blank"
+              rel="noopener"
+            >
+              <Icon name="whatsapp" size={16} /> Cotizar
+            </a>
+          </article>
+        ))
+      }
+    </div>
+
+    <p class="prod-empty" data-empty hidden>
+      No encontramos productos con ese término.
+      <a
+        href={waLink(whatsapps[1].intl, "Hola 3S, busco un producto que no veo en la web. ¿Pueden conseguirlo?")}
+        target="_blank"
+        rel="noopener"
+      >Escríbenos y lo conseguimos.</a>
+    </p>
+  </div>
+</section>
+
+<script is:inline>
+  (() => {
+    const q = document.querySelector("[data-q]");
+    const chips = [...document.querySelectorAll("[data-filter]")];
+    const items = [...document.querySelectorAll("[data-item]")];
+    const empty = document.querySelector("[data-empty]");
+    const countLabel = document.querySelector("[data-count-label]");
+    let activeCat = "all";
+
+    const norm = (s) =>
+      (s || "")
+        .toLowerCase()
+        .normalize("NFD")
+        .replace(/[̀-ͯ]/g, "");
+
+    const apply = () => {
+      const term = norm(q.value.trim());
+      let visible = 0;
+      items.forEach((el) => {
+        const okCat = activeCat === "all" || el.dataset.cat === activeCat;
+        const okTerm = !term || norm(el.dataset.name).includes(term);
+        const show = okCat && okTerm;
+        el.hidden = !show;
+        if (show) visible++;
+      });
+      if (empty) empty.hidden = visible !== 0;
+      if (countLabel)
+        countLabel.textContent =
+          visible + (visible === 1 ? " producto" : " productos");
+    };
+
+    q?.addEventListener("input", apply);
+    chips.forEach((c) =>
+      c.addEventListener("click", () => {
+        activeCat = c.dataset.filter;
+        chips.forEach((x) => x.classList.toggle("is-active", x === c));
+        apply();
+      })
+    );
+    apply();
+  })();
+</script>
+
+<style>
+  .prod-head {
+    max-width: 720px;
+    margin-bottom: clamp(1.8rem, 4vw, 2.6rem);
+  }
+  .prod-head h2 {
+    margin: 0.9rem 0 1.1rem;
+  }
+
+  .prod-search {
+    position: relative;
+    margin-bottom: 1.2rem;
+  }
+  .prod-search-ic {
+    position: absolute;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%) rotate(90deg);
+    color: var(--text-dim);
+    pointer-events: none;
+  }
+  .prod-search input {
+    width: 100%;
+    font-family: var(--font-body);
+    font-size: 1rem;
+    color: var(--text);
+    background: var(--steel-900);
+    border: 1px solid var(--line-strong);
+    border-radius: var(--radius-lg);
+    padding: 0.95rem 1.1rem 0.95rem 2.8rem;
+    transition: border-color var(--dur) var(--ease-out);
+  }
+  .prod-search input::placeholder {
+    color: var(--text-dim);
+  }
+  .prod-search input:focus {
+    outline: none;
+    border-color: var(--amber);
+  }
+
+  .prod-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+  }
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-family: var(--font-display);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    background: transparent;
+    border: 1px solid var(--line-strong);
+    border-radius: 999px;
+    padding: 0.45rem 0.9rem;
+    cursor: pointer;
+    transition: color var(--dur) var(--ease-out),
+      border-color var(--dur) var(--ease-out),
+      background var(--dur) var(--ease-out);
+  }
+  .chip :global(svg) {
+    color: var(--amber);
+  }
+  .chip:hover {
+    border-color: var(--amber-line);
+    color: var(--text);
+  }
+  .chip.is-active {
+    background: var(--amber);
+    border-color: var(--amber);
+    color: var(--on-amber);
+  }
+  .chip.is-active :global(svg) {
+    color: var(--on-amber);
+  }
+
+  .prod-count {
+    font-size: 0.84rem;
+    color: var(--text-dim);
+    margin-bottom: 1.2rem;
+    font-family: var(--font-display);
+    letter-spacing: 0.04em;
+  }
+
+  .prod-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  .prod-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    background: var(--steel-900);
+    padding: 1.2rem 1.3rem;
+    box-shadow: var(--shadow-sm);
+    transition: transform var(--dur) var(--ease-out),
+      border-color var(--dur) var(--ease-out);
+  }
+  .prod-card:hover {
+    transform: translateY(-3px);
+    border-color: var(--amber-line);
+  }
+  .prod-card-top {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+  }
+  .prod-badge {
+    font-family: var(--font-display);
+    font-size: 0.68rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--amber-deep);
+    border: 1px solid var(--amber-line);
+    border-radius: var(--radius-xs);
+    padding: 0.2rem 0.5rem;
+  }
+  .prod-marca {
+    font-family: var(--font-display);
+    font-size: 0.74rem;
+    letter-spacing: 0.03em;
+    color: var(--text-dim);
+  }
+  .prod-card h3 {
+    font-size: 1.05rem;
+    line-height: 1.3;
+    flex: 1;
+  }
+  .prod-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    align-self: flex-start;
+    font-family: var(--font-display);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    font-size: 0.8rem;
+    color: var(--amber);
+    padding-top: 0.3rem;
+    transition: gap var(--dur) var(--ease-out);
+  }
+  .prod-cta:hover {
+    gap: 0.7rem;
+  }
+
+  .prod-empty {
+    text-align: center;
+    color: var(--text-muted);
+    padding: 2.5rem 1rem;
+  }
+  .prod-empty a {
+    color: var(--amber);
+    text-decoration: underline;
+  }
+
+  @media (min-width: 560px) {
+    .prod-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+  @media (min-width: 940px) {
+    .prod-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+</style>

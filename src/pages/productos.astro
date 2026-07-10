@@ -1,0 +1,16 @@
+---
+import Page from "../layouts/Page.astro";
+import Breadcrumb from "../components/Breadcrumb.astro";
+import Productos from "../sections/Productos.astro";
+import CtaBand from "../components/CtaBand.astro";
+import { site } from "../data/site";
+---
+
+<Page
+  title={`Productos | ${site.shortName}`}
+  description="Catálogo de productos industriales de 3S Suministros: herramientas, EPP, izaje Bekaert, transmisión de potencia, contención de derrames y ferretería. Busca y cotiza al instante."
+>
+  <Breadcrumb current="Productos" />
+  <Productos />
+  <CtaBand />
+</Page>

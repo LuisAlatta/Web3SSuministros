@@ -1,0 +1,136 @@
+---
+import { novedades } from "../data/content";
+import { formatFecha } from "../lib/format";
+import Icon from "../components/Icon.astro";
+
+const posts = [...novedades].sort((a, b) => (a.fecha < b.fecha ? 1 : -1)).slice(0, 3);
+---
+
+<section class="section plate" aria-labelledby="novt-h">
+  <div class="container">
+    <header class="novt-head reveal">
+      <div>
+        <p class="eyebrow">Novedades y recursos</p>
+        <h2 id="novt-h">Guías técnicas del <span class="amber">sector</span></h2>
+      </div>
+      <a class="btn btn-ghost" href="/novedades">
+        Ver todas <Icon name="arrow" size={18} />
+      </a>
+    </header>
+
+    <div class="novt-grid">
+      {
+        posts.map((p, i) => (
+          <article class={`novt-card reveal reveal-${(i % 3) + 1}`}>
+            <div class="novt-top">
+              <span class="novt-cat">{p.categoria}</span>
+              <time datetime={p.fecha}>{formatFecha(p.fecha)}</time>
+            </div>
+            <h3><a href={`/novedades/${p.slug}`}>{p.title}</a></h3>
+            <p>{p.resumen}</p>
+            <a class="novt-link" href={`/novedades/${p.slug}`}>
+              Leer más <Icon name="arrow" size={16} />
+            </a>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .novt-head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: clamp(2rem, 4vw, 3rem);
+  }
+  .novt-head h2 {
+    margin-top: 0.9rem;
+  }
+  .novt-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.2rem;
+  }
+  .novt-card {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    background: var(--steel-900);
+    padding: clamp(1.3rem, 3vw, 1.7rem);
+    box-shadow: var(--shadow-sm);
+    transition: transform var(--dur) var(--ease-out),
+      border-color var(--dur) var(--ease-out);
+  }
+  .novt-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--amber-line);
+  }
+  .novt-top {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    margin-bottom: 0.8rem;
+  }
+  .novt-cat {
+    font-family: var(--font-display);
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--on-amber);
+    background: var(--amber);
+    border-radius: var(--radius-xs);
+    padding: 0.22rem 0.55rem;
+  }
+  .novt-top time {
+    font-size: 0.8rem;
+    color: var(--text-dim);
+  }
+  .novt-card h3 {
+    font-size: 1.15rem;
+    line-height: 1.3;
+    margin-bottom: 0.5rem;
+  }
+  .novt-card h3 a {
+    color: var(--text);
+    transition: color var(--dur-fast) var(--ease-out);
+  }
+  .novt-card h3 a:hover {
+    color: var(--amber);
+  }
+  .novt-card p {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    flex: 1;
+    margin-bottom: 1rem;
+  }
+  .novt-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    align-self: flex-start;
+    font-family: var(--font-display);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-size: 0.8rem;
+    color: var(--amber);
+  }
+  .novt-link :global(svg) {
+    transition: transform var(--dur) var(--ease-out);
+  }
+  .novt-card:hover .novt-link :global(svg) {
+    transform: translateX(4px);
+  }
+
+  @media (min-width: 760px) {
+    .novt-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+</style>

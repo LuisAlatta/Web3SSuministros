@@ -408,3 +408,243 @@ export const testimonios = [
     company: "Servicios de izaje",
   },
 ] as const;
+
+/* Sellos de confianza (fila de garantías) */
+export const sellos = [
+  {
+    icon: "shield",
+    title: "Marcas certificadas",
+    desc: "Productos bajo normas ANSI, OSHA, ASTM, EN y NTP.",
+  },
+  {
+    icon: "hook",
+    title: "Representantes Bekaert",
+    desc: "Elementos de izaje con respaldo global y trazabilidad.",
+  },
+  {
+    icon: "truck",
+    title: "Entregas a todo el Perú",
+    desc: "Despachamos a mina, obra y planta en todo el país.",
+  },
+  {
+    icon: "wrench",
+    title: "Asesoría técnica",
+    desc: "Te ayudamos a elegir el producto correcto para tu operación.",
+  },
+] as const;
+
+/* Catálogo de productos para el buscador (/productos). Fuente: catálogo 2024,
+   brochure y catálogo de izaje Bekaert. Tipos de producto, no SKUs. */
+export const productosCategorias = [
+  { key: "herramientas", label: "Herramientas", icon: "wrench" },
+  { key: "seguridad", label: "Seguridad Industrial", icon: "helmet" },
+  { key: "derrames", label: "Contención de Derrames", icon: "shield" },
+  { key: "electricos", label: "Equipos Eléctricos", icon: "bolt" },
+  { key: "izaje", label: "Izaje y Sistemas", icon: "hook" },
+  { key: "transmision", label: "Transmisión de Potencia", icon: "gear" },
+  { key: "ferreteria", label: "Ferretería", icon: "bolts" },
+] as const;
+
+export const productos = [
+  // Herramientas y medición
+  { name: "Taladros y rotomartillos", cat: "herramientas", marca: "Bosch" },
+  { name: "Amoladoras angulares", cat: "herramientas", marca: "Makita" },
+  { name: "Atornilladores inalámbricos", cat: "herramientas", marca: "DeWalt" },
+  { name: "Llaves, dados y juegos de mano", cat: "herramientas", marca: "Stanley" },
+  { name: "Sierras y equipos de demolición", cat: "herramientas", marca: "Milwaukee" },
+  { name: "Herramienta manual en general", cat: "herramientas", marca: "Truper" },
+  { name: "Llaves ajustables y de golpe", cat: "herramientas", marca: "Bahco" },
+  { name: "Multímetros y pinzas amperimétricas", cat: "herramientas", marca: "Fluke" },
+  { name: "Calibradores y micrómetros", cat: "herramientas", marca: "Mitutoyo" },
+  // Seguridad industrial (EPP)
+  { name: "Cascos de seguridad", cat: "seguridad", marca: "MSA" },
+  { name: "Respiradores y mascarillas", cat: "seguridad", marca: "3M" },
+  { name: "Guantes de protección", cat: "seguridad", marca: "Ansell" },
+  { name: "Guantes recubiertos", cat: "seguridad", marca: "Showa" },
+  { name: "Trajes y overoles Tyvek", cat: "seguridad", marca: "DuPont" },
+  { name: "Lentes, caretas y protección facial", cat: "seguridad", marca: "Steelpro" },
+  { name: "Arnés y líneas de vida", cat: "seguridad", marca: "MSA" },
+  { name: "Calzado de seguridad", cat: "seguridad", marca: "Delta Plus" },
+  { name: "Protección auditiva", cat: "seguridad", marca: "3M" },
+  // Contención de derrames
+  { name: "Paños absorbentes de aceite (Clot Oil)", cat: "derrames", marca: "" },
+  { name: "Absorbentes universales", cat: "derrames", marca: "" },
+  { name: "Absorbentes de químicos", cat: "derrames", marca: "" },
+  { name: "Rollo de paños X80 multiuso", cat: "derrames", marca: "" },
+  { name: "Kit de derrame 30 L y 50 L", cat: "derrames", marca: "" },
+  { name: "Contenedor de aceites portátil", cat: "derrames", marca: "" },
+  { name: "Tapetes absorbentes para cilindro", cat: "derrames", marca: "" },
+  // Equipos eléctricos
+  { name: "Cables eléctricos", cat: "electricos", marca: "" },
+  { name: "Luminarias industriales", cat: "electricos", marca: "" },
+  { name: "Motores eléctricos", cat: "electricos", marca: "" },
+  { name: "Accesorios eléctricos (industria y hogar)", cat: "electricos", marca: "" },
+  { name: "Tableros y arrancadores", cat: "electricos", marca: "" },
+  // Izaje y sistemas
+  { name: "Estrobos de cable SuperLoop", cat: "izaje", marca: "Bridon-Bekaert" },
+  { name: "Cadenas de izaje grado 8", cat: "izaje", marca: "Bridon-Bekaert" },
+  { name: "Eslingas sintéticas Strongloop", cat: "izaje", marca: "Bridon-Bekaert" },
+  { name: "Eslingas Dyneema (roundslings)", cat: "izaje", marca: "Bridon-Bekaert" },
+  { name: "Grilletes y ganchos", cat: "izaje", marca: "Crosby" },
+  { name: "Guardacabos y casquillos S-505", cat: "izaje", marca: "Crosby" },
+  { name: "Tensores de amarre (tie-down)", cat: "izaje", marca: "" },
+  { name: "Almohadillas HARDPAD Crane", cat: "izaje", marca: "Línea propia 3S" },
+  { name: "Polipastos, frenos y ejes", cat: "izaje", marca: "" },
+  { name: "Ganchos, piñones y rotores", cat: "izaje", marca: "" },
+  { name: "Bombas centrífugas y sumergibles", cat: "izaje", marca: "" },
+  { name: "Válvulas (cheque, alivio y mariposa)", cat: "izaje", marca: "" },
+  { name: "Compresores y filtros de aire/fluidos", cat: "izaje", marca: "" },
+  // Transmisión de potencia
+  { name: "Rodamientos especiales", cat: "transmision", marca: "" },
+  { name: "Chumaceras", cat: "transmision", marca: "" },
+  { name: "Cadenas y correas de transmisión", cat: "transmision", marca: "" },
+  { name: "Acoples y ejes", cat: "transmision", marca: "" },
+  { name: "Reductores", cat: "transmision", marca: "" },
+  { name: "Motores AC / DC", cat: "transmision", marca: "" },
+  // Ferretería en general
+  { name: "Pernos, tuercas y arandelas (negro / inox)", cat: "ferreteria", marca: "" },
+  { name: "Lonas contra lluvias", cat: "ferreteria", marca: "Lonatex" },
+  { name: "Sogas de nylon", cat: "ferreteria", marca: "" },
+  { name: "Trapo industrial", cat: "ferreteria", marca: "" },
+  { name: "Conos de seguridad", cat: "ferreteria", marca: "" },
+  { name: "Escaleras", cat: "ferreteria", marca: "" },
+  { name: "Pinturas ignífugas importadas", cat: "ferreteria", marca: "Titán" },
+  { name: "Tubería PVC y cintillos", cat: "ferreteria", marca: "Pavco" },
+  { name: "Mallas de cerco (acero o rachel)", cat: "ferreteria", marca: "" },
+  { name: "Vigas metálicas y planchas de acero", cat: "ferreteria", marca: "" },
+] as const;
+
+/* Novedades / recursos técnicos (blog). Contenido evergreen basado en los
+   catálogos técnicos de la empresa. Editable por el cliente. */
+export const novedades = [
+  {
+    slug: "inspeccion-estrobos-izaje",
+    title: "Cómo inspeccionar y dar de baja un estrobo de izaje",
+    fecha: "2024-07-01",
+    categoria: "Izaje seguro",
+    lectura: 4,
+    resumen:
+      "Los criterios de descarte que todo supervisor debe revisar antes de cada maniobra, según la norma ASME B30.9.",
+    bloques: [
+      {
+        p: "Un estrobo de cable de acero es tan seguro como su última inspección. Antes de cada maniobra, revisa estos puntos: si el estrobo presenta cualquiera de ellos, debe salir de servicio de inmediato.",
+      },
+      { h: "1. Etiqueta de identificación" },
+      {
+        p: "La etiqueta debe indicar factor de diseño, Carga Límite de Trabajo (WLL), código de trazabilidad, largo y número de ramales. Si es ilegible o falta, el estrobo queda fuera de uso.",
+      },
+      { h: "2. Alambres rotos y deformaciones" },
+      {
+        p: "Da de baja el estrobo cuando existan alambres rotos, deformaciones o aplastamiento del cable.",
+      },
+      { h: "3. Daño por temperatura" },
+      {
+        p: "Cualquier cambio de coloración por temperatura o salpicadura de soldadura es motivo de descarte.",
+      },
+      { h: "4. Coca, corrosión y daño en el ojo" },
+      {
+        li: [
+          "Un estrobo con coca pierde su capacidad de levante.",
+          "El cable con corrosión notoria debe retirarse.",
+          "Revisa deformaciones o alambres cortados en el ojo.",
+          "Los accesorios (grilletes, ganchos) deben estar en buenas condiciones.",
+        ],
+      },
+      {
+        p: "En 3S representamos a Bridon-Bekaert y Crosby: te asesoramos en la selección, inspección y reemplazo de tus elementos de izaje bajo norma.",
+      },
+    ],
+  },
+  {
+    slug: "elegir-eslinga-sintetica",
+    title: "Poliéster o Dyneema: cómo elegir la eslinga sintética adecuada",
+    fecha: "2024-06-15",
+    categoria: "Izaje seguro",
+    lectura: 5,
+    resumen:
+      "Factor de diseño, ángulos de trabajo y el código de colores que define la capacidad de cada eslinga plana.",
+    bloques: [
+      {
+        p: "Las eslingas sintéticas Strongloop son livianas, flexibles y no dañan la carga. Elegir la correcta depende del peso, el ángulo de izaje y el entorno de trabajo.",
+      },
+      { h: "El factor de diseño" },
+      {
+        p: "En eslingas para izaje, la norma de EE. UU. define un factor de diseño de 5:1 y la europea de 7:1. Es el margen de seguridad sobre la carga de rotura.",
+      },
+      { h: "El ángulo importa (y mucho)" },
+      {
+        p: "El ángulo de trabajo normal es 60°. A menor ángulo, mayor es la pérdida de capacidad de la eslinga. Por eso una misma eslinga levanta menos peso mientras más abierta esté la maniobra.",
+      },
+      { h: "El código de colores" },
+      {
+        p: "Las eslingas planas de poliéster siguen un código de color por capacidad: violeta (1 ton), verde (2 ton), amarillo (3 ton), gris (4 ton), rojo (5 ton), café (6 ton), azul (8 ton) y naranja (10 ton).",
+      },
+      { h: "Cuando el peso es extremo: Dyneema" },
+      {
+        p: "Las eslingas tubulares de Dyneema son ultralivianas y diseñadas para grandes cargas (hasta 150 ton), con una elongación menor al 3,6%. Una maniobra de 30 ton que en cadena pesa 178 kg, en Dyneema pesa apenas 14 kg.",
+      },
+      {
+        p: "Consúltanos y te ayudamos a dimensionar la eslinga correcta para tu maniobra.",
+      },
+    ],
+  },
+  {
+    slug: "hardpad-vs-madera",
+    title: "HARDPAD vs. madera: por qué cambiar las almohadillas de tu grúa",
+    fecha: "2024-05-20",
+    categoria: "HARDPAD",
+    lectura: 3,
+    resumen:
+      "Las almohadillas de apoyo en UHMW superan a la madera en resistencia, durabilidad y seguridad para estabilizadores de grúa.",
+    bloques: [
+      {
+        p: "Las almohadillas HARDPAD están fabricadas en polietileno de ultra alto peso molecular (UHMW), un material ingenieril que distribuye la carga y protege el equipo y el terreno bajo las cargas más extremas.",
+      },
+      { h: "Ventajas sobre la madera" },
+      {
+        li: [
+          "Alta resistencia al impacto, desgaste y abrasión: no se agrieta ni fractura como la madera.",
+          "Vida útil mucho mayor, reduciendo costos de reemplazo.",
+          "No absorbe humedad y es inmune a la corrosión (−50 °C a +100 °C).",
+          "Mucho más liviana que el acero o la madera tratada, con asas integradas.",
+          "Aislamiento eléctrico inherente para mayor seguridad.",
+          "100% reciclable y fácil de limpiar con agua a presión.",
+        ],
+      },
+      { h: "Modelos disponibles" },
+      {
+        p: "Contamos con medidas de 400×400 mm (12 ton) hasta 1000×1000 mm (50 ton). Elegimos contigo el modelo según la carga de tu estabilizador.",
+      },
+    ],
+  },
+  {
+    slug: "kits-contencion-derrames",
+    title: "Kits de contención de derrames: qué deben incluir y cuándo usarlos",
+    fecha: "2024-04-30",
+    categoria: "Seguridad ambiental",
+    lectura: 3,
+    resumen:
+      "Absorbentes, salchichas y kits listos para responder ante fugas de hidrocarburos y químicos en tu operación.",
+    bloques: [
+      {
+        p: "Un derrame de aceite o químico debe controlarse en minutos. Tener el kit correcto a la mano protege al personal, al terreno y evita sanciones ambientales.",
+      },
+      { h: "Tipos de absorbente" },
+      {
+        li: [
+          "Absorbentes de aceite (Clot Oil): hidrofóbicos, repelen el agua y solo absorben hidrocarburos.",
+          "Absorbentes universales: para aceite y químicos comunes.",
+          "Absorbentes de químicos: para ácidos y combustibles en laboratorios y plantas.",
+        ],
+      },
+      { h: "Qué incluye un kit" },
+      {
+        p: "El kit de 50 L trae 1 bolsa con asa, 30 paños de 40×50 cm, 2 salchichas de 7,6 cm Ø × 120 cm, 2 almohadillas, guantes y 2 bolsas de eliminación. El kit de 30 L es la versión compacta con lentes goggles incluidos.",
+      },
+      { h: "Para instalaciones fijas" },
+      {
+        p: "El contenedor de aceites portátil es una piscina plegable de contención semipermanente que no requiere instalación, ideal para almacenamiento y transporte de bidones.",
+      },
+    ],
+  },
+] as const;

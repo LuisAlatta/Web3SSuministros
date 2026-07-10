@@ -1,0 +1,16 @@
+---
+import Page from "../../layouts/Page.astro";
+import Breadcrumb from "../../components/Breadcrumb.astro";
+import Novedades from "../../sections/Novedades.astro";
+import CtaBand from "../../components/CtaBand.astro";
+import { site } from "../../data/site";
+---
+
+<Page
+  title={`Novedades y recursos técnicos | ${site.shortName}`}
+  description="Guías técnicas de izaje seguro, mantenimiento y seguridad ambiental para el sector minero e industrial, por el equipo de 3S Suministros."
+>
+  <Breadcrumb current="Novedades" />
+  <Novedades />
+  <CtaBand />
+</Page>

@@ -1,7 +1,7 @@
 ---
 import { Image } from "astro:assets";
 import logo from "../assets/logo/logo-3s-badge.png";
-import { site, nav, whatsapps, waLink, socials } from "../data/site";
+import { site, nav, navExtra, whatsapps, waLink, socials } from "../data/site";
 import Icon from "../components/Icon.astro";
 
 const year = new Date().getFullYear();
@@ -36,6 +36,7 @@ const hasSocial = socials.some((s) => s.url !== "#");
       <h4>Navegación</h4>
       <ul>
         {nav.map((l) => <li><a href={l.href}>{l.label}</a></li>)}
+        {navExtra.map((l) => <li><a href={l.href}>{l.label}</a></li>)}
       </ul>
     </nav>
 
