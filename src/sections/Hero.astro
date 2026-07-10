@@ -13,24 +13,21 @@ const slides = [
     eyebrow: "Suministros industriales · Arequipa · Perú",
     title: 'El socio <span class="amber">estratégico</span> para tu empresa',
     lead: "Abastecemos minería, construcción, petróleo, gas, energía e industria. Representantes de Bekaert y distribuidores de marcas líderes, con entregas a todo el Perú.",
-    primary: { label: "Solicitar cotización", href: waLink(whatsapps[0].intl), wa: true },
-    secondary: { label: "Ver productos", href: "/productos", icon: "arrow" },
+    cta: { label: "Ver productos", href: "/productos", icon: "arrow" },
   },
   {
     img: hardpadTop,
     eyebrow: "Elementos de izaje certificados",
     title: 'Izaje con respaldo <span class="amber">Bekaert</span>',
     lead: "Estrobos SuperLoop, cadenas grado 8 y eslingas Strongloop con Carga Límite de Trabajo certificada bajo norma ASME B30.9, OSHA y ASTM.",
-    primary: { label: "Cotizar izaje", href: waLink(whatsapps[0].intl, "Hola 3S, quiero cotizar elementos de izaje."), wa: true },
-    secondary: { label: "Ver líneas", href: "/lineas", icon: "arrow" },
+    cta: { label: "Más información", href: "/lineas", icon: "arrow" },
   },
   {
     img: equipo,
     eyebrow: "Un solo proveedor",
     title: 'Todo tu abastecimiento, <span class="amber">en un solo lugar</span>',
     lead: "Herramientas, seguridad, izaje, transmisión de potencia, contención de derrames y ferretería. Más de 60 tipos de producto listos para cotizar.",
-    primary: { label: "Explorar productos", href: "/productos", wa: false, icon: "arrow" },
-    secondary: { label: "Contáctanos", href: "/contacto", icon: "arrow" },
+    cta: { label: "Ubícanos", href: "/contacto", icon: "pin" },
   },
 ];
 ---
@@ -66,17 +63,8 @@ const slides = [
               )}
               <p class="lead">{s.lead}</p>
               <div class="hero-cta">
-                <a
-                  class="btn btn-amber"
-                  href={s.primary.href}
-                  target={s.primary.wa ? "_blank" : undefined}
-                  rel={s.primary.wa ? "noopener" : undefined}
-                >
-                  {s.primary.wa ? <Icon name="whatsapp" size={19} /> : <Icon name={s.primary.icon} size={18} />}
-                  {s.primary.label}
-                </a>
-                <a class="btn btn-ghost" href={s.secondary.href}>
-                  {s.secondary.label} <Icon name={s.secondary.icon} size={18} />
+                <a class="btn btn-amber" href={s.cta.href}>
+                  <Icon name={s.cta.icon} size={18} /> {s.cta.label}
                 </a>
               </div>
             </div>
@@ -122,7 +110,7 @@ const slides = [
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     let idx = 0;
     let timer = null;
-    const DELAY = 6000;
+    const DELAY = 7000;
 
     const go = (n) => {
       idx = (n + slides.length) % slides.length;
@@ -223,18 +211,18 @@ const slides = [
     position: absolute;
     inset: 0;
     z-index: -1;
-    background: linear-gradient(
-        95deg,
-        rgba(var(--ink-rgb), 0.92) 0%,
-        rgba(var(--ink-rgb), 0.78) 34%,
-        rgba(var(--ink-rgb), 0.42) 60%,
-        rgba(var(--ink-rgb), 0.25) 100%
+    background: radial-gradient(
+        ellipse 90% 80% at 50% 50%,
+        rgba(var(--ink-rgb), 0.7) 0%,
+        rgba(var(--ink-rgb), 0.82) 100%
       ),
-      linear-gradient(0deg, rgba(var(--ink-rgb), 0.55), transparent 45%);
+      linear-gradient(0deg, rgba(var(--ink-rgb), 0.55), transparent 55%);
   }
 
   .hero-inner {
-    max-width: 640px;
+    max-width: 780px;
+    margin-inline: auto;
+    text-align: center;
     padding-block: var(--space-3xl);
   }
   .hero-title {
@@ -248,11 +236,13 @@ const slides = [
   }
   .hero .lead {
     color: var(--text-muted);
-    max-width: 56ch;
+    max-width: 60ch;
+    margin-inline: auto;
   }
   .hero-cta {
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
     gap: var(--space-sm);
     margin-top: var(--space-xl);
   }
