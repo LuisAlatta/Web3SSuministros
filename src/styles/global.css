@@ -195,9 +195,9 @@ strong {
   background-size: 45.25px 45.25px;
 }
 
-/* — Banda alterna clara (rítmo entre secciones) — */
+/* — Secciones claras: mismo fondo blanco que el resto (sin banda gris) — */
 .plate {
-  background-color: var(--bg-2);
+  background-color: var(--bg);
 }
 /* En contexto oscuro, .plate vuelve a ser carbón con textura sutil */
 .on-dark.plate,
