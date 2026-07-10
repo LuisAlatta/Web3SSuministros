@@ -111,15 +111,42 @@ export const marcasSecundarias = [
 export const marcasPorRubro = [
   {
     rubro: "Herramientas y medición",
-    marcas: ["Bosch", "Makita", "DeWalt", "Stanley", "Milwaukee", "Truper", "Bahco", "Fluke", "Mitutoyo"],
+    marcas: [
+      { name: "Bosch", logo: "/marcas/bosch.png" },
+      { name: "Makita", logo: "/marcas/makita.png" },
+      { name: "DeWalt", logo: "/marcas/dewalt.webp" },
+      { name: "Stanley", logo: "/marcas/stanley.png" },
+      { name: "Milwaukee", logo: "/marcas/milwaukee.svg" },
+      { name: "Truper", logo: "/marcas/truper.svg" },
+      { name: "Bahco", logo: "/marcas/bahco.png" },
+      { name: "Fluke", logo: "/marcas/fluke.png" },
+      { name: "Mitutoyo", logo: "/marcas/mitutoyo.webp" },
+    ],
   },
   {
     rubro: "Seguridad industrial (EPP)",
-    marcas: ["3M", "MSA", "Steelpro", "DuPont Tyvek", "Ansell", "Delta Plus", "Showa", "Segpro"],
+    marcas: [
+      { name: "3M", logo: "/marcas/3m.webp" },
+      { name: "MSA", logo: "/marcas/msa.png" },
+      { name: "Steelpro", logo: "/marcas/steelpro.png" },
+      { name: "DuPont Tyvek", logo: "/marcas/dupont-tyvek.png" },
+      { name: "Ansell", logo: "/marcas/ansell.webp" },
+      { name: "Delta Plus", logo: "/marcas/delta-plus.png" },
+      { name: "Showa", logo: "/marcas/showa.webp" },
+      { name: "Segpro", logo: "/marcas/segpro.png" },
+    ],
   },
   {
     rubro: "Izaje y materiales",
-    marcas: ["Bekaert", "Crosby", "SuperLoop", "StrongLoop", "Lonatex", "Titán", "Pavco"],
+    marcas: [
+      { name: "Bekaert", logo: "/marcas/bekaert.png" },
+      { name: "Crosby", logo: "/marcas/crosby.png" },
+      { name: "SuperLoop", logo: null },
+      { name: "StrongLoop", logo: null },
+      { name: "Lonatex", logo: "/marcas/lonatex.png" },
+      { name: "Titán", logo: null },
+      { name: "Pavco", logo: "/marcas/pavco.png" },
+    ],
   },
 ] as const;
 
