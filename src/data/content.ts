@@ -135,12 +135,12 @@ export const marcasPorRubro = [
     rubro: "Izaje y materiales",
     marcas: [
       { name: "Bekaert", logo: "/marcas/bekaert.png" },
-      { name: "Crosby", logo: "/marcas/crosby.png" },
       { name: "SuperLoop", logo: "/marcas/superloop.png" },
+      { name: "Crosby", logo: "/marcas/crosby.png" },
       { name: "StrongLoop", logo: "/marcas/strongloop.png" },
-      { name: "Lonatex", logo: "/marcas/lonatex.png" },
-      { name: "Titán", logo: "/marcas/titan.png" },
       { name: "Pavco", logo: "/marcas/pavco.png" },
+      { name: "Titán", logo: "/marcas/titan.png" },
+      { name: "Lonatex", logo: "/marcas/lonatex.png" },
     ],
   },
 ] as const;
