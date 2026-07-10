@@ -196,6 +196,13 @@ const slides = [
     height: 100%;
     object-fit: cover;
     object-position: center 40%;
+    transform: scale(1.001);
+    transition: transform 7200ms ease-out;
+    will-change: transform;
+  }
+  /* Ken Burns: el slide activo hace zoom lento hasta que pasa al siguiente */
+  .hero-slide[data-active] .hero-media img {
+    transform: scale(1.12);
   }
   .hero-scrim {
     position: absolute;
@@ -293,6 +300,11 @@ const slides = [
   @media (prefers-reduced-motion: reduce) {
     .hero-slide {
       transition: none;
+    }
+    .hero-media img,
+    .hero-slide[data-active] .hero-media img {
+      transition: none;
+      transform: none;
     }
   }
 </style>

@@ -1,0 +1,220 @@
+---
+import { Image } from "astro:assets";
+import imgHerr from "../assets/img/ln-herramientas.jpg";
+import imgSeg from "../assets/img/ln-seguridad.jpg";
+import imgIzaje from "../assets/img/hardpad-top.jpeg";
+import imgMetal from "../assets/img/ln-metal.jpg";
+import { sellos } from "../data/content";
+import Icon from "../components/Icon.astro";
+
+const cats = [
+  { img: imgHerr, title: "Herramientas", href: "/categorias" },
+  { img: imgSeg, title: "Seguridad Industrial", href: "/categorias" },
+  { img: imgIzaje, title: "Sistemas de Izaje", href: "/lineas" },
+  { img: imgMetal, title: "Ferretería y más", href: "/productos" },
+];
+---
+
+<section class="section" aria-labelledby="conoce-h">
+  <div class="container">
+    <header class="conoce-head reveal">
+      <h2 id="conoce-h">Conoce nuestros <span class="amber">productos</span></h2>
+      <p>Más de 60 tipos de producto para el sector minero, construcción e industrial.</p>
+    </header>
+
+    <!-- Sellos de confianza -->
+    <div class="conoce-sellos">
+      {
+        sellos.map((s, i) => (
+          <article class={`csello reveal reveal-${(i % 3) + 1}`}>
+            <span class="csello-ic"><Icon name={s.icon} size={22} /></span>
+            <div>
+              <strong>{s.title}</strong>
+              <span>{s.desc}</span>
+            </div>
+          </article>
+        ))
+      }
+    </div>
+
+    <!-- Tarjetas de categoría con foto -->
+    <div class="conoce-cats">
+      {
+        cats.map((c, i) => (
+          <a class={`ccat reveal reveal-${(i % 3) + 1}`} href={c.href}>
+            <div class="ccat-media">
+              <Image
+                src={c.img}
+                alt={c.title}
+                widths={[320, 480, 640]}
+                sizes="(min-width: 900px) 24vw, 45vw"
+                loading="lazy"
+              />
+              <span class="ccat-scrim" aria-hidden="true" />
+            </div>
+            <div class="ccat-body">
+              <h3>{c.title}</h3>
+              <span class="ccat-btn">Ver más <Icon name="arrow" size={15} /></span>
+            </div>
+          </a>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .conoce-head {
+    text-align: center;
+    max-width: 640px;
+    margin: 0 auto clamp(2rem, 4vw, 3rem);
+  }
+  .conoce-head h2 {
+    font-size: clamp(1.9rem, 1.3rem + 3vw, 3rem);
+  }
+  .conoce-head p {
+    color: var(--text-muted);
+    margin-top: 0.9rem;
+    font-size: 1.05rem;
+  }
+
+  /* Sellos de confianza (pills oscuras sobre blanco) */
+  .conoce-sellos {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    margin-bottom: clamp(1.6rem, 3vw, 2.4rem);
+  }
+  .csello {
+    display: flex;
+    gap: 0.9rem;
+    align-items: center;
+    padding: 1.1rem 1.3rem;
+    border-radius: var(--radius-lg);
+    background: linear-gradient(150deg, var(--ink-2), var(--ink));
+    box-shadow: var(--shadow-sm);
+  }
+  .csello-ic {
+    flex: none;
+    width: 46px;
+    height: 46px;
+    display: grid;
+    place-items: center;
+    border-radius: var(--radius);
+    background: rgba(var(--amber-rgb), 0.16);
+    color: var(--amber);
+  }
+  .csello strong {
+    display: block;
+    font-family: var(--font-display);
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    font-size: 0.95rem;
+    color: #f4f6f9;
+    margin-bottom: 0.15rem;
+  }
+  .csello span {
+    color: #b8c0cc;
+    font-size: 0.84rem;
+    line-height: 1.45;
+  }
+
+  /* Tarjetas de categoría con foto (retrato) */
+  .conoce-cats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+  .ccat {
+    position: relative;
+    display: block;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    isolation: isolate;
+    min-height: 340px;
+    box-shadow: var(--shadow-sm);
+    transition: transform var(--dur) var(--ease-out),
+      box-shadow var(--dur) var(--ease-out);
+  }
+  .ccat:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-card);
+  }
+  .ccat-media {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+  }
+  .ccat-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform var(--dur-slow) var(--ease-out);
+  }
+  .ccat:hover .ccat-media img {
+    transform: scale(1.07);
+  }
+  .ccat-scrim {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      0deg,
+      rgba(var(--ink-rgb), 0.9) 6%,
+      rgba(var(--ink-rgb), 0.5) 42%,
+      rgba(var(--ink-rgb), 0.15) 100%
+    );
+  }
+  .ccat-body {
+    position: relative;
+    height: 100%;
+    min-height: 340px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    text-align: center;
+    gap: 1rem;
+    padding: clamp(1.4rem, 3vw, 1.8rem);
+  }
+  .ccat-body h3 {
+    color: #fff;
+    font-size: clamp(1.3rem, 1rem + 1vw, 1.6rem);
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+  }
+  .ccat-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-family: var(--font-display);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-size: 0.8rem;
+    color: #fff;
+    padding: 0.55rem 1.1rem;
+    border: 1px solid rgba(255, 255, 255, 0.55);
+    border-radius: var(--radius);
+    transition: background var(--dur) var(--ease-out),
+      color var(--dur) var(--ease-out),
+      border-color var(--dur) var(--ease-out);
+  }
+  .ccat:hover .ccat-btn {
+    background: var(--amber);
+    border-color: var(--amber);
+    color: var(--on-amber);
+  }
+
+  @media (min-width: 620px) {
+    .conoce-sellos {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+  @media (min-width: 1000px) {
+    .conoce-sellos {
+      grid-template-columns: repeat(4, 1fr);
+    }
+    .conoce-cats {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+</style>

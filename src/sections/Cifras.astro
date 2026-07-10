@@ -1,0 +1,93 @@
+---
+import { Image } from "astro:assets";
+import fondo from "../assets/img/mineria-peru.jpg";
+import { stats } from "../data/content";
+---
+
+<section class="cifras on-dark" aria-labelledby="cifras-h">
+  <div class="cifras-media" aria-hidden="true">
+    <Image src={fondo} alt="" widths={[768, 1280, 1920]} sizes="100vw" loading="lazy" />
+    <span class="cifras-scrim"></span>
+  </div>
+
+  <div class="container cifras-inner reveal">
+    <p class="eyebrow">Somos 3S Suministros</p>
+    <h2 id="cifras-h">El respaldo de las <span class="amber">mejores marcas</span> para la industria peruana</h2>
+
+    <dl class="cifras-grid">
+      {
+        stats.map((s) => (
+          <div class="cifra">
+            <dt data-count>{s.value}</dt>
+            <dd>{s.label}</dd>
+          </div>
+        ))
+      }
+    </dl>
+  </div>
+</section>
+
+<style>
+  .cifras {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    padding-block: clamp(3.5rem, 7vw, 6rem);
+  }
+  .cifras-media {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+  }
+  .cifras-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 45%;
+  }
+  .cifras-scrim {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      180deg,
+      rgba(var(--ink-rgb), 0.86),
+      rgba(var(--ink-rgb), 0.78)
+    );
+  }
+  .cifras-inner {
+    text-align: center;
+    max-width: 780px;
+  }
+  .cifras-inner h2 {
+    margin: 0.7rem auto 0;
+    font-size: clamp(1.6rem, 1.2rem + 2vw, 2.4rem);
+    max-width: 22ch;
+    text-wrap: balance;
+  }
+  .cifras-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: clamp(1.8rem, 4vw, 2.5rem);
+    margin-top: clamp(2.2rem, 5vw, 3.5rem);
+  }
+  .cifra dt {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: clamp(3rem, 2rem + 4vw, 4.5rem);
+    line-height: 1;
+    color: var(--amber);
+  }
+  .cifra dd {
+    color: #d7dce4;
+    font-size: 0.95rem;
+    margin-top: 0.6rem;
+    max-width: 26ch;
+    margin-inline: auto;
+  }
+
+  @media (min-width: 720px) {
+    .cifras-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+</style>

@@ -1,7 +1,6 @@
 ---
 import { Image } from "astro:assets";
 import equipo from "../assets/img/equipo.jpg";
-import { stats } from "../data/content";
 import Icon from "../components/Icon.astro";
 ---
 
@@ -34,19 +33,6 @@ import Icon from "../components/Icon.astro";
       />
     </div>
   </div>
-
-  <div class="container">
-    <dl class="intro-stats reveal">
-      {
-        stats.map((s) => (
-          <div class="intro-stat">
-            <dt data-count>{s.value}</dt>
-            <dd>{s.label}</dd>
-          </div>
-        ))
-      }
-    </dl>
-  </div>
 </section>
 
 <style>
@@ -74,42 +60,9 @@ import Icon from "../components/Icon.astro";
     aspect-ratio: 4 / 3;
   }
 
-  .intro-stats {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 1px;
-    background: var(--line);
-    border: 1px solid var(--line);
-    border-radius: var(--radius-lg);
-    overflow: hidden;
-    box-shadow: var(--shadow-sm);
-  }
-  .intro-stat {
-    background: var(--steel-900);
-    padding: clamp(1.3rem, 3vw, 1.9rem);
-    display: flex;
-    align-items: baseline;
-    gap: 1rem;
-  }
-  .intro-stat dt {
-    font-family: var(--font-display);
-    font-weight: 700;
-    font-size: clamp(1.9rem, 1.4rem + 1.8vw, 2.6rem);
-    color: var(--amber-deep);
-    line-height: 1;
-    flex: none;
-  }
-  .intro-stat dd {
-    color: var(--text-muted);
-    font-size: 0.92rem;
-  }
-
   @media (min-width: 760px) {
     .intro {
       grid-template-columns: 1.05fr 0.95fr;
-    }
-    .intro-stats {
-      grid-template-columns: repeat(3, 1fr);
     }
   }
 </style>
