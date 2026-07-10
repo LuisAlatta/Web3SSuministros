@@ -19,7 +19,6 @@ const { title, subtitle, eyebrow, image, pos = "center 40%" } = Astro.props;
   </div>
   <div class="hazard-bar phero-hazard" aria-hidden="true"></div>
   <div class="container phero-inner">
-    {eyebrow && <p class="eyebrow">{eyebrow}</p>}
     <h1 id="phero-h" set:html={title} />
     {subtitle && <p class="phero-sub">{subtitle}</p>}
   </div>
