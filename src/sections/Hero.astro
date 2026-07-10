@@ -15,6 +15,7 @@ const slides = [
     lead: "Abastecemos minería, construcción, petróleo, gas, energía e industria. Representantes de Bekaert y distribuidores de marcas líderes, con entregas a todo el Perú.",
     primary: { label: "Solicitar cotización", href: waLink(whatsapps[0].intl), wa: true },
     secondary: { label: "Ver productos", href: "/productos", icon: "arrow" },
+    pos: "center 22%",
   },
   {
     img: hardpadTop,
@@ -23,6 +24,7 @@ const slides = [
     lead: "Estrobos SuperLoop, cadenas grado 8 y eslingas Strongloop con Carga Límite de Trabajo certificada bajo norma ASME B30.9, OSHA y ASTM.",
     primary: { label: "Cotizar izaje", href: waLink(whatsapps[0].intl, "Hola 3S, quiero cotizar elementos de izaje."), wa: true },
     secondary: { label: "Ver líneas", href: "/lineas", icon: "arrow" },
+    pos: "center 45%",
   },
   {
     img: mineria,
@@ -31,6 +33,7 @@ const slides = [
     lead: "Herramientas, seguridad, izaje, transmisión de potencia, contención de derrames y ferretería. Más de 60 tipos de producto listos para cotizar.",
     primary: { label: "Explorar productos", href: "/productos", wa: false, icon: "arrow" },
     secondary: { label: "Contáctanos", href: "/contacto", icon: "arrow" },
+    pos: "center 35%",
   },
 ];
 ---
@@ -48,6 +51,7 @@ const slides = [
               sizes="100vw"
               loading={i === 0 ? "eager" : "lazy"}
               fetchpriority={i === 0 ? "high" : undefined}
+              style={`object-position:${s.pos}`}
             />
             <div class="hero-scrim" />
           </div>
