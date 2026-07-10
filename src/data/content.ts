@@ -136,10 +136,10 @@ export const marcasPorRubro = [
     marcas: [
       { name: "Bekaert", logo: "/marcas/bekaert.png" },
       { name: "Crosby", logo: "/marcas/crosby.png" },
-      { name: "SuperLoop", logo: null },
-      { name: "StrongLoop", logo: null },
+      { name: "SuperLoop", logo: "/marcas/superloop.png" },
+      { name: "StrongLoop", logo: "/marcas/strongloop.png" },
       { name: "Lonatex", logo: "/marcas/lonatex.png" },
-      { name: "Titán", logo: null },
+      { name: "Titán", logo: "/marcas/titan.png" },
       { name: "Pavco", logo: "/marcas/pavco.png" },
     ],
   },
