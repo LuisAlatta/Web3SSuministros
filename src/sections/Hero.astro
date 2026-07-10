@@ -63,9 +63,7 @@ const slides = [
               )}
               <p class="lead">{s.lead}</p>
               <div class="hero-cta">
-                <a class="btn btn-amber" href={s.cta.href}>
-                  <Icon name={s.cta.icon} size={18} /> {s.cta.label}
-                </a>
+                <a class="btn btn-amber hero-btn" href={s.cta.href}>{s.cta.label}</a>
               </div>
             </div>
           </div>
@@ -245,6 +243,10 @@ const slides = [
     justify-content: center;
     gap: var(--space-sm);
     margin-top: var(--space-xl);
+  }
+  .hero-btn {
+    border-radius: 999px;
+    --btn-pad-x: 1.8rem;
   }
 
   .hero-dots {
