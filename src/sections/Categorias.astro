@@ -4,17 +4,8 @@ import { whatsapps, waLink } from "../data/site";
 import Icon from "../components/Icon.astro";
 ---
 
-<section id="categorias" class="section plate" aria-labelledby="cat-h">
+<section id="categorias" class="section plate" aria-label="Categorías de negocio">
   <div class="container">
-    <header class="cat-head reveal">
-      <p class="eyebrow">Categorías de negocio</p>
-      <h2 id="cat-h">Todo lo que tu operación necesita,<br /><span class="amber">en un solo proveedor</span></h2>
-      <p class="lead">
-        Cubrimos seis grandes líneas de productos industriales. Si buscas algo
-        específico, lo conseguimos por ti.
-      </p>
-    </header>
-
     <div class="cat-grid">
       {
         categorias.map((c, i) => (

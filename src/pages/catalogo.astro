@@ -1,6 +1,7 @@
 ---
 import Page from "../layouts/Page.astro";
-import Breadcrumb from "../components/Breadcrumb.astro";
+import PageHero from "../components/PageHero.astro";
+import heroImg from "../assets/img/ln-metal.jpg";
 import Catalogo from "../sections/Catalogo.astro";
 import { site } from "../data/site";
 ---
@@ -9,6 +10,12 @@ import { site } from "../data/site";
   title={`Catálogo y galería | ${site.shortName}`}
   description="Descarga el catálogo 2024 y el catálogo de izaje Bekaert. Galería de productos, trabajos realizados y testimonios de clientes."
 >
-  <Breadcrumb current="Catálogo" />
+  <PageHero
+    image={heroImg}
+    eyebrow="Catálogo y galería"
+    title='Nuestro <span class="amber">catálogo</span> y trabajos'
+    subtitle="Descarga catálogos y explora nuestra galería de productos"
+    pos="center 50%"
+  />
   <Catalogo />
 </Page>

@@ -1,6 +1,7 @@
 ---
 import Page from "../layouts/Page.astro";
-import Breadcrumb from "../components/Breadcrumb.astro";
+import PageHero from "../components/PageHero.astro";
+import heroImg from "../assets/img/hardpad-top.jpeg";
 import Lineas from "../sections/Lineas.astro";
 import CtaBand from "../components/CtaBand.astro";
 import { site } from "../data/site";
@@ -10,7 +11,13 @@ import { site } from "../data/site";
   title={`Líneas destacadas | ${site.shortName}`}
   description="Elementos de izaje Bridon-Bekaert (estrobos SuperLoop, cadenas grado 8, eslingas Strongloop) con tablas WLL, contención de derrames y almohadillas HARDPAD Crane en UHMW."
 >
-  <Breadcrumb current="Líneas destacadas" />
+  <PageHero
+    image={heroImg}
+    eyebrow="Líneas destacadas"
+    title='Productos que marcan la <span class="amber">diferencia</span>'
+    subtitle="Izaje Bridon-Bekaert · Contención de derrames · HARDPAD Crane"
+    pos="center 55%"
+  />
   <Lineas />
   <CtaBand />
 </Page>

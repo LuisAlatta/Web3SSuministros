@@ -6,17 +6,8 @@ import Icon from "../components/Icon.astro";
 const posts = [...novedades].sort((a, b) => (a.fecha < b.fecha ? 1 : -1));
 ---
 
-<section id="novedades" class="section" aria-labelledby="nov-h">
+<section id="novedades" class="section" aria-label="Novedades y recursos">
   <div class="container">
-    <header class="nov-head reveal">
-      <p class="eyebrow">Novedades y recursos</p>
-      <h2 id="nov-h">Guías técnicas del <span class="amber">sector industrial</span></h2>
-      <p class="lead">
-        Consejos de izaje seguro, mantenimiento y seguridad ambiental preparados
-        por nuestro equipo técnico.
-      </p>
-    </header>
-
     <div class="nov-grid">
       {
         posts.map((p, i) => (

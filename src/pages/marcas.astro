@@ -1,6 +1,7 @@
 ---
 import Page from "../layouts/Page.astro";
-import Breadcrumb from "../components/Breadcrumb.astro";
+import PageHero from "../components/PageHero.astro";
+import heroImg from "../assets/img/hero-mina.jpg";
 import Marcas from "../sections/Marcas.astro";
 import CtaBand from "../components/CtaBand.astro";
 import { site } from "../data/site";
@@ -10,7 +11,13 @@ import { site } from "../data/site";
   title={`Marcas | ${site.shortName}`}
   description="Representantes de Bekaert para el mercado industrial y distribuidores de Crosby, SuperLoop, StrongLoop y más marcas líderes."
 >
-  <Breadcrumb current="Marcas" />
+  <PageHero
+    image={heroImg}
+    eyebrow="Marcas que representamos"
+    title='Respaldados por las <span class="amber">mejores marcas</span>'
+    subtitle="Representantes de Bekaert y distribuidores de marcas líderes"
+    pos="center 40%"
+  />
   <Marcas />
   <CtaBand />
 </Page>

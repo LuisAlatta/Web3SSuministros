@@ -1,6 +1,7 @@
 ---
 import Page from "../layouts/Page.astro";
-import Breadcrumb from "../components/Breadcrumb.astro";
+import PageHero from "../components/PageHero.astro";
+import heroImg from "../assets/img/mineria-peru.jpg";
 import Nosotros from "../sections/Nosotros.astro";
 import CtaBand from "../components/CtaBand.astro";
 import { site } from "../data/site";
@@ -10,7 +11,13 @@ import { site } from "../data/site";
   title={`Nosotros | ${site.shortName}`}
   description="Quiénes somos: especialistas en abastecimiento de suministros industriales en Arequipa. Misión, visión y sectores que atendemos."
 >
-  <Breadcrumb current="Nosotros" />
+  <PageHero
+    image={heroImg}
+    eyebrow="Quiénes somos"
+    title='Especialistas en abastecimiento <span class="amber">industrial</span>'
+    subtitle="Socios estratégicos de la industria peruana en Arequipa"
+    pos="center 45%"
+  />
   <Nosotros />
   <CtaBand />
 </Page>

@@ -1,6 +1,7 @@
 ---
 import Page from "../layouts/Page.astro";
-import ProductosHero from "../sections/ProductosHero.astro";
+import PageHero from "../components/PageHero.astro";
+import heroImg from "../assets/img/equipo.jpg";
 import Productos from "../sections/Productos.astro";
 import CtaBand from "../components/CtaBand.astro";
 import { site } from "../data/site";
@@ -10,7 +11,13 @@ import { site } from "../data/site";
   title={`Productos | ${site.shortName}`}
   description="Catálogo de productos industriales de 3S Suministros: herramientas, EPP, izaje Bekaert, transmisión de potencia, contención de derrames y ferretería. Busca y cotiza al instante."
 >
-  <ProductosHero />
+  <PageHero
+    image={heroImg}
+    eyebrow="Catálogo de productos"
+    title='Cotiza nuestros <span class="amber">productos</span>'
+    subtitle="Calidad y precios competitivos · Entregas a todo el Perú"
+    pos="center 35%"
+  />
   <Productos />
   <CtaBand />
 </Page>
