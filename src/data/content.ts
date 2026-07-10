@@ -123,9 +123,9 @@ export const marcasPorRubro = [
     marcas: [
       { name: "Segpro", logo: "/marcas/segpro.png" },
       { name: "MSA", logo: "/marcas/msa.png" },
-      { name: "Steelpro", logo: "/marcas/steelpro.png" },
-      { name: "DuPont Tyvek", logo: "/marcas/dupont-tyvek.png" },
       { name: "Ansell", logo: "/marcas/ansell.webp" },
+      { name: "DuPont Tyvek", logo: "/marcas/dupont-tyvek.png" },
+      { name: "Steelpro", logo: "/marcas/steelpro.png" },
       { name: "Delta Plus", logo: "/marcas/delta-plus.png" },
       { name: "Showa", logo: "/marcas/showa.webp" },
       { name: "3M", logo: "/marcas/3m.webp" },
