@@ -17,7 +17,6 @@ const { title, subtitle, eyebrow, image, pos = "center 40%" } = Astro.props;
     <Image src={image} alt="" widths={[768, 1280, 1920]} sizes="100vw" loading="eager" fetchpriority="high" style={`object-position:${pos}`} />
     <span class="phero-scrim"></span>
   </div>
-  <div class="hazard-bar phero-hazard" aria-hidden="true"></div>
   <div class="container phero-inner">
     <h1 id="phero-h" set:html={title} />
     {subtitle && <p class="phero-sub">{subtitle}</p>}
@@ -52,13 +51,6 @@ const { title, subtitle, eyebrow, image, pos = "center 40%" } = Astro.props;
       rgba(var(--ink-rgb), 0.84),
       rgba(var(--ink-rgb), 0.74)
     );
-  }
-  .phero-hazard {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    width: 100%;
   }
   .phero-inner {
     padding-block: clamp(2rem, 5vw, 3.5rem);
