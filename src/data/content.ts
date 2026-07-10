@@ -89,6 +89,7 @@ export const categorias = [
 /* Marcas representadas — Bekaert destacado */
 export const marcaPrincipal = {
   name: "Bekaert",
+  logo: "/marcas/bekaert.png",
   fullName: "Bridon-Bekaert The Ropes Group",
   claim: "Representamos la marca para todo el mercado industrial",
   description:

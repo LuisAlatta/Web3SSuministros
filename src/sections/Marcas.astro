@@ -12,7 +12,9 @@ import Icon from "../components/Icon.astro";
       <div class="bekaert-glow" aria-hidden="true"></div>
       <div class="bekaert-body">
         <span class="bekaert-badge">Marca destacada</span>
-        <p class="bekaert-name">{marcaPrincipal.name}</p>
+        <div class="bekaert-logo">
+          <img src={marcaPrincipal.logo} alt={marcaPrincipal.name} width="220" height="118" loading="lazy" decoding="async" />
+        </div>
         <p class="bekaert-claim">"{marcaPrincipal.claim}"</p>
         <p class="bekaert-desc">{marcaPrincipal.description}</p>
         <a
@@ -112,13 +114,17 @@ import Icon from "../components/Icon.astro";
     border-radius: var(--radius-xs);
     margin-bottom: 1.1rem;
   }
-  .bekaert-name {
-    font-family: var(--font-display);
-    font-weight: 700;
-    text-transform: uppercase;
-    font-size: clamp(2.6rem, 1.5rem + 4vw, 4.5rem);
-    line-height: 0.95;
-    letter-spacing: 0.02em;
+  .bekaert-logo {
+    display: inline-flex;
+    background: #fff;
+    border-radius: var(--radius-lg);
+    padding: 1rem 1.5rem;
+    box-shadow: var(--shadow-card);
+  }
+  .bekaert-logo img {
+    width: auto;
+    height: clamp(48px, 4vw + 1rem, 72px);
+    display: block;
   }
   .bekaert-claim {
     font-family: var(--font-display);
@@ -183,53 +189,44 @@ import Icon from "../components/Icon.astro";
     color: var(--amber-deep);
     margin-bottom: var(--space-md);
   }
+  /* Grilla de celdas uniformes: cada logo (o nombre) se normaliza al mismo tamaño */
   .mar-wall {
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(94px, 1fr));
     gap: 0.6rem;
   }
   .mar-wall li {
-    font-family: var(--font-display);
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.03em;
-    font-size: 0.88rem;
-    color: var(--text);
-    padding: 0.4rem 0.85rem;
-    border: 1px solid var(--line-strong);
-    border-radius: var(--radius-xs);
-    transition: border-color var(--dur) var(--ease-out),
-      color var(--dur) var(--ease-out);
-  }
-  .mar-wall li:hover {
-    border-color: var(--amber);
-    color: var(--amber-deep);
-  }
-
-  /* Chip claro para que los logos (de color o en negro) resalten sobre la tarjeta oscura */
-  .mar-wall li.has-logo {
     display: grid;
     place-items: center;
-    width: 104px;
-    height: 52px;
-    padding: 0.5rem 0.7rem;
+    aspect-ratio: 3 / 2;
+    padding: 0.8rem 0.9rem;
     background: #fff;
-    border-color: var(--line);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    /* estilo para los ítems sin logo (nombre en texto) */
+    font-family: var(--font-display);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    font-size: 0.78rem;
+    line-height: 1.15;
+    text-align: center;
+    color: var(--ink);
     transition: border-color var(--dur) var(--ease-out),
       transform var(--dur) var(--ease-out),
       box-shadow var(--dur) var(--ease-out);
   }
-  .mar-wall li.has-logo img {
+  .mar-wall li:hover {
+    border-color: var(--amber);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-sm);
+  }
+  .mar-wall li img {
     max-width: 100%;
     max-height: 100%;
     width: auto;
     height: auto;
     object-fit: contain;
-  }
-  .mar-wall li.has-logo:hover {
-    border-color: var(--amber);
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-sm);
   }
 
   @media (min-width: 860px) {
