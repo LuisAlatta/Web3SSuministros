@@ -27,7 +27,7 @@ const cats = [
       {
         sellos.map((s, i) => (
           <article class={`csello reveal reveal-${(i % 3) + 1}`}>
-            <span class="csello-ic"><Icon name={s.icon} size={22} /></span>
+            <span class="csello-ic"><Icon name={s.icon} size={34} /></span>
             <div>
               <strong>{s.title}</strong>
               <span>{s.desc}</span>
@@ -96,13 +96,9 @@ const cats = [
   }
   .csello-ic {
     flex: none;
-    width: 46px;
-    height: 46px;
     display: grid;
     place-items: center;
-    border-radius: var(--radius);
-    background: rgba(var(--amber-rgb), 0.16);
-    color: var(--amber);
+    color: #ffffff;
   }
   .csello strong {
     display: block;
