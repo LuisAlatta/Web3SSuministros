@@ -1,47 +1,113 @@
 ---
 import { Image } from "astro:assets";
 import mineria from "../assets/img/mineria-peru.jpg";
+import equipo from "../assets/img/equipo.jpg";
 import { sectores, stats, normativas } from "../data/content";
 import Icon from "../components/Icon.astro";
+
+const pilares = [
+  {
+    icon: "shield",
+    title: "Misión",
+    text: "Brindar soluciones de abastecimiento de suministros industriales, comprendiendo las necesidades de nuestros clientes para satisfacerlos a cabalidad —con seriedad, dedicación y profesionalismo— ofreciéndoles productos y servicios de calidad.",
+  },
+  {
+    icon: "globe",
+    title: "Visión",
+    text: "Ser reconocidos por nuestros clientes y proveedores como una empresa líder en la gestión de abastecimiento de suministros para el sector industrial y minero.",
+  },
+  {
+    icon: "star",
+    title: "Valores",
+    list: [
+      "Seriedad",
+      "Dedicación",
+      "Profesionalismo",
+      "Calidad",
+      "Compromiso",
+    ],
+  },
+];
 ---
 
-<section id="nosotros" class="section" aria-label="Quiénes somos">
+<!-- Nuestra historia -->
+<section id="nosotros" class="section" aria-labelledby="hist-h">
   <div class="container">
-    <div class="nos-head">
-      <p class="lead reveal">
-        Somos una empresa orientada al desarrollo de soluciones que se adaptan a
-        la necesidad específica de cada cliente. Representamos y distribuimos
-        reconocidas marcas que cumplen normativas nacionales e internacionales,
-        y somos socios estratégicos de las principales empresas y proyectos del
-        país.
+    <div class="nos-shead reveal">
+      <h2 id="hist-h">Nuestra <span class="amber">historia</span></h2>
+      <p class="nos-ssub">
+        Especialistas en soluciones de abastecimiento a la medida de cada cliente
       </p>
     </div>
 
-    <div class="nos-grid">
-      <article class="surface nos-card reveal">
-        <span class="nos-ic"><Icon name="shield" size={24} /></span>
-        <h3>Misión</h3>
-        <span class="nos-rule" aria-hidden="true"></span>
+    <div class="nos-historia">
+      <div class="nos-hist-text reveal">
         <p>
-          Brindar soluciones de abastecimiento de suministros industriales,
-          comprendiendo las necesidades de nuestros clientes para satisfacerlos
-          a cabalidad —con seriedad, dedicación y profesionalismo— ofreciéndoles
-          productos y servicios de calidad.
+          En 3S Suministros y Servicios del Sur nacimos para resolver el
+          abastecimiento de la industria peruana. Desde nuestros inicios nos
+          especializamos en soluciones que se adaptan a la necesidad específica
+          de cada cliente, con presencia y despacho a todo el Perú desde
+          Arequipa.
         </p>
-      </article>
+        <p>
+          Con el tiempo ampliamos nuestras líneas hacia minería, construcción,
+          petróleo, gas, energía e industria. Hoy representamos y distribuimos
+          marcas líderes que cumplen normativas nacionales e internacionales, y
+          somos socios estratégicos de las principales empresas y proyectos del
+          país.
+        </p>
+      </div>
+      <div class="nos-hist-media reveal reveal-2">
+        <Image
+          src={equipo}
+          alt="Equipo de 3S Suministros asesorando en almacén"
+          widths={[480, 720, 960]}
+          sizes="(min-width: 900px) 460px, 100vw"
+          loading="lazy"
+        />
+      </div>
+    </div>
+  </div>
+</section>
 
-      <article class="surface nos-card reveal reveal-2">
-        <span class="nos-ic"><Icon name="globe" size={24} /></span>
-        <h3>Visión</h3>
-        <span class="nos-rule" aria-hidden="true"></span>
-        <p>
-          Ser reconocidos por nuestros clientes y proveedores como una empresa
-          líder en la gestión de abastecimiento de suministros para el sector
-          industrial y minero.
-        </p>
-      </article>
+<!-- ¿Qué nos mueve? -->
+<section class="mueve on-dark" aria-labelledby="mueve-h">
+  <div class="mueve-media" aria-hidden="true">
+    <Image src={mineria} alt="" widths={[768, 1280, 1920]} sizes="100vw" loading="lazy" />
+    <span class="mueve-scrim"></span>
+  </div>
+
+  <div class="container mueve-inner">
+    <div class="nos-shead reveal">
+      <h2 id="mueve-h">¿Qué nos <span class="amber">mueve</span>?</h2>
+      <p class="nos-ssub">
+        Nuestra misión, visión y valores nos impulsan a ser una empresa que
+        siempre piensa en ti
+      </p>
     </div>
 
+    <div class="mueve-grid">
+      {
+        pilares.map((p, i) => (
+          <article class={`mueve-card reveal reveal-${i + 1}`}>
+            <span class="mueve-badge"><Icon name={p.icon} size={30} /></span>
+            <h3>{p.title}</h3>
+            {p.text && <p>{p.text}</p>}
+            {p.list && (
+              <ul class="mueve-list">
+                {p.list.map((v) => <li>{v}</li>)}
+              </ul>
+            )}
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<!-- Sectores + cifras -->
+<section class="section" aria-label="Sectores y cifras">
+  <div class="container">
     <div class="nos-sectores reveal on-dark">
       <div class="nos-sectores-media" aria-hidden="true">
         <Image src={mineria} alt="" widths={[640, 960, 1280]} sizes="100vw" loading="lazy" />
@@ -74,67 +140,147 @@ import Icon from "../components/Icon.astro";
 </section>
 
 <style>
-  .nos-head {
-    display: grid;
-    gap: 1.5rem;
-    margin-bottom: clamp(2.5rem, 5vw, 4rem);
+  /* — Encabezado de sección centrado — */
+  .nos-shead {
+    text-align: center;
+    max-width: 720px;
+    margin: 0 auto clamp(2.2rem, 5vw, 3.5rem);
   }
-  .nos-head h2 {
-    margin-top: 0.9rem;
+  .nos-shead h2 {
+    font-size: clamp(2rem, 1.4rem + 3vw, 3.2rem);
   }
-  .nos-grid {
-    display: grid;
-    gap: 1.4rem;
-    grid-template-columns: 1fr;
-  }
-  .nos-card {
-    padding: clamp(1.5rem, 3vw, 2.4rem);
-    position: relative;
-    box-shadow: var(--shadow-sm);
-    transition: border-color var(--dur) var(--ease-out),
-      transform var(--dur) var(--ease-out),
-      box-shadow var(--dur) var(--ease-out);
-  }
-  .nos-card:hover {
-    border-color: var(--amber-line);
-    transform: translateY(-3px);
-    box-shadow: var(--shadow-card);
-  }
-  .nos-ic {
-    display: inline-grid;
-    place-items: center;
-    width: 52px;
-    height: 52px;
-    border-radius: var(--radius);
-    background: var(--amber-tint);
-    color: var(--amber);
-    margin-bottom: var(--space-md);
-    transition: background var(--dur) var(--ease-out),
-      color var(--dur) var(--ease-out);
-  }
-  .nos-card:hover .nos-ic {
-    background: var(--amber);
-    color: var(--on-amber);
-  }
-  .nos-rule {
-    display: block;
-    height: 3px;
-    width: 34px;
-    margin: 0.85rem 0 1.1rem;
-    background: var(--amber);
-    border-radius: 2px;
-    transition: width var(--dur) var(--ease-out);
-  }
-  .nos-card:hover .nos-rule {
-    width: 60px;
-  }
-  .nos-card p {
+  .nos-ssub {
+    margin-top: 0.6rem;
     color: var(--text-muted);
+    font-size: clamp(1rem, 0.95rem + 0.4vw, 1.2rem);
+  }
+  .mueve .nos-ssub {
+    color: #d7dce4;
   }
 
+  /* — Nuestra historia (2 columnas) — */
+  .nos-historia {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: clamp(1.8rem, 4vw, 3rem);
+    align-items: center;
+  }
+  .nos-hist-text {
+    display: grid;
+    gap: 1.2rem;
+  }
+  .nos-hist-text p {
+    color: var(--text-muted);
+    text-align: justify;
+    line-height: 1.75;
+  }
+  .nos-hist-media {
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-lg);
+  }
+  .nos-hist-media img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  /* — ¿Qué nos mueve? — */
+  .mueve {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    padding-block: clamp(4rem, 8vw, 7rem);
+  }
+  .mueve-media {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+  }
+  .mueve-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 45%;
+  }
+  .mueve-scrim {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      180deg,
+      rgba(var(--ink-rgb), 0.9),
+      rgba(var(--ink-rgb), 0.82)
+    );
+  }
+  .mueve-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: clamp(2.6rem, 4vw, 2rem);
+    max-width: 1000px;
+    margin-inline: auto;
+  }
+  .mueve-card {
+    /* Restaura tokens de tema claro (la sección es .on-dark) */
+    --text: #1a202c;
+    --text-muted: #4a5568;
+    --line: rgba(26, 32, 44, 0.12);
+    position: relative;
+    margin-top: 46px;
+    padding: 62px 1.6rem 2.2rem;
+    text-align: center;
+    background: #ffffff;
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-lg);
+    color: var(--text);
+  }
+  .mueve-badge {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: grid;
+    place-items: center;
+    width: 92px;
+    height: 92px;
+    border-radius: 50%;
+    background: var(--bg);
+    color: var(--amber);
+    box-shadow: var(--shadow-md);
+    border: 4px solid var(--amber);
+    transition: transform var(--dur) var(--ease-out);
+  }
+  .mueve-card:hover .mueve-badge {
+    transform: translate(-50%, -50%) scale(1.06);
+  }
+  .mueve-card h3 {
+    font-size: var(--text-h3);
+    margin-bottom: 0.8rem;
+  }
+  .mueve-card p {
+    color: var(--text-muted);
+    line-height: 1.7;
+  }
+  .mueve-list {
+    display: grid;
+    gap: 0.55rem;
+  }
+  .mueve-list li {
+    font-family: var(--font-display);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    font-size: 0.95rem;
+    color: var(--text);
+  }
+  .mueve-list li + li {
+    border-top: 1px solid var(--line);
+    padding-top: 0.55rem;
+  }
+
+  /* — Sectores — */
   .nos-sectores {
     position: relative;
-    margin-top: clamp(2.5rem, 5vw, 4rem);
     border-radius: var(--radius-xl);
     overflow: hidden;
     isolation: isolate;
@@ -204,6 +350,7 @@ import Icon from "../components/Icon.astro";
     color: var(--amber);
   }
 
+  /* — Cifras — */
   .nos-stats {
     display: grid;
     grid-template-columns: 1fr;
@@ -235,11 +382,17 @@ import Icon from "../components/Icon.astro";
   }
 
   @media (min-width: 760px) {
-    .nos-grid {
-      grid-template-columns: 1fr 1fr;
-    }
     .nos-stats {
       grid-template-columns: repeat(3, 1fr);
+    }
+  }
+  @media (min-width: 900px) {
+    .nos-historia {
+      grid-template-columns: 1.05fr 0.95fr;
+    }
+    .mueve-grid {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.6rem;
     }
   }
 </style>
