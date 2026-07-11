@@ -1,107 +1,155 @@
 ---
 import { productos, productosCategorias } from "../data/content";
-import { whatsapps, waLink } from "../data/site";
+import { whatsapps } from "../data/site";
 import Icon from "../components/Icon.astro";
 
 const catLabel = (key: string) =>
   productosCategorias.find((c) => c.key === key)?.label ?? key;
 const catIcon = (key: string) =>
   productosCategorias.find((c) => c.key === key)?.icon ?? "bolts";
+const catCount = (key: string) => productos.filter((p) => p.cat === key).length;
+const waIntl = whatsapps[0].intl;
 ---
 
-<section id="productos" class="section" aria-label="Catálogo de productos">
+<section id="productos" class="section shop" aria-label="Catálogo de productos">
   <div class="container">
-    <!-- Buscador -->
-    <div class="prod-search reveal">
-      <span class="prod-search-ic" aria-hidden="true">
-        <Icon name="arrow" size={18} />
-      </span>
-      <input
-        type="search"
-        id="prod-q"
-        data-q
-        placeholder="Buscar producto o marca… (ej: estrobo, guantes, Fluke)"
-        autocomplete="off"
-        aria-label="Buscar productos"
-      />
+    <!-- Barra superior: buscador + Mi lista -->
+    <div class="shop-top reveal">
+      <div class="shop-search">
+        <span class="shop-search-ic" aria-hidden="true">
+          <Icon name="search" size={20} />
+        </span>
+        <input
+          type="search"
+          id="prod-q"
+          data-q
+          placeholder="Buscar productos …"
+          autocomplete="off"
+          aria-label="Buscar productos"
+        />
+      </div>
+      <button class="shop-mylist" type="button" data-mylist-open data-wa={waIntl}>
+        <Icon name="list" size={20} />
+        <span>Mi lista</span>
+        <span class="shop-mylist-count" data-mylist-count hidden>0</span>
+      </button>
     </div>
 
-    <!-- Filtros por categoría -->
-    <div class="prod-filters reveal" role="tablist" aria-label="Filtrar por categoría">
-      <button class="chip is-active" data-filter="all" type="button">Todos</button>
-      {
-        productosCategorias.map((c) => (
-          <button class="chip" data-filter={c.key} type="button">
-            <Icon name={c.icon} size={15} /> {c.label}
+    <div class="shop-layout">
+      <!-- Lateral: categorías -->
+      <aside class="shop-side reveal">
+        <h2 class="shop-side-title">Categorías</h2>
+        <ul class="cat-list">
+          {
+            productosCategorias.map((c) => (
+              <li>
+                <label class="cat-item">
+                  <input type="checkbox" data-cat-check value={c.key} />
+                  <span class="cat-box" aria-hidden="true">
+                    <Icon name="check" size={13} />
+                  </span>
+                  <span class="cat-name">{c.label}</span>
+                  <span class="cat-count">{catCount(c.key)}</span>
+                </label>
+              </li>
+            ))
+          }
+        </ul>
+        <div class="cat-actions">
+          <button class="cat-btn cat-btn-ghost" type="button" data-clear>
+            Limpiar
           </button>
-        ))
-      }
-    </div>
+          <button class="cat-btn cat-btn-solid" type="button" data-filter-apply>
+            Filtrar
+          </button>
+        </div>
+      </aside>
 
-    <p class="prod-count" data-count-label aria-live="polite"></p>
-
-    <!-- Grid de productos -->
-    <div class="prod-grid" data-grid>
-      {
-        productos.map((p) => (
-          <article
-            class="prod-card"
-            data-item
-            data-cat={p.cat}
-            data-name={`${p.name} ${p.marca}`.toLowerCase()}
-          >
-            <div class={`prod-media cat-${p.cat}`}>
-              <Icon name={catIcon(p.cat)} size={46} />
-              <span class="prod-badge">{catLabel(p.cat)}</span>
-              {p.marca && <span class="prod-marca">{p.marca}</span>}
-            </div>
-            <div class="prod-body">
-              <h3>{p.name}</h3>
-              <a
-                class="prod-cta"
-                href={waLink(whatsapps[0].intl, `Hola 3S, quiero cotizar: ${p.name}.`)}
-                target="_blank"
-                rel="noopener"
+      <!-- Grid de productos -->
+      <div class="shop-main">
+        <p class="shop-count" data-count-label aria-live="polite"></p>
+        <div class="shop-grid" data-grid>
+          {
+            productos.map((p) => (
+              <article
+                class="shop-card"
+                data-item
+                data-cat={p.cat}
+                data-name={`${p.name} ${p.marca}`.toLowerCase()}
               >
-                <Icon name="whatsapp" size={16} /> Cotizar
-              </a>
-            </div>
-          </article>
-        ))
-      }
+                <div class="shop-card-media">
+                  <Icon name={catIcon(p.cat)} size={54} />
+                </div>
+                <div class="shop-card-body">
+                  {p.marca && <p class="shop-card-marca">{p.marca}</p>}
+                  <h3>{p.name}</h3>
+                  <button
+                    class="shop-card-btn"
+                    type="button"
+                    data-add
+                    data-pname={p.name}
+                    data-pmarca={p.marca}
+                  >
+                    <span class="add-default">Agregar a mi lista</span>
+                    <span class="add-active">En mi lista ✓</span>
+                  </button>
+                </div>
+              </article>
+            ))
+          }
+        </div>
+        <p class="shop-empty" data-empty hidden>
+          No encontramos productos con ese término.
+        </p>
+      </div>
     </div>
-
-    <p class="prod-empty" data-empty hidden>
-      No encontramos productos con ese término.
-      <a
-        href={waLink(whatsapps[1].intl, "Hola 3S, busco un producto que no veo en la web. ¿Pueden conseguirlo?")}
-        target="_blank"
-        rel="noopener"
-      >Escríbenos y lo conseguimos.</a>
-    </p>
   </div>
+
+  <!-- Panel "Mi lista" -->
+  <div class="mylist-backdrop" data-mylist-backdrop hidden></div>
+  <aside class="mylist-panel" data-mylist-panel aria-label="Mi lista de cotización" hidden>
+    <header class="mylist-head">
+      <h3><Icon name="list" size={20} /> Mi lista de cotización</h3>
+      <button class="mylist-x" type="button" data-mylist-close aria-label="Cerrar">
+        <Icon name="close" size={22} />
+      </button>
+    </header>
+    <div class="mylist-body" data-mylist-body>
+      <p class="mylist-vacia" data-mylist-empty>
+        Aún no agregaste productos. Explora el catálogo y agrégalos a tu lista.
+      </p>
+      <ul class="mylist-items" data-mylist-items></ul>
+    </div>
+    <footer class="mylist-foot">
+      <button class="cat-btn cat-btn-ghost" type="button" data-mylist-clear>
+        <Icon name="trash" size={16} /> Vaciar
+      </button>
+      <a class="btn btn-amber mylist-send" data-mylist-send href="#" target="_blank" rel="noopener">
+        <Icon name="whatsapp" size={18} /> Enviar por WhatsApp
+      </a>
+    </footer>
+  </aside>
 </section>
 
 <script is:inline>
   (() => {
+    const KEY = "3s_mylist";
     const q = document.querySelector("[data-q]");
-    const chips = [...document.querySelectorAll("[data-filter]")];
+    const checks = [...document.querySelectorAll("[data-cat-check]")];
     const items = [...document.querySelectorAll("[data-item]")];
     const empty = document.querySelector("[data-empty]");
     const countLabel = document.querySelector("[data-count-label]");
-    let activeCat = "all";
 
     const norm = (s) =>
-      (s || "")
-        .toLowerCase()
-        .normalize("NFD")
-        .replace(/[̀-ͯ]/g, "");
+      (s || "").toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "");
 
+    // ---- Filtro ----
     const apply = () => {
       const term = norm(q.value.trim());
+      const activeCats = checks.filter((c) => c.checked).map((c) => c.value);
       let visible = 0;
       items.forEach((el) => {
-        const okCat = activeCat === "all" || el.dataset.cat === activeCat;
+        const okCat = activeCats.length === 0 || activeCats.includes(el.dataset.cat);
         const okTerm = !term || norm(el.dataset.name).includes(term);
         const show = okCat && okTerm;
         el.hidden = !show;
@@ -114,216 +162,531 @@ const catIcon = (key: string) =>
     };
 
     q?.addEventListener("input", apply);
-    chips.forEach((c) =>
-      c.addEventListener("click", () => {
-        activeCat = c.dataset.filter;
-        chips.forEach((x) => x.classList.toggle("is-active", x === c));
-        apply();
+    checks.forEach((c) => c.addEventListener("change", apply));
+    document.querySelector("[data-filter-apply]")?.addEventListener("click", () => {
+      apply();
+      document.querySelector("[data-grid]")?.scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+    document.querySelector("[data-clear]")?.addEventListener("click", () => {
+      checks.forEach((c) => (c.checked = false));
+      if (q) q.value = "";
+      apply();
+    });
+
+    // ---- Mi lista ----
+    const wa = document.querySelector("[data-mylist-open]")?.dataset.wa || "";
+    const countEl = document.querySelector("[data-mylist-count]");
+    const panel = document.querySelector("[data-mylist-panel]");
+    const backdrop = document.querySelector("[data-mylist-backdrop]");
+    const itemsEl = document.querySelector("[data-mylist-items]");
+    const emptyMsg = document.querySelector("[data-mylist-empty]");
+    const sendLink = document.querySelector("[data-mylist-send]");
+    const addBtns = [...document.querySelectorAll("[data-add]")];
+
+    const read = () => {
+      try {
+        return JSON.parse(localStorage.getItem(KEY) || "[]");
+      } catch {
+        return [];
+      }
+    };
+    const write = (list) => localStorage.setItem(KEY, JSON.stringify(list));
+    const keyOf = (name, marca) => `${name}|${marca || ""}`;
+
+    const syncButtons = (list) => {
+      const set = new Set(list.map((i) => keyOf(i.name, i.marca)));
+      addBtns.forEach((b) => {
+        const inList = set.has(keyOf(b.dataset.pname, b.dataset.pmarca));
+        b.classList.toggle("is-added", inList);
+      });
+    };
+
+    const buildWa = (list) => {
+      const lineas = list
+        .map((i) => `• ${i.name}${i.marca ? " (" + i.marca + ")" : ""}`)
+        .join("\n");
+      const msg = `Hola 3S Suministros, quiero cotizar los siguientes productos:\n${lineas}`;
+      return `https://wa.me/${wa}?text=${encodeURIComponent(msg)}`;
+    };
+
+    const render = () => {
+      const list = read();
+      // Contador
+      if (countEl) {
+        countEl.textContent = String(list.length);
+        countEl.hidden = list.length === 0;
+      }
+      // Panel
+      if (itemsEl) {
+        itemsEl.innerHTML = "";
+        list.forEach((i, idx) => {
+          const li = document.createElement("li");
+          li.className = "mylist-item";
+          const span = document.createElement("span");
+          span.textContent = i.name + (i.marca ? ` · ${i.marca}` : "");
+          const rm = document.createElement("button");
+          rm.type = "button";
+          rm.className = "mylist-rm";
+          rm.setAttribute("aria-label", "Quitar");
+          rm.textContent = "✕";
+          rm.addEventListener("click", () => {
+            const cur = read();
+            cur.splice(idx, 1);
+            write(cur);
+            render();
+          });
+          li.appendChild(span);
+          li.appendChild(rm);
+          itemsEl.appendChild(li);
+        });
+      }
+      if (emptyMsg) emptyMsg.hidden = list.length !== 0;
+      if (sendLink) {
+        sendLink.href = buildWa(list);
+        sendLink.classList.toggle("is-disabled", list.length === 0);
+      }
+      syncButtons(list);
+    };
+
+    addBtns.forEach((b) =>
+      b.addEventListener("click", () => {
+        const list = read();
+        const k = keyOf(b.dataset.pname, b.dataset.pmarca);
+        const idx = list.findIndex((i) => keyOf(i.name, i.marca) === k);
+        if (idx >= 0) list.splice(idx, 1);
+        else list.push({ name: b.dataset.pname, marca: b.dataset.pmarca });
+        write(list);
+        render();
       })
     );
+
+    const openPanel = (open) => {
+      if (!panel || !backdrop) return;
+      panel.hidden = !open;
+      backdrop.hidden = !open;
+      document.body.style.overflow = open ? "hidden" : "";
+    };
+    document.querySelector("[data-mylist-open]")?.addEventListener("click", () => openPanel(true));
+    document.querySelector("[data-mylist-close]")?.addEventListener("click", () => openPanel(false));
+    backdrop?.addEventListener("click", () => openPanel(false));
+    document.querySelector("[data-mylist-clear]")?.addEventListener("click", () => {
+      write([]);
+      render();
+    });
+
     apply();
+    render();
   })();
 </script>
 
 <style>
-  .prod-head {
-    max-width: 720px;
-    margin-bottom: clamp(1.8rem, 4vw, 2.6rem);
+  /* — Barra superior — */
+  .shop-top {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: clamp(1rem, 4vw, 3rem);
+    flex-wrap: wrap;
+    margin-bottom: clamp(1.8rem, 4vw, 2.8rem);
   }
-  .prod-head h2 {
-    margin: 0.9rem 0 1.1rem;
-  }
-
-  .prod-search {
+  .shop-search {
     position: relative;
-    margin-bottom: 1.2rem;
+    flex: 1 1 420px;
+    max-width: 520px;
   }
-  .prod-search-ic {
+  .shop-search-ic {
     position: absolute;
-    left: 1rem;
+    left: 1.1rem;
     top: 50%;
-    transform: translateY(-50%) rotate(90deg);
+    transform: translateY(-50%);
     color: var(--text-dim);
     pointer-events: none;
+    display: grid;
+    place-items: center;
   }
-  .prod-search input {
+  .shop-search input {
     width: 100%;
     font-family: var(--font-body);
     font-size: 1rem;
     color: var(--text);
-    background: var(--steel-900);
-    border: 1px solid var(--line-strong);
-    border-radius: var(--radius-lg);
-    padding: 0.95rem 1.1rem 0.95rem 2.8rem;
-    transition: border-color var(--dur) var(--ease-out);
-  }
-  .prod-search input::placeholder {
-    color: var(--text-dim);
-  }
-  .prod-search input:focus {
-    outline: none;
-    border-color: var(--amber);
-  }
-
-  .prod-filters {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    margin-bottom: 1rem;
-  }
-  .chip {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.4rem;
-    font-family: var(--font-display);
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.03em;
-    font-size: 0.78rem;
-    color: var(--text-muted);
-    background: transparent;
+    background: var(--bg);
     border: 1px solid var(--line-strong);
     border-radius: 999px;
-    padding: 0.45rem 0.9rem;
+    padding: 0.9rem 1.2rem 0.9rem 3rem;
+    box-shadow: var(--shadow-sm);
+    transition: border-color var(--dur) var(--ease-out),
+      box-shadow var(--dur) var(--ease-out);
+  }
+  .shop-search input::placeholder {
+    color: var(--text-dim);
+  }
+  .shop-search input:focus {
+    outline: none;
+    border-color: var(--amber);
+    box-shadow: 0 0 0 4px var(--amber-tint);
+  }
+  .shop-mylist {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: var(--ink);
+    background: transparent;
+    border: none;
     cursor: pointer;
+    padding: 0.5rem 0.2rem;
+    transition: color var(--dur) var(--ease-out);
+  }
+  .shop-mylist :global(svg) {
+    color: var(--ink);
+  }
+  .shop-mylist:hover {
+    color: var(--amber-deep);
+  }
+  .shop-mylist:hover :global(svg) {
+    color: var(--amber-deep);
+  }
+  .shop-mylist-count {
+    display: inline-grid;
+    place-items: center;
+    min-width: 22px;
+    height: 22px;
+    padding: 0 0.35rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--on-amber);
+    background: var(--amber);
+    border-radius: 999px;
+  }
+
+  /* — Layout con lateral — */
+  .shop-layout {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: clamp(1.6rem, 4vw, 2.8rem);
+    align-items: start;
+  }
+
+  /* — Sidebar de categorías — */
+  .shop-side-title {
+    font-family: var(--font-display);
+    font-size: clamp(1.5rem, 1.2rem + 1vw, 1.9rem);
+    margin-bottom: 1.1rem;
+  }
+  .cat-list {
+    display: grid;
+    gap: 0.15rem;
+  }
+  .cat-item {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    padding: 0.5rem 0.4rem;
+    border-radius: var(--radius);
+    cursor: pointer;
+    color: var(--text-muted);
     transition: color var(--dur) var(--ease-out),
-      border-color var(--dur) var(--ease-out),
       background var(--dur) var(--ease-out);
   }
-  .chip :global(svg) {
-    color: var(--amber);
-  }
-  .chip:hover {
-    border-color: var(--amber-line);
+  .cat-item:hover {
+    background: var(--bg-2);
     color: var(--text);
   }
-  .chip.is-active {
+  .cat-item input {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  .cat-box {
+    display: grid;
+    place-items: center;
+    width: 20px;
+    height: 20px;
+    border: 1.5px solid var(--line-strong);
+    border-radius: 6px;
+    color: transparent;
+    flex-shrink: 0;
+    transition: background var(--dur) var(--ease-out),
+      border-color var(--dur) var(--ease-out), color var(--dur) var(--ease-out);
+  }
+  .cat-item input:checked + .cat-box {
     background: var(--amber);
     border-color: var(--amber);
     color: var(--on-amber);
   }
-  .chip.is-active :global(svg) {
-    color: var(--on-amber);
+  .cat-item input:focus-visible + .cat-box {
+    box-shadow: 0 0 0 3px var(--amber-tint);
+  }
+  .cat-name {
+    flex: 1;
+    font-size: 0.98rem;
+  }
+  .cat-count {
+    font-size: 0.8rem;
+    color: var(--text-dim);
+    font-family: var(--font-display);
+  }
+  .cat-actions {
+    display: flex;
+    gap: 0.6rem;
+    margin-top: 1.4rem;
+    padding: 1rem;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+  }
+  .cat-btn {
+    flex: 1;
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 0.9rem;
+    padding: 0.6rem 1rem;
+    border-radius: var(--radius);
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+    transition: background var(--dur) var(--ease-out),
+      color var(--dur) var(--ease-out), border-color var(--dur) var(--ease-out);
+  }
+  .cat-btn-ghost {
+    background: transparent;
+    color: var(--text);
+    border: 1px solid var(--line-strong);
+  }
+  .cat-btn-ghost:hover {
+    border-color: var(--ink);
+  }
+  .cat-btn-solid {
+    background: var(--ink);
+    color: #fff;
+    border: 1px solid var(--ink);
+  }
+  .cat-btn-solid:hover {
+    background: var(--ink-2);
   }
 
-  .prod-count {
+  /* — Contador + grid — */
+  .shop-count {
     font-size: 0.84rem;
     color: var(--text-dim);
-    margin-bottom: 1.2rem;
+    margin-bottom: 1.1rem;
     font-family: var(--font-display);
     letter-spacing: 0.04em;
   }
-
-  .prod-grid {
+  .shop-grid {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 1rem;
+    gap: 1.2rem;
   }
-  .prod-card {
+  .shop-card {
     display: flex;
     flex-direction: column;
     border: 1px solid var(--line);
     border-radius: var(--radius-lg);
-    background: var(--steel-900);
+    background: var(--bg);
     overflow: hidden;
+    text-align: center;
     box-shadow: var(--shadow-sm);
     transition: transform var(--dur) var(--ease-out),
       border-color var(--dur) var(--ease-out),
       box-shadow var(--dur) var(--ease-out);
   }
-  .prod-card:hover {
+  .shop-card:hover {
     transform: translateY(-4px);
     border-color: var(--amber-line);
     box-shadow: var(--shadow-card);
   }
-  /* Imagen visual por categoría (ícono sobre lienzo claro) */
-  .prod-media {
-    position: relative;
+  .shop-card-media {
     display: grid;
     place-items: center;
     aspect-ratio: 4 / 3;
     color: var(--amber-deep);
     background:
-      radial-gradient(circle at 50% 42%, rgba(var(--amber-rgb), 0.12), transparent 62%),
-      linear-gradient(160deg, #eef0f3, #e2e5ea);
+      radial-gradient(circle at 50% 42%, rgba(var(--amber-rgb), 0.1), transparent 62%),
+      linear-gradient(160deg, #f2f4f7, #e6e9ee);
     border-bottom: 1px solid var(--line);
   }
-  .prod-media :global(svg) {
+  .shop-card-media :global(svg) {
     transition: transform var(--dur) var(--ease-out);
   }
-  .prod-card:hover .prod-media :global(svg) {
-    transform: scale(1.12);
+  .shop-card:hover .shop-card-media :global(svg) {
+    transform: scale(1.1);
   }
-  .prod-badge {
-    position: absolute;
-    top: 0.7rem;
-    left: 0.7rem;
-    font-family: var(--font-display);
-    font-size: 0.66rem;
-    text-transform: uppercase;
-    letter-spacing: 0.04em;
-    color: var(--on-amber);
-    background: var(--amber);
-    border-radius: var(--radius-xs);
-    padding: 0.24rem 0.5rem;
-  }
-  .prod-marca {
-    position: absolute;
-    top: 0.7rem;
-    right: 0.7rem;
-    font-family: var(--font-display);
-    font-size: 0.72rem;
-    letter-spacing: 0.03em;
-    color: #4a5568;
-    background: rgba(255, 255, 255, 0.85);
-    border-radius: var(--radius-xs);
-    padding: 0.2rem 0.45rem;
-  }
-  .prod-body {
+  .shop-card-body {
     display: flex;
     flex-direction: column;
-    gap: 0.7rem;
-    flex: 1;
-    padding: 1.1rem 1.2rem 1.2rem;
-  }
-  .prod-body h3 {
-    font-size: 1.02rem;
-    line-height: 1.3;
-    flex: 1;
-  }
-  .prod-cta {
-    display: inline-flex;
     align-items: center;
-    gap: 0.4rem;
-    align-self: flex-start;
-    font-family: var(--font-display);
-    text-transform: uppercase;
-    letter-spacing: 0.04em;
-    font-size: 0.8rem;
-    color: var(--amber);
-    transition: gap var(--dur) var(--ease-out);
+    gap: 0.55rem;
+    flex: 1;
+    padding: 1.2rem 1.1rem 1.3rem;
   }
-  .prod-cta:hover {
-    gap: 0.7rem;
+  .shop-card-marca {
+    font-family: var(--font-display);
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--amber-deep);
+  }
+  .shop-card-body h3 {
+    font-size: 1rem;
+    line-height: 1.35;
+    color: var(--ink);
+    flex: 1;
+  }
+  .shop-card-btn {
+    margin-top: 0.4rem;
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 0.82rem;
+    color: #fff;
+    background: var(--ink);
+    border: 1px solid var(--ink);
+    border-radius: 999px;
+    padding: 0.55rem 1.2rem;
+    cursor: pointer;
+    transition: background var(--dur) var(--ease-out),
+      color var(--dur) var(--ease-out), border-color var(--dur) var(--ease-out);
+  }
+  .shop-card-btn:hover {
+    background: var(--ink-2);
+  }
+  .shop-card-btn .add-active {
+    display: none;
+  }
+  .shop-card-btn.is-added {
+    background: var(--amber);
+    border-color: var(--amber);
+    color: var(--on-amber);
+  }
+  .shop-card-btn.is-added .add-default {
+    display: none;
+  }
+  .shop-card-btn.is-added .add-active {
+    display: inline;
   }
 
-  .prod-empty {
+  .shop-empty {
     text-align: center;
     color: var(--text-muted);
     padding: 2.5rem 1rem;
   }
-  .prod-empty a {
-    color: var(--amber);
-    text-decoration: underline;
+
+  /* — Panel "Mi lista" — */
+  .mylist-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(var(--ink-rgb), 0.5);
+    z-index: 200;
+  }
+  .mylist-panel {
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100dvh;
+    width: min(420px, 92vw);
+    background: var(--bg);
+    z-index: 201;
+    display: flex;
+    flex-direction: column;
+    box-shadow: -12px 0 40px -16px rgba(var(--ink-rgb), 0.5);
+  }
+  .mylist-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.2rem 1.3rem;
+    border-bottom: 1px solid var(--line);
+  }
+  .mylist-head h3 {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1.1rem;
+  }
+  .mylist-head :global(svg) {
+    color: var(--amber-deep);
+  }
+  .mylist-x {
+    background: transparent;
+    border: none;
+    color: var(--text-muted);
+    cursor: pointer;
+    display: grid;
+    place-items: center;
+  }
+  .mylist-x:hover {
+    color: var(--ink);
+  }
+  .mylist-body {
+    flex: 1;
+    overflow-y: auto;
+    padding: 1rem 1.3rem;
+  }
+  .mylist-vacia {
+    color: var(--text-muted);
+    text-align: center;
+    padding: 2rem 0.5rem;
+    line-height: 1.6;
+  }
+  .mylist-items {
+    display: grid;
+    gap: 0.5rem;
+  }
+  .mylist-items :global(.mylist-item) {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.8rem;
+    padding: 0.7rem 0.9rem;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    font-size: 0.92rem;
+    color: var(--text);
+  }
+  .mylist-items :global(.mylist-rm) {
+    background: transparent;
+    border: none;
+    color: var(--text-dim);
+    cursor: pointer;
+    font-size: 1.05rem;
+    line-height: 1;
+    flex-shrink: 0;
+  }
+  .mylist-items :global(.mylist-rm):hover {
+    color: #c0392b;
+  }
+  .mylist-foot {
+    display: flex;
+    gap: 0.7rem;
+    padding: 1rem 1.3rem;
+    border-top: 1px solid var(--line);
+  }
+  .mylist-foot .cat-btn-ghost {
+    flex: 0 0 auto;
+  }
+  .mylist-send {
+    flex: 1;
+    justify-content: center;
+  }
+  .mylist-send.is-disabled {
+    opacity: 0.5;
+    pointer-events: none;
   }
 
   @media (min-width: 560px) {
-    .prod-grid {
+    .shop-grid {
       grid-template-columns: 1fr 1fr;
     }
   }
-  @media (min-width: 940px) {
-    .prod-grid {
+  @media (min-width: 900px) {
+    .shop-layout {
+      grid-template-columns: 260px 1fr;
+    }
+    .shop-grid {
       grid-template-columns: repeat(3, 1fr);
     }
   }
