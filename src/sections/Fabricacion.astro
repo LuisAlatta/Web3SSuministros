@@ -9,12 +9,12 @@ const puntos = [
     desc: "Eslingas sintéticas Strongloop fabricadas a pedido según tu carga y largo.",
   },
   {
-    icon: "bolts",
+    icon: "gear",
     title: "Línea propia HARDPAD",
     desc: "Almohadillas de apoyo en UHMW en la medida y capacidad que requiere tu grúa.",
   },
   {
-    icon: "gear",
+    icon: "search",
     title: "Abastecimiento especial",
     desc: "¿No lo ves en la web? Lo conseguimos y te lo entregamos a todo el Perú.",
   },
@@ -46,7 +46,7 @@ const puntos = [
         {
           puntos.map((p) => (
             <li>
-              <span class="fab-ic"><Icon name={p.icon} size={20} /></span>
+              <span class="fab-ic"><Icon name={p.icon} size={32} /></span>
               <div>
                 <strong>{p.title}</strong>
                 <span>{p.desc}</span>
@@ -99,13 +99,9 @@ const puntos = [
   }
   .fab-ic {
     flex: none;
-    width: 44px;
-    height: 44px;
     display: grid;
     place-items: center;
-    border-radius: var(--radius);
-    background: var(--amber-tint);
-    color: var(--amber);
+    color: #ffffff;
   }
   .fab-points strong {
     display: block;
