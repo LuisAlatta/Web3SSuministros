@@ -48,7 +48,6 @@ export const GA_MEASUREMENT_ID = "";
 export const nav = [
   { label: "Inicio", href: "/" },
   { label: "Nosotros", href: "/nosotros" },
-  { label: "Categorías", href: "/categorias" },
   { label: "Productos", href: "/productos" },
   { label: "Marcas", href: "/marcas" },
   { label: "Líneas", href: "/lineas" },
