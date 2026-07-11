@@ -40,7 +40,7 @@
 
   /* — Tipografía — */
   --font-display: "Oswald", "Arial Narrow", sans-serif;
-  --font-body: "Inter Variable", "Inter", system-ui, -apple-system, sans-serif;
+  --font-body: "Oswald", "Arial Narrow", "Inter Variable", "Inter", system-ui, sans-serif;
 
   --text-xs: 0.75rem;
   --text-sm: 0.84rem;
