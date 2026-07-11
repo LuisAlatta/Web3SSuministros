@@ -12,7 +12,8 @@ const mapsLink = `https://www.google.com/maps/search/?api=1&query=${encodeURICom
 
 <section id="contacto" class="section plate" aria-label="Contacto">
   <div class="container">
-    <div class="con-grid">
+    <!-- Fila 1: formulario + mapa -->
+    <div class="con-top">
       <!-- Formulario -->
       <form class="con-form surface reveal" data-form>
         <div class="field">
@@ -44,9 +45,23 @@ const mapsLink = `https://www.google.com/maps/search/?api=1&query=${encodeURICom
         <p class="con-hint">Tu mensaje se abrirá en WhatsApp o tu correo, listo para enviar.</p>
       </form>
 
-      <!-- Datos + mapa -->
-      <div class="con-aside">
-        <ul class="con-info reveal reveal-2">
+      <!-- Mapa -->
+      <div class="con-map reveal reveal-2">
+        <a class="con-map-link" href={mapsLink} target="_blank" rel="noopener">
+          <Icon name="pin" size={14} /> Abrir en Maps
+        </a>
+        <iframe
+          title="Ubicación de 3S Suministros en Cerro Colorado, Arequipa"
+          src={mapsEmbed}
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          allowfullscreen></iframe>
+      </div>
+    </div>
+
+    <!-- Fila 2: datos de contacto en 2 columnas -->
+    <div class="con-details">
+      <ul class="con-info reveal">
           <li>
             <span class="ci-ic"><Icon name="pin" size={20} /></span>
             <div>
@@ -87,7 +102,7 @@ const mapsLink = `https://www.google.com/maps/search/?api=1&query=${encodeURICom
 
         {
           socials.some((s) => s.url !== "#") && (
-            <div class="con-social reveal reveal-3">
+            <div class="con-social reveal reveal-2">
               {socials.map((s) => (
                 <a href={s.url} target="_blank" rel="noopener" aria-label={s.label}>
                   <Icon name={s.icon} size={20} />
@@ -96,16 +111,6 @@ const mapsLink = `https://www.google.com/maps/search/?api=1&query=${encodeURICom
             </div>
           )
         }
-
-        <div class="con-map reveal reveal-3">
-          <iframe
-            title="Ubicación de 3S Suministros en Cerro Colorado, Arequipa"
-            src={mapsEmbed}
-            loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade"
-            allowfullscreen></iframe>
-        </div>
-      </div>
     </div>
   </div>
 </section>
@@ -157,10 +162,11 @@ const mapsLink = `https://www.google.com/maps/search/?api=1&query=${encodeURICom
   .con-head h2 {
     margin: 0.9rem 0 1.2rem;
   }
-  .con-grid {
+  .con-top {
     display: grid;
     gap: 1.6rem;
     grid-template-columns: 1fr;
+    align-items: stretch;
   }
   .con-form {
     padding: clamp(1.5rem, 3vw, 2.4rem);
@@ -223,10 +229,15 @@ const mapsLink = `https://www.google.com/maps/search/?api=1&query=${encodeURICom
     color: var(--text-dim);
   }
 
+  .con-details {
+    margin-top: clamp(2rem, 4vw, 3rem);
+    padding-top: clamp(2rem, 4vw, 3rem);
+    border-top: 1px solid var(--line);
+  }
   .con-info {
     display: grid;
-    gap: 1.3rem;
-    margin-bottom: 1.4rem;
+    gap: 1.3rem 2.4rem;
+    grid-template-columns: 1fr;
   }
   .con-info li {
     display: flex;
@@ -267,7 +278,7 @@ const mapsLink = `https://www.google.com/maps/search/?api=1&query=${encodeURICom
   .con-social {
     display: flex;
     gap: 0.7rem;
-    margin-bottom: 1.4rem;
+    margin-top: 1.6rem;
   }
   .con-social a {
     width: 44px;
@@ -286,10 +297,11 @@ const mapsLink = `https://www.google.com/maps/search/?api=1&query=${encodeURICom
   }
 
   .con-map {
+    position: relative;
     border-radius: var(--radius-lg);
     overflow: hidden;
     border: 1px solid var(--line-strong);
-    height: 280px;
+    min-height: 340px;
   }
   .con-map iframe {
     width: 100%;
@@ -297,16 +309,45 @@ const mapsLink = `https://www.google.com/maps/search/?api=1&query=${encodeURICom
     border: 0;
     filter: grayscale(0.3) contrast(1.05);
   }
+  .con-map-link {
+    position: absolute;
+    top: 0.8rem;
+    left: 0.8rem;
+    z-index: 2;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 0.8rem;
+    color: var(--ink);
+    background: rgba(255, 255, 255, 0.94);
+    border: 1px solid var(--line-strong);
+    border-radius: var(--radius);
+    padding: 0.4rem 0.7rem;
+    box-shadow: var(--shadow-sm);
+    transition: color var(--dur) var(--ease-out);
+  }
+  .con-map-link :global(svg) {
+    color: var(--amber-deep);
+  }
+  .con-map-link:hover {
+    color: var(--amber-deep);
+  }
 
   @media (min-width: 480px) {
     .field-row {
       grid-template-columns: 1fr 1fr;
     }
   }
+  @media (min-width: 620px) {
+    .con-info {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
   @media (min-width: 900px) {
-    .con-grid {
+    .con-top {
       grid-template-columns: 1.1fr 0.9fr;
-      align-items: start;
     }
   }
 </style>
