@@ -116,14 +116,12 @@ const isActive = (href: string) =>
     position: sticky;
     top: 0;
     z-index: 100;
-    background: var(--bg);
+    background: #ffffff;
     border-bottom: 1px solid var(--line);
-    transition: background var(--dur) var(--ease-out),
-      box-shadow var(--dur) var(--ease-out);
+    transition: box-shadow var(--dur) var(--ease-out);
   }
   .hdr[data-scrolled] {
-    background: rgba(245, 246, 248, 0.85);
-    backdrop-filter: blur(12px);
+    background: #ffffff;
     box-shadow: var(--shadow-sm);
   }
   .hdr-inner {
@@ -168,7 +166,7 @@ const isActive = (href: string) =>
     font-size: 0.85rem;
     text-transform: uppercase;
     letter-spacing: 0.05em;
-    color: var(--text-muted);
+    color: #000000;
     position: relative;
     padding-block: 0.4rem;
     transition: color var(--dur-fast) var(--ease-out);
@@ -185,14 +183,11 @@ const isActive = (href: string) =>
   }
   .hdr-nav a:hover,
   .hdr-nav a[aria-current="page"] {
-    color: var(--text);
+    color: #000000;
   }
   .hdr-nav a:hover::after,
   .hdr-nav a[aria-current="page"]::after {
     width: 100%;
-  }
-  .hdr-nav a[aria-current="page"] {
-    color: var(--amber);
   }
   .hdr-actions {
     display: flex;
