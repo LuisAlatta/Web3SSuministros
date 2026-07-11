@@ -13,6 +13,7 @@
   "dependencies": {
     "@astrojs/sitemap": "^3.2.1",
     "@fontsource-variable/inter": "^5.1.1",
+    "@fontsource/barlow": "^5.2.8",
     "@fontsource/oswald": "^5.1.1",
     "astro": "^5.1.1",
     "sharp": "^0.33.5"

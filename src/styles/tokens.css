@@ -43,7 +43,7 @@
      de TODA la web (títulos, texto, botones, banners, inputs).
      Si a futuro quieres una fuente distinta para títulos vs. cuerpo, dales
      valores propios a --font-display y/o --font-body en lugar de var(--font-base). */
-  --font-base: "Oswald", "Arial Narrow", "Inter Variable", "Inter", system-ui, sans-serif;
+  --font-base: "Barlow", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
   --font-display: var(--font-base);
   --font-body: var(--font-base);
 
