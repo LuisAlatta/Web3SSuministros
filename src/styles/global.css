@@ -9,6 +9,15 @@
   padding: 0;
 }
 
+/* Los controles nativos no heredan la tipografía por defecto: forzamos que
+   botones, inputs, textareas y selects usen la misma fuente que el resto. */
+button,
+input,
+textarea,
+select {
+  font-family: inherit;
+}
+
 html {
   scroll-behavior: smooth;
   -webkit-text-size-adjust: 100%;

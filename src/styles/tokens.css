@@ -38,9 +38,14 @@
   --line: rgba(26, 32, 44, 0.12);
   --line-strong: rgba(26, 32, 44, 0.2);
 
-  /* — Tipografía — */
-  --font-display: "Oswald", "Arial Narrow", sans-serif;
-  --font-body: "Oswald", "Arial Narrow", "Inter Variable", "Inter", system-ui, sans-serif;
+  /* — Tipografía —
+     Fuente única de verdad: cambia SOLO --font-base para reemplazar la fuente
+     de TODA la web (títulos, texto, botones, banners, inputs).
+     Si a futuro quieres una fuente distinta para títulos vs. cuerpo, dales
+     valores propios a --font-display y/o --font-body en lugar de var(--font-base). */
+  --font-base: "Oswald", "Arial Narrow", "Inter Variable", "Inter", system-ui, sans-serif;
+  --font-display: var(--font-base);
+  --font-body: var(--font-base);
 
   --text-xs: 0.75rem;
   --text-sm: 0.84rem;
