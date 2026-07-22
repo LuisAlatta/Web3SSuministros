@@ -2,9 +2,12 @@
 import { Image } from "astro:assets";
 import hardpadTop from "../assets/img/hardpad-top.jpeg";
 import hardpadStack from "../assets/img/hardpad-stack.jpeg";
-import { izaje, derrames, hardpad } from "../data/content";
+import { izaje, derrames, hardpad, guias } from "../data/content";
 import { whatsapps, waLink } from "../data/site";
 import Icon from "../components/Icon.astro";
+import Guia from "../components/Guia.astro";
+
+const guiasIzaje = guias.filter((g) => g.producto === "izaje");
 ---
 
 <section id="lineas" class="section plate" aria-label="Líneas destacadas">
@@ -141,6 +144,16 @@ import Icon from "../components/Icon.astro";
           </div>
         </div>
       </div>
+
+      {
+        guiasIzaje.length > 0 && (
+          <div class="iz-guias">
+            {guiasIzaje.map((g) => (
+              <Guia guia={g} />
+            ))}
+          </div>
+        )
+      }
     </article>
 
     <!-- Línea: Contención de Derrames -->
@@ -553,6 +566,9 @@ import Icon from "../components/Icon.astro";
     margin-top: 1.4rem;
     display: grid;
     gap: 1.4rem;
+  }
+  .iz-guias {
+    margin-top: 1.4rem;
   }
   .iz-acc h4,
   .iz-insp h4 {

@@ -2,7 +2,8 @@
 import type { ImageMetadata } from "astro";
 import { Image } from "astro:assets";
 import Icon from "../components/Icon.astro";
-import { importaciones } from "../data/content";
+import Guia from "../components/Guia.astro";
+import { importaciones, guias } from "../data/content";
 
 /* Carga de todas las imágenes de la carpeta importaciones para poder
    referenciarlas por nombre desde los datos. */
@@ -142,6 +143,16 @@ const { lineas, otras, intro } = importaciones;
                   </li>
                 ))}
               </ul>
+            )}
+
+            {guias.filter((g) => g.producto === l.id).length > 0 && (
+              <div class="imp-guias">
+                {guias
+                  .filter((g) => g.producto === l.id)
+                  .map((g) => (
+                    <Guia guia={g} />
+                  ))}
+              </div>
             )}
           </div>
         </article>
@@ -392,6 +403,10 @@ const { lineas, otras, intro } = importaciones;
     color: var(--amber-deep);
     flex: none;
     margin-top: 3px;
+  }
+
+  .imp-guias {
+    margin-top: 1.4rem;
   }
 
   /* — Otras (equipos y aceros) — */

@@ -657,3 +657,125 @@ export const importaciones = {
       "También importamos equipos y aceros industriales bajo pedido. Consúltanos por tu requerimiento específico y coordinamos la importación con respaldo, certificación y trazabilidad.",
   },
 } as const;
+
+/* Guías técnicas — se muestran DENTRO de cada producto/línea al que aplican.
+   El campo `producto` enlaza cada guía con el id de su línea:
+   "pads" y "panos" (página Importaciones) y "izaje" (página Líneas). */
+export const guias = [
+  {
+    producto: "izaje",
+    categoria: "Izaje seguro",
+    lectura: 4,
+    title: "Cómo inspeccionar y dar de baja un estrobo de izaje",
+    resumen:
+      "Los criterios de descarte que todo supervisor debe revisar antes de cada maniobra, según la norma ASME B30.9.",
+    bloques: [
+      {
+        p: "Un estrobo de cable de acero es tan seguro como su última inspección. Antes de cada maniobra, revisa estos puntos: si el estrobo presenta cualquiera de ellos, debe salir de servicio de inmediato.",
+      },
+      { h: "1. Etiqueta de identificación" },
+      {
+        p: "La etiqueta debe indicar factor de diseño, Carga Límite de Trabajo (WLL), código de trazabilidad, largo y número de ramales. Si es ilegible o falta, el estrobo queda fuera de uso.",
+      },
+      { h: "2. Alambres rotos y deformaciones" },
+      {
+        p: "Da de baja el estrobo cuando existan alambres rotos, deformaciones o aplastamiento del cable.",
+      },
+      { h: "3. Daño por temperatura" },
+      {
+        p: "Cualquier cambio de coloración por temperatura o salpicadura de soldadura es motivo de descarte.",
+      },
+      { h: "4. Coca, corrosión y daño en el ojo" },
+      {
+        li: [
+          "Un estrobo con coca pierde su capacidad de levante.",
+          "El cable con corrosión notoria debe retirarse.",
+          "Revisa deformaciones o alambres cortados en el ojo.",
+          "Los accesorios (grilletes, ganchos) deben estar en buenas condiciones.",
+        ],
+      },
+    ],
+  },
+  {
+    producto: "izaje",
+    categoria: "Izaje seguro",
+    lectura: 5,
+    title: "Poliéster o Dyneema: cómo elegir la eslinga sintética adecuada",
+    resumen:
+      "Factor de diseño, ángulos de trabajo y el código de colores que define la capacidad de cada eslinga plana.",
+    bloques: [
+      {
+        p: "Las eslingas sintéticas Strongloop son livianas, flexibles y no dañan la carga. Elegir la correcta depende del peso, el ángulo de izaje y el entorno de trabajo.",
+      },
+      { h: "El factor de diseño" },
+      {
+        p: "En eslingas para izaje, la norma de EE. UU. define un factor de diseño de 5:1 y la europea de 7:1. Es el margen de seguridad sobre la carga de rotura.",
+      },
+      { h: "El ángulo importa (y mucho)" },
+      {
+        p: "El ángulo de trabajo normal es 60°. A menor ángulo, mayor es la pérdida de capacidad de la eslinga. Por eso una misma eslinga levanta menos peso mientras más abierta esté la maniobra.",
+      },
+      { h: "El código de colores" },
+      {
+        p: "Las eslingas planas de poliéster siguen un código de color por capacidad: violeta (1 ton), verde (2 ton), amarillo (3 ton), gris (4 ton), rojo (5 ton), café (6 ton), azul (8 ton) y naranja (10 ton).",
+      },
+      { h: "Cuando el peso es extremo: Dyneema" },
+      {
+        p: "Las eslingas tubulares de Dyneema son ultralivianas y diseñadas para grandes cargas (hasta 150 ton), con una elongación menor al 3,6%. Una maniobra de 30 ton que en cadena pesa 178 kg, en Dyneema pesa apenas 14 kg.",
+      },
+    ],
+  },
+  {
+    producto: "pads",
+    categoria: "HARDPAD",
+    lectura: 3,
+    title: "HARDPAD vs. madera: por qué cambiar las almohadillas de tu grúa",
+    resumen:
+      "Las almohadillas de apoyo en UHMW superan a la madera en resistencia, durabilidad y seguridad para estabilizadores de grúa.",
+    bloques: [
+      {
+        p: "Las almohadillas HARDPAD están fabricadas en polietileno de ultra alto peso molecular (UHMW), un material ingenieril que distribuye la carga y protege el equipo y el terreno bajo las cargas más extremas.",
+      },
+      { h: "Ventajas sobre la madera" },
+      {
+        li: [
+          "Alta resistencia al impacto, desgaste y abrasión: no se agrieta ni fractura como la madera.",
+          "Vida útil mucho mayor, reduciendo costos de reemplazo.",
+          "No absorbe humedad y es inmune a la corrosión (−50 °C a +100 °C).",
+          "Mucho más liviana que el acero o la madera tratada, con asas integradas.",
+          "Aislamiento eléctrico inherente para mayor seguridad.",
+          "100% reciclable y fácil de limpiar con agua a presión.",
+        ],
+      },
+      { h: "Modelos disponibles" },
+      {
+        p: "Contamos con medidas de 400×400 mm (12 ton) hasta 1000×1000 mm (50 ton). Elegimos contigo el modelo según la carga de tu estabilizador.",
+      },
+    ],
+  },
+  {
+    producto: "panos",
+    categoria: "Seguridad ambiental",
+    lectura: 3,
+    title: "Kits de contención de derrames: qué deben incluir y cuándo usarlos",
+    resumen:
+      "Absorbentes, salchichas y kits listos para responder ante fugas de hidrocarburos y químicos en tu operación.",
+    bloques: [
+      {
+        p: "Un derrame de aceite o químico debe controlarse en minutos. Tener el kit correcto a la mano protege al personal, al terreno y evita sanciones ambientales.",
+      },
+      { h: "Tipos de absorbente" },
+      {
+        li: [
+          "Absorbentes de aceite (Clot Oil): hidrofóbicos, repelen el agua y solo absorben hidrocarburos.",
+          "Absorbentes universales: para aceite y químicos comunes.",
+          "Absorbentes de químicos: para ácidos y combustibles en laboratorios y plantas.",
+        ],
+      },
+      { h: "Qué incluye un kit" },
+      {
+        p: "El kit de 50 L trae 1 bolsa con asa, 30 paños de 40×50 cm, 2 salchichas de 7,6 cm Ø × 120 cm, 2 almohadillas, guantes y 2 bolsas de eliminación. El kit de 30 L es la versión compacta con lentes goggles incluidos.",
+      },
+    ],
+  },
+] as const;
