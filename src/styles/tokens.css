@@ -7,7 +7,7 @@
    ============================================================ */
 :root {
   /* — Neutrales claros (paleta: #E5E7EB / #FFFFFF) — */
-  --bg: #f3f4f6; /* fondo de página (blanco humo / plomo claro) */
+  --bg: #e9ebef; /* fondo de página (plomo claro) */
   --bg-2: #e5e7eb; /* banda alterna (gris claro de paleta) */
   --ink: #1a202c; /* azul carbón para bandas oscuras / footer / overlay */
   --ink-2: #2d3748; /* pizarra oscura secundaria */
