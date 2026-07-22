@@ -51,7 +51,7 @@ export const nav = [
   { label: "Productos", href: "/productos" },
   { label: "Marcas", href: "/marcas" },
   { label: "Líneas", href: "/lineas" },
-  { label: "Novedades", href: "/novedades" },
+  { label: "Importaciones", href: "/importaciones" },
   { label: "Contacto", href: "/contacto" },
 ] as const;
 

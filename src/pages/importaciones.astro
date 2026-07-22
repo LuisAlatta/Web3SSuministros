@@ -1,0 +1,25 @@
+---
+import Page from "../layouts/Page.astro";
+import PageHero from "../components/PageHero.astro";
+import Breadcrumb from "../components/Breadcrumb.astro";
+import heroImg from "../assets/img/hero-mina.jpg";
+import Importaciones from "../sections/Importaciones.astro";
+import CtaBand from "../components/CtaBand.astro";
+import { site } from "../data/site";
+---
+
+<Page
+  title={`Importaciones | ${site.shortName}`}
+  description="Líneas de producto industrial que importamos y distribuimos: pads UHMW para grúas, paños absorbentes de hidrocarburos, racks y estanterías de almacén, equipos y aceros industriales."
+>
+  <PageHero
+    image={heroImg}
+    eyebrow="Líneas de importación"
+    title='Productos de <span class="amber">importación</span>'
+    subtitle="Pads UHMW, absorbentes de hidrocarburos, racks de almacén, equipos y aceros industriales"
+    pos="center 45%"
+  />
+  <Breadcrumb current="Importaciones" />
+  <Importaciones />
+  <CtaBand />
+</Page>

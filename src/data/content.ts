@@ -515,137 +515,145 @@ export const productos = [
   { name: "Vigas metálicas y planchas de acero", cat: "ferreteria", marca: "" },
 ] as const;
 
-/* Novedades / recursos técnicos (blog). Contenido evergreen basado en los
-   catálogos técnicos de la empresa. Editable por el cliente. */
-export const novedades = [
-  {
-    slug: "inspeccion-estrobos-izaje",
-    title: "Cómo inspeccionar y dar de baja un estrobo de izaje",
-    fecha: "2024-07-01",
-    categoria: "Izaje seguro",
-    lectura: 4,
-    resumen:
-      "Los criterios de descarte que todo supervisor debe revisar antes de cada maniobra, según la norma ASME B30.9.",
-    bloques: [
-      {
-        p: "Un estrobo de cable de acero es tan seguro como su última inspección. Antes de cada maniobra, revisa estos puntos: si el estrobo presenta cualquiera de ellos, debe salir de servicio de inmediato.",
-      },
-      { h: "1. Etiqueta de identificación" },
-      {
-        p: "La etiqueta debe indicar factor de diseño, Carga Límite de Trabajo (WLL), código de trazabilidad, largo y número de ramales. Si es ilegible o falta, el estrobo queda fuera de uso.",
-      },
-      { h: "2. Alambres rotos y deformaciones" },
-      {
-        p: "Da de baja el estrobo cuando existan alambres rotos, deformaciones o aplastamiento del cable.",
-      },
-      { h: "3. Daño por temperatura" },
-      {
-        p: "Cualquier cambio de coloración por temperatura o salpicadura de soldadura es motivo de descarte.",
-      },
-      { h: "4. Coca, corrosión y daño en el ojo" },
-      {
-        li: [
-          "Un estrobo con coca pierde su capacidad de levante.",
-          "El cable con corrosión notoria debe retirarse.",
-          "Revisa deformaciones o alambres cortados en el ojo.",
-          "Los accesorios (grilletes, ganchos) deben estar en buenas condiciones.",
+/* IMPORTACIONES — líneas de producto importadas y distribuidas por 3S.
+   Fuentes: catálogos de fabricante HARDPAD/Yuanju (pads UHMW), NTNICE
+   (absorbentes de hidrocarburos) y HEDA Shelves (racks), más certificados
+   CPR/EN 1090 e ISO 9001 de HEDA. Información editable por el cliente. */
+export const importaciones = {
+  intro:
+    "Importamos y distribuimos líneas de producto industrial de fabricantes internacionales seleccionados, con certificación de origen y stock en Perú. Estas son nuestras líneas de importación disponibles bajo pedido.",
+  lineas: [
+    {
+      id: "pads",
+      nombre: "Pads · Almohadillas estabilizadoras",
+      marca: "HARDPAD — Polietileno UHMW",
+      tagline: "Almohadillas de apoyo para estabilizadores de grúa y maquinaria pesada",
+      resumen:
+        "Almohadillas de apoyo (outrigger pads) fabricadas en polietileno de ultra alto peso molecular (UHMW) de color negro. Distribuyen la carga de los estabilizadores de grúas y maquinaria pesada de forma eficiente y protegen el equipo y el terreno, incluso bajo las cargas más extremas. Reemplazan a la madera con mayor resistencia y durabilidad.",
+      img: "pads-producto",
+      img2: "pads-uso",
+      bullets: [
+        "Alta resistencia al impacto, desgaste y abrasión: no se agrieta ni fractura como la madera.",
+        "No absorbe humedad, inmune a la corrosión, uso de −50 °C a +100 °C.",
+        "Liviano y con asas integradas para un transporte seguro y sencillo.",
+        "Aislamiento eléctrico: propiedad dieléctrica inherente del material.",
+        "100% reciclable y fácil de limpiar con agua a presión.",
+      ],
+      aplicaciones: [
+        "Grúas móviles y torre",
+        "Maquinaria pesada de construcción",
+        "Vehículos de emergencia y bomberos",
+        "Plataformas elevadoras",
+        "Equipos de perforación",
+        "Generadores y compresores",
+      ],
+      tabla: {
+        caption: "Modelos disponibles (medida cuadrada A × B)",
+        cols: ["Modelo", "Medida", "Alto", "Peso aprox.", "Capacidad de carga"],
+        rows: [
+          ["PDN-40", "400 × 400 mm", "50 mm", "7,6 kg", "12 TON"],
+          ["PDN-50", "500 × 500 mm", "50 mm", "12,2 kg", "18 TON"],
+          ["PDN-60", "600 × 600 mm", "60 mm", "20,6 kg", "25 TON"],
+          ["PDN-80", "800 × 800 mm", "60 mm", "39 kg", "40 TON"],
+          ["PDN-100", "1000 × 1000 mm", "60 mm", "60 kg", "50 TON"],
         ],
       },
-      {
-        p: "En 3S representamos a Bridon-Bekaert y Crosby: te asesoramos en la selección, inspección y reemplazo de tus elementos de izaje bajo norma.",
-      },
-    ],
-  },
-  {
-    slug: "elegir-eslinga-sintetica",
-    title: "Poliéster o Dyneema: cómo elegir la eslinga sintética adecuada",
-    fecha: "2024-06-15",
-    categoria: "Izaje seguro",
-    lectura: 5,
-    resumen:
-      "Factor de diseño, ángulos de trabajo y el código de colores que define la capacidad de cada eslinga plana.",
-    bloques: [
-      {
-        p: "Las eslingas sintéticas Strongloop son livianas, flexibles y no dañan la carga. Elegir la correcta depende del peso, el ángulo de izaje y el entorno de trabajo.",
-      },
-      { h: "El factor de diseño" },
-      {
-        p: "En eslingas para izaje, la norma de EE. UU. define un factor de diseño de 5:1 y la europea de 7:1. Es el margen de seguridad sobre la carga de rotura.",
-      },
-      { h: "El ángulo importa (y mucho)" },
-      {
-        p: "El ángulo de trabajo normal es 60°. A menor ángulo, mayor es la pérdida de capacidad de la eslinga. Por eso una misma eslinga levanta menos peso mientras más abierta esté la maniobra.",
-      },
-      { h: "El código de colores" },
-      {
-        p: "Las eslingas planas de poliéster siguen un código de color por capacidad: violeta (1 ton), verde (2 ton), amarillo (3 ton), gris (4 ton), rojo (5 ton), café (6 ton), azul (8 ton) y naranja (10 ton).",
-      },
-      { h: "Cuando el peso es extremo: Dyneema" },
-      {
-        p: "Las eslingas tubulares de Dyneema son ultralivianas y diseñadas para grandes cargas (hasta 150 ton), con una elongación menor al 3,6%. Una maniobra de 30 ton que en cadena pesa 178 kg, en Dyneema pesa apenas 14 kg.",
-      },
-      {
-        p: "Consúltanos y te ayudamos a dimensionar la eslinga correcta para tu maniobra.",
-      },
-    ],
-  },
-  {
-    slug: "hardpad-vs-madera",
-    title: "HARDPAD vs. madera: por qué cambiar las almohadillas de tu grúa",
-    fecha: "2024-05-20",
-    categoria: "HARDPAD",
-    lectura: 3,
-    resumen:
-      "Las almohadillas de apoyo en UHMW superan a la madera en resistencia, durabilidad y seguridad para estabilizadores de grúa.",
-    bloques: [
-      {
-        p: "Las almohadillas HARDPAD están fabricadas en polietileno de ultra alto peso molecular (UHMW), un material ingenieril que distribuye la carga y protege el equipo y el terreno bajo las cargas más extremas.",
-      },
-      { h: "Ventajas sobre la madera" },
-      {
-        li: [
-          "Alta resistencia al impacto, desgaste y abrasión: no se agrieta ni fractura como la madera.",
-          "Vida útil mucho mayor, reduciendo costos de reemplazo.",
-          "No absorbe humedad y es inmune a la corrosión (−50 °C a +100 °C).",
-          "Mucho más liviana que el acero o la madera tratada, con asas integradas.",
-          "Aislamiento eléctrico inherente para mayor seguridad.",
-          "100% reciclable y fácil de limpiar con agua a presión.",
+    },
+    {
+      id: "panos",
+      nombre: "Paños y absorbentes de hidrocarburos",
+      marca: "NTNICE — Spill Control",
+      tagline: "Control y contención de derrames de aceites, químicos y líquidos",
+      resumen:
+        "Absorbentes de polipropileno melt-blown para limpiar y contener derrames: paños (pads), rollos, barreras (booms), salchichas (socks), almohadas (pillows) y kits. Se ofrecen en tres líneas según el líquido a absorber.",
+      img: "panos-oil",
+      img2: "panos-caja",
+      tipos: [
+        {
+          n: "Oil / Aceite",
+          color: "Blanco",
+          hex: "#e8eaed",
+          d: "Hidrofóbicos: solo absorben hidrocarburos y repelen el agua. Ideales para derrames de petróleo, en agua o en superficie.",
+        },
+        {
+          n: "Hazchem / Químicos",
+          color: "Amarillo",
+          hex: "#eab308",
+          d: "Absorben líquidos químicos, ácidos y combustibles. Para laboratorios, hospitales y plantas químicas.",
+        },
+        {
+          n: "Universal / Multiuso",
+          color: "Gris",
+          hex: "#9ca3af",
+          d: "Absorben aceite y químicos comunes. Para pisos, plantas, manufactura y transporte.",
+        },
+      ],
+      formatos: [
+        "Paños (pads)",
+        "Rollos",
+        "Barreras flotantes (booms)",
+        "Salchichas (socks)",
+        "Almohadas (pillows)",
+        "Tapetes para tapa de cilindro",
+        "Kits portátiles y de tambor",
+        "Mantas de aceite (blanket)",
+      ],
+      tabla: {
+        caption: "Paños absorbentes · 40 × 50 cm",
+        cols: ["Línea", "Código", "Gramaje", "Presentación"],
+        rows: [
+          ["Oil (aceite)", "OPDL / OPDS / OPDH", "Light · Standard · Heavy", "100–200 u/paq."],
+          ["Hazchem (químico)", "HPDL / HPDS / HPDH", "Light · Standard · Heavy", "100–200 u/paq."],
+          ["Universal", "UPDL / UPDS / UPDH", "Light · Standard · Heavy", "100–200 u/paq."],
+          ["Manta de aceite", "OAB-1224", "Heavy · 1,2 × 2,4 m", "20 kg/bolsa"],
         ],
       },
-      { h: "Modelos disponibles" },
-      {
-        p: "Contamos con medidas de 400×400 mm (12 ton) hasta 1000×1000 mm (50 ton). Elegimos contigo el modelo según la carga de tu estabilizador.",
-      },
-    ],
-  },
-  {
-    slug: "kits-contencion-derrames",
-    title: "Kits de contención de derrames: qué deben incluir y cuándo usarlos",
-    fecha: "2024-04-30",
-    categoria: "Seguridad ambiental",
-    lectura: 3,
-    resumen:
-      "Absorbentes, salchichas y kits listos para responder ante fugas de hidrocarburos y químicos en tu operación.",
-    bloques: [
-      {
-        p: "Un derrame de aceite o químico debe controlarse en minutos. Tener el kit correcto a la mano protege al personal, al terreno y evita sanciones ambientales.",
-      },
-      { h: "Tipos de absorbente" },
-      {
-        li: [
-          "Absorbentes de aceite (Clot Oil): hidrofóbicos, repelen el agua y solo absorben hidrocarburos.",
-          "Absorbentes universales: para aceite y químicos comunes.",
-          "Absorbentes de químicos: para ácidos y combustibles en laboratorios y plantas.",
+    },
+    {
+      id: "racks",
+      nombre: "Racks y estanterías de almacén",
+      marca: "HEDA Shelves",
+      tagline: "Sistemas de almacenaje para almacén, planta y logística",
+      resumen:
+        "Racks metálicos para almacenamiento industrial en distintas capacidades y configuraciones, desde estantería ligera hasta rack pesado selectivo para pallets, entrepisos y cantilever. Estructura de acero de fabricación certificada.",
+      img: "racks-medium",
+      img2: "racks-heavy",
+      tipos: [
+        {
+          n: "Estantería ligera y media",
+          d: "Para carga manual, repuestos y cajas. Niveles regulables en altura.",
+        },
+        {
+          n: "Rack pesado / selectivo (pallet)",
+          d: "Para pallets con montacargas. Series WH002 y WH003.",
+        },
+        {
+          n: "Entrepisos (mezzanine)",
+          d: "Aprovechan la altura del almacén con un segundo nivel de piso.",
+        },
+        { n: "Drive-in", d: "Alta densidad de almacenaje para gran volumen del mismo producto." },
+        {
+          n: "Cantilever (brazos)",
+          d: "Para cargas largas: tubos, perfiles, madera y planchas.",
+        },
+      ],
+      tabla: {
+        caption: "Rack pesado / selectivo para pallets",
+        cols: ["Serie", "Largo", "Ancho", "Alto", "Capacidad de carga"],
+        rows: [
+          ["WH002", "2000 – 2700 mm", "800 – 1200 mm", "2000 – 6000 mm", "1 – 3 TON"],
+          ["WH003", "2300 – 3900 mm", "900 – 1200 mm", "2000 – 6500 mm", "1 – 4,5 TON"],
         ],
       },
-      { h: "Qué incluye un kit" },
-      {
-        p: "El kit de 50 L trae 1 bolsa con asa, 30 paños de 40×50 cm, 2 salchichas de 7,6 cm Ø × 120 cm, 2 almohadillas, guantes y 2 bolsas de eliminación. El kit de 30 L es la versión compacta con lentes goggles incluidos.",
-      },
-      { h: "Para instalaciones fijas" },
-      {
-        p: "El contenedor de aceites portátil es una piscina plegable de contención semipermanente que no requiere instalación, ideal para almacenamiento y transporte de bidones.",
-      },
-    ],
+      certs: [
+        "CE · Reglamento CPR (UE) 305/2011 — EN 1090-1, componentes estructurales de acero (Cert. 2435-CPR-8605159).",
+        "Sistema de gestión de calidad ISO 9001:2015 (Cert. 18624Q00169R0M).",
+      ],
+    },
+  ],
+  otras: {
+    nombre: "Equipos y aceros industriales",
+    resumen:
+      "También importamos equipos y aceros industriales bajo pedido. Consúltanos por tu requerimiento específico y coordinamos la importación con respaldo, certificación y trazabilidad.",
   },
-] as const;
+} as const;
