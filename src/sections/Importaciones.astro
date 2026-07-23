@@ -131,6 +131,49 @@ const { lineas, otras, intro } = importaciones;
               </div>
             )}
 
+            {"estilos" in l && l.estilos && (
+              <div class="imp-galeria">
+                <span class="imp-formatos-h">Estilos y colores:</span>
+                <div class="imp-galeria-grid">
+                  {l.estilos.map((g) =>
+                    img(g.img) ? (
+                      <figure class="imp-gal-item">
+                        <Image
+                          src={img(g.img)!}
+                          alt={g.cap}
+                          widths={[220, 360, 520]}
+                          sizes="(min-width: 900px) 22vw, 45vw"
+                          class="imp-gal-img"
+                        />
+                        <figcaption>{g.cap}</figcaption>
+                      </figure>
+                    ) : null
+                  )}
+                </div>
+              </div>
+            )}
+
+            {"personalizacion" in l && l.personalizacion && (
+              <p class="imp-personaliza">
+                <Icon name="wrench" size={16} /> {l.personalizacion}
+              </p>
+            )}
+
+            {"stock" in l && l.stock && (
+              <div class="imp-stock">
+                <span class="imp-stock-badge">En stock</span>
+                <h3 class="imp-stock-title">{l.stock.title}</h3>
+                <p class="imp-stock-medida">{l.stock.medida}</p>
+                <ul class="imp-stock-specs">
+                  {l.stock.specs.map((s) => (
+                    <li>
+                      <Icon name="check" size={15} /> {s}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+
             {"tabla" in l && l.tabla && (
               <div class="imp-table-wrap">
                 <p class="imp-table-cap">{l.tabla.caption}</p>
@@ -399,6 +442,74 @@ const { lineas, otras, intro } = importaciones;
     .imp-galeria-grid {
       grid-template-columns: repeat(4, 1fr);
     }
+  }
+
+  /* — Nota de personalización — */
+  .imp-personaliza {
+    display: flex;
+    gap: 0.55rem;
+    align-items: flex-start;
+    font-size: 0.9rem;
+    line-height: 1.55;
+    color: var(--text-muted);
+    padding: 0.85rem 1rem;
+    margin-bottom: 1.3rem;
+    border: 1px dashed var(--line-strong);
+    border-radius: var(--radius);
+    background: var(--steel-900);
+  }
+  .imp-personaliza :global(svg) {
+    color: var(--amber-deep);
+    flex: none;
+    margin-top: 3px;
+  }
+
+  /* — Callout de stock — */
+  .imp-stock {
+    margin-bottom: 1.3rem;
+    padding: clamp(1.1rem, 3vw, 1.5rem);
+    border: 1px solid var(--amber-line);
+    border-radius: var(--radius-lg);
+    background: linear-gradient(120deg, var(--amber-tint), transparent 75%);
+  }
+  .imp-stock-badge {
+    display: inline-block;
+    font-family: var(--font-display);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-size: 0.72rem;
+    font-weight: 700;
+    padding: 0.25rem 0.6rem;
+    border-radius: 999px;
+    background: var(--amber);
+    color: var(--on-amber);
+    margin-bottom: 0.6rem;
+  }
+  .imp-stock-title {
+    font-size: clamp(1.1rem, 1rem + 0.7vw, 1.4rem);
+    margin: 0 0 0.2rem;
+  }
+  .imp-stock-medida {
+    font-family: var(--font-display);
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 0.7rem;
+  }
+  .imp-stock-specs {
+    display: grid;
+    gap: 0.4rem;
+  }
+  .imp-stock-specs li {
+    display: flex;
+    gap: 0.5rem;
+    align-items: flex-start;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+  }
+  .imp-stock-specs :global(svg) {
+    color: var(--amber-deep);
+    flex: none;
+    margin-top: 3px;
   }
 
   /* — Tabla — */

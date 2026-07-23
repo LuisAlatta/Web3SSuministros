@@ -534,10 +534,24 @@ export const importaciones = {
       img: "pads-producto",
       img2: "pads-uso",
       galeria: [
-        { img: "pads-grua", cap: "Estabilizador de grúa móvil apoyado sobre HARDPAD" },
-        { img: "pads-estabilizador", cap: "Grúa de obra estabilizada sobre la almohadilla" },
-        { img: "pads-obra", cap: "Apoyo en terreno suelto sin hundimiento del estabilizador" },
-        { img: "pads-camion", cap: "Estabilizador de camión grúa sobre HARDPAD" },
+        { img: "op-grua-obra", cap: "Estabilizador de grúa móvil sobre HARDPAD en terreno suelto" },
+        { img: "op-estabilizador", cap: "Grúa de obra estabilizada sobre la almohadilla" },
+        { img: "op-plataforma", cap: "Plataforma / equipo pesado apoyado sobre el pad" },
+        { img: "op-verde", cap: "Almohadilla verde bajo el pie del estabilizador" },
+        { img: "op-nieve", cap: "Apoyo estable incluso sobre terreno cubierto de nieve" },
+        { img: "op-asfalto", cap: "Estabilizador de camión grúa sobre asfalto" },
+        { img: "op-concreto", cap: "Encaje del pie en el área de descanso en bajo relieve" },
+        { img: "op-detalle", cap: "Detalle del pie del estabilizador sobre el pad" },
+      ],
+      estilos: [
+        { img: "est-cuadrada", cap: "Formato cuadrado con superficie antideslizante y asa" },
+        { img: "est-redonda", cap: "Formato redondo" },
+        { img: "est-verde", cap: "Color verde" },
+        { img: "est-amarilla", cap: "Color amarillo con área de descanso en bajo relieve" },
+        { img: "est-naranja", cap: "Color naranja" },
+        { img: "est-roja", cap: "Color rojo" },
+        { img: "est-array", cap: "Almohadillas cuadradas con asas de transporte" },
+        { img: "est-medida", cap: "Medidas personalizables según la carga" },
       ],
       bullets: [
         "Alta resistencia al impacto, desgaste y abrasión: no se agrieta ni fractura como la madera.",
@@ -555,6 +569,8 @@ export const importaciones = {
         "Equipos de perforación",
         "Generadores y compresores",
       ],
+      personalizacion:
+        "Fabricadas en polietileno UHMW / HDPE. Disponibles en formato cuadrado o redondo, con espesor y medida a pedido (hasta 300 mm) y en varios colores (negro, blanco, verde, azul, amarillo o rojo). Admiten logo y diseño personalizado según el requerimiento.",
       tabla: {
         caption: "Modelos disponibles (medida cuadrada A × B)",
         cols: ["Modelo", "Medida", "Alto", "Peso aprox.", "Capacidad de carga"],
@@ -566,6 +582,10 @@ export const importaciones = {
           ["PDN-100", "1000 × 1000 mm", "60 mm", "60 kg", "50 TON"],
         ],
       },
+      certs: [
+        "Fabricante certificado ISO 9001:2015 e ISO 14001:2015.",
+        "Garantía de 3 años y soporte técnico.",
+      ],
     },
     {
       id: "panos",
@@ -626,6 +646,16 @@ export const importaciones = {
         "Racks metálicos para almacenamiento industrial en distintas capacidades y configuraciones, desde estantería ligera hasta rack pesado selectivo para pallets, entrepisos y cantilever. Estructura de acero de fabricación certificada.",
       img: "racks-medium",
       img2: "racks-heavy",
+      stock: {
+        title: "Mini rack metálico — disponible en stock",
+        medida: "2 m de alto × 2 m de ancho · fondo 60 cm",
+        specs: [
+          "4 niveles regulables en altura",
+          "Soporta hasta 200 kg por nivel",
+          "Pintura electrostática para mayor protección y durabilidad",
+          "Producto importado · entrega inmediata",
+        ],
+      },
       tipos: [
         {
           n: "Estantería ligera y media",
