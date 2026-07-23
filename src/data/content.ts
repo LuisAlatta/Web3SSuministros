@@ -378,6 +378,7 @@ export const hardpad = {
     { title: "Liviano y manipulable", desc: "Más ligero que el acero o la madera tratada, con asas integradas." },
     { title: "Aislamiento eléctrico", desc: "Propiedad dieléctrica inherente del material para mayor seguridad." },
     { title: "Amigable y fácil de limpiar", desc: "100% reciclable y de superficie lisa, se limpia con agua a presión." },
+    { title: "Encaje seguro del estabilizador", desc: "Área de descanso en bajo relieve para un apoyo perfecto y estable del pie del estabilizador." },
   ],
   specs: [
     { modelo: "PDN-40", medida: "400 × 400 mm", alto: "50 mm", peso: "7.6 kg", carga: "12 TON" },
@@ -532,11 +533,18 @@ export const importaciones = {
         "Almohadillas de apoyo (outrigger pads) fabricadas en polietileno de ultra alto peso molecular (UHMW) de color negro. Distribuyen la carga de los estabilizadores de grúas y maquinaria pesada de forma eficiente y protegen el equipo y el terreno, incluso bajo las cargas más extremas. Reemplazan a la madera con mayor resistencia y durabilidad.",
       img: "pads-producto",
       img2: "pads-uso",
+      galeria: [
+        { img: "pads-grua", cap: "Estabilizador de grúa móvil apoyado sobre HARDPAD" },
+        { img: "pads-estabilizador", cap: "Grúa de obra estabilizada sobre la almohadilla" },
+        { img: "pads-obra", cap: "Apoyo en terreno suelto sin hundimiento del estabilizador" },
+        { img: "pads-camion", cap: "Estabilizador de camión grúa sobre HARDPAD" },
+      ],
       bullets: [
         "Alta resistencia al impacto, desgaste y abrasión: no se agrieta ni fractura como la madera.",
         "No absorbe humedad, inmune a la corrosión, uso de −50 °C a +100 °C.",
         "Liviano y con asas integradas para un transporte seguro y sencillo.",
         "Aislamiento eléctrico: propiedad dieléctrica inherente del material.",
+        "Área de descanso en bajo relieve que encaja el pie del estabilizador para un apoyo estable.",
         "100% reciclable y fácil de limpiar con agua a presión.",
       ],
       aplicaciones: [

@@ -109,6 +109,28 @@ const { lineas, otras, intro } = importaciones;
               </div>
             )}
 
+            {"galeria" in l && l.galeria && (
+              <div class="imp-galeria">
+                <span class="imp-formatos-h">En operación:</span>
+                <div class="imp-galeria-grid">
+                  {l.galeria.map((g) =>
+                    img(g.img) ? (
+                      <figure class="imp-gal-item">
+                        <Image
+                          src={img(g.img)!}
+                          alt={g.cap}
+                          widths={[220, 360, 520]}
+                          sizes="(min-width: 900px) 22vw, 45vw"
+                          class="imp-gal-img"
+                        />
+                        <figcaption>{g.cap}</figcaption>
+                      </figure>
+                    ) : null
+                  )}
+                </div>
+              </div>
+            )}
+
             {"tabla" in l && l.tabla && (
               <div class="imp-table-wrap">
                 <p class="imp-table-cap">{l.tabla.caption}</p>
@@ -338,6 +360,45 @@ const { lineas, otras, intro } = importaciones;
     border-radius: var(--radius-xs);
     color: var(--amber-deep);
     background: var(--amber-tint);
+  }
+
+  /* — Galería en operación — */
+  .imp-galeria {
+    margin-bottom: 1.3rem;
+  }
+  .imp-galeria .imp-formatos-h {
+    display: block;
+    margin-bottom: 0.6rem;
+  }
+  .imp-galeria-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.7rem;
+  }
+  .imp-gal-item {
+    margin: 0;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    overflow: hidden;
+    background: var(--steel-900);
+  }
+  .imp-gal-img {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    display: block;
+    background: #fff;
+  }
+  .imp-gal-item figcaption {
+    padding: 0.5rem 0.6rem;
+    font-size: 0.78rem;
+    line-height: 1.35;
+    color: var(--text-muted);
+  }
+  @media (min-width: 900px) {
+    .imp-galeria-grid {
+      grid-template-columns: repeat(4, 1fr);
+    }
   }
 
   /* — Tabla — */
