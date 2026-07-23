@@ -9,9 +9,9 @@
   /* — Neutrales claros (paleta: #E5E7EB / #FFFFFF) — */
   --bg: #dcdfe4; /* fondo de página (plomo) */
   --bg-2: #e5e7eb; /* banda alterna (gris claro de paleta) */
-  --ink: #1a202c; /* azul carbón para bandas oscuras / footer / overlay */
-  --ink-2: #2d3748; /* pizarra oscura secundaria */
-  --ink-rgb: 26, 32, 44; /* base para scrims sobre foto (rgba con alfa) */
+  --ink: #000000; /* negro puro para bandas oscuras / footer / overlay */
+  --ink-2: #000000; /* negro puro secundario */
+  --ink-rgb: 0, 0, 0; /* base para scrims sobre foto (rgba con alfa) */
 
   /* Superficies (nombres "steel" conservados; ahora claros) */
   --steel-900: #ffffff; /* tarjeta base */
@@ -28,15 +28,15 @@
   --amber-tint: rgba(251, 191, 36, 0.15);
   --amber-line: rgba(251, 191, 36, 0.42);
 
-  /* — Texto sobre claro — */
-  --text: #1a202c;
-  --text-muted: #4a5568;
-  --text-dim: #718096;
-  --on-amber: #1a202c;
+  /* — Texto sobre claro (negro puro, sin grises tenues) — */
+  --text: #000000;
+  --text-muted: #262626;
+  --text-dim: #3d3d3d;
+  --on-amber: #000000;
 
   /* — Líneas y bordes (sobre claro) — */
-  --line: rgba(26, 32, 44, 0.12);
-  --line-strong: rgba(26, 32, 44, 0.2);
+  --line: rgba(0, 0, 0, 0.16);
+  --line-strong: rgba(0, 0, 0, 0.28);
 
   /* — Tipografía —
      Fuente única de verdad: cambia SOLO --font-base para reemplazar la fuente
@@ -85,9 +85,9 @@
   --radius-xl: 18px;
 
   /* — Sombra / profundidad (sobre claro) — */
-  --shadow-sm: 0 1px 3px rgba(26, 32, 44, 0.08);
-  --shadow-card: 0 14px 34px -18px rgba(26, 32, 44, 0.22);
-  --shadow-lg: 0 28px 60px -26px rgba(26, 32, 44, 0.3);
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
+  --shadow-card: 0 14px 34px -18px rgba(0, 0, 0, 0.26);
+  --shadow-lg: 0 28px 60px -26px rgba(0, 0, 0, 0.34);
   --shadow-amber: 0 12px 26px -12px rgba(251, 191, 36, 0.42);
   --edge-hi: inset 0 1px 0 rgba(255, 255, 255, 0.6);
 
@@ -111,16 +111,16 @@
    Aplicar .on-dark a hero, footer, paneles/bandas oscuras.
    ============================================================ */
 .on-dark {
-  --steel-900: #1a202c;
-  --steel-850: #232b3a;
-  --steel-800: #2d3748;
-  --steel-700: #3d4a5f;
-  --steel-600: #4a5568;
-  --text: #f7f8fa;
-  --text-muted: #cbd2dc;
-  --text-dim: #939caa;
-  --line: rgba(255, 255, 255, 0.1);
-  --line-strong: rgba(255, 255, 255, 0.2);
+  --steel-900: #050505;
+  --steel-850: #0e0e0e;
+  --steel-800: #171717;
+  --steel-700: #262626;
+  --steel-600: #333333;
+  --text: #ffffff;
+  --text-muted: #ededed;
+  --text-dim: #c4c4c4;
+  --line: rgba(255, 255, 255, 0.16);
+  --line-strong: rgba(255, 255, 255, 0.28);
   --amber-deep: var(--amber);
   --edge-hi: inset 0 1px 0 rgba(255, 255, 255, 0.06);
   color: var(--text);

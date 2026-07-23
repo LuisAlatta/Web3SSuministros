@@ -19,6 +19,8 @@ select {
 }
 
 html {
+  /* Escala tipográfica global: agranda un poco todas las fuentes de la web. */
+  font-size: 108.5%;
   scroll-behavior: smooth;
   -webkit-text-size-adjust: 100%;
   scroll-padding-top: 84px;
