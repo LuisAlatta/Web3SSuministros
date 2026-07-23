@@ -2,12 +2,27 @@
 import { Image } from "astro:assets";
 import hardpadTop from "../assets/img/hardpad-top.jpeg";
 import hardpadStack from "../assets/img/hardpad-stack.jpeg";
+import hpGrua1 from "../assets/img/hardpad-grua-1.jpg";
+import hpGrua2 from "../assets/img/hardpad-grua-2.jpg";
+import hpGrua3 from "../assets/img/hardpad-grua-3.jpg";
+import hpGrua4 from "../assets/img/hardpad-grua-4.jpg";
+import hpGrua5 from "../assets/img/hardpad-grua-5.jpg";
+import hpGrua6 from "../assets/img/hardpad-grua-6.jpg";
 import { izaje, derrames, hardpad, guias } from "../data/content";
 import { whatsapps, waLink } from "../data/site";
 import Icon from "../components/Icon.astro";
 import Guia from "../components/Guia.astro";
 
 const guiasIzaje = guias.filter((g) => g.producto === "izaje");
+
+const hardpadGruas = [
+  { src: hpGrua5, alt: "Camión grúa con almohadillas HARDPAD de 30, 40 y 50 cm" },
+  { src: hpGrua1, alt: "Estabilizador de camión grúa apoyado sobre HARDPAD" },
+  { src: hpGrua4, alt: "Camión grúa estabilizado sobre HARDPAD" },
+  { src: hpGrua3, alt: "Estabilizador de grúa sobre HARDPAD en obra" },
+  { src: hpGrua2, alt: "Pie de estabilizador de camión grúa sobre HARDPAD" },
+  { src: hpGrua6, alt: "Detalle del apoyo del estabilizador sobre HARDPAD" },
+];
 ---
 
 <section id="lineas" class="section plate" aria-label="Líneas destacadas">
@@ -243,6 +258,28 @@ const guiasIzaje = guias.filter((g) => g.producto === "izaje");
         </div>
       </div>
     </article>
+
+    <!-- Galería HARDPAD en grúas y camiones grúa -->
+    <div class="hp-gruas reveal">
+      <h4 class="hp-gruas-title">HARDPAD en grúas y camiones grúa</h4>
+      <div class="hp-gruas-grid">
+        {
+          hardpadGruas.map((g) => (
+            <figure class="hp-grua-item">
+              <Image
+                src={g.src}
+                alt={g.alt}
+                widths={[240, 380, 520]}
+                sizes="(min-width: 900px) 30vw, 45vw"
+                loading="lazy"
+                class="hp-grua-img"
+              />
+              <figcaption>{g.alt}</figcaption>
+            </figure>
+          ))
+        }
+      </div>
+    </div>
 
     <!-- Tabla de especificaciones HARDPAD -->
     <div class="hp-specs reveal">
@@ -758,6 +795,48 @@ const guiasIzaje = guias.filter((g) => g.producto === "izaje");
   .hardpad {
     display: grid;
     gap: clamp(1.6rem, 3vw, 2.6rem);
+  }
+
+  /* HARDPAD en grúas */
+  .hp-gruas {
+    margin-top: clamp(1.6rem, 3vw, 2.4rem);
+  }
+  .hp-gruas-title {
+    font-family: var(--font-display);
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    font-size: clamp(1rem, 0.9rem + 0.5vw, 1.25rem);
+    margin-bottom: 1rem;
+  }
+  .hp-gruas-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.8rem;
+  }
+  .hp-grua-item {
+    margin: 0;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    overflow: hidden;
+    background: var(--steel-900);
+  }
+  .hp-grua-img {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    display: block;
+    background: #fff;
+  }
+  .hp-grua-item figcaption {
+    padding: 0.55rem 0.65rem;
+    font-size: 0.8rem;
+    line-height: 1.4;
+    color: var(--text-dim);
+  }
+  @media (min-width: 720px) {
+    .hp-gruas-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
   }
   .hp-benefits {
     display: grid;
