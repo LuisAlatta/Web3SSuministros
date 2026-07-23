@@ -317,26 +317,73 @@ export const derrames = {
     {
       name: "Absorbentes universales",
       desc: "Absorben una amplia gama de líquidos, incluyendo aceite y químicos comunes.",
+      imgs: [
+        "der-uni-group",
+        "der-uni-pad",
+        "der-uni-roll",
+        "der-uni-sock",
+        "der-uni-pillow",
+        "der-uni-boom",
+      ],
     },
     {
       name: "Absorbentes de químicos",
       desc: "Para líquidos químicos, ácidos y combustibles. Ideales en laboratorios, hospitales y plantas químicas.",
+      imgs: [
+        "der-che-group",
+        "der-che-pad",
+        "der-che-roll",
+        "der-che-sock",
+        "der-che-pillow",
+        "der-che-boom",
+      ],
     },
     {
       name: "Absorbentes de aceite (Clot Oil)",
       desc: "Polipropileno hidrofóbico: repelen el agua y solo absorben aceite, ideales para derrames de petróleo.",
+      imgs: [
+        "der-oil-group",
+        "der-oil-pad",
+        "der-oil-roll",
+        "der-oil-sock",
+        "der-oil-pillow",
+        "der-oil-boom",
+      ],
     },
     {
       name: "Rollo de paños X80 multiuso",
       desc: "Reutilizable y de alta absorción. 28×42 cm, 80 g/m², 50% pulpa + 50% poliéster, 80 u/rollo.",
+      imgs: [
+        "der-wipe-blue",
+        "der-wipe-white",
+        "der-wipe-kraft",
+        "der-wipe-jumbo",
+        "der-wipe-use",
+      ],
     },
     {
       name: "Contenedor de aceites portátil",
       desc: "Piscina plegable de contención semipermanente y rentable. No requiere instalación.",
+      imgs: [
+        "der-berm-yellow",
+        "der-berm-red",
+        "der-berm-black",
+        "der-berm-use",
+        "der-pallet-2drum",
+        "der-pallet-ibc",
+      ],
     },
     {
       name: "Tapetes para cilindro",
       desc: "Sobre la tapa de tambores de 55 galones, absorben goteos y fluidos de la operación diaria.",
+      imgs: [
+        "der-mat-oil",
+        "der-mat-che",
+        "der-mat-uni",
+        "der-mat-use",
+        "der-mat-drum1",
+        "der-mat-drum2",
+      ],
     },
   ],
   kits: [
