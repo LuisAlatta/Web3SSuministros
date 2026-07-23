@@ -111,7 +111,11 @@ const { lineas, otras, intro } = importaciones;
 
             {"galeria" in l && l.galeria && (
               <div class="imp-galeria">
-                <span class="imp-formatos-h">En operación:</span>
+                <span class="imp-formatos-h">
+                  {"galeriaTitulo" in l && l.galeriaTitulo
+                    ? l.galeriaTitulo
+                    : "En operación"}:
+                </span>
                 <div class="imp-galeria-grid">
                   {l.galeria.map((g) =>
                     img(g.img) ? (

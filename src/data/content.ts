@@ -646,6 +646,15 @@ export const importaciones = {
         "Racks metálicos para almacenamiento industrial en distintas capacidades y configuraciones, desde estantería ligera hasta rack pesado selectivo para pallets, entrepisos y cantilever. Estructura de acero de fabricación certificada.",
       img: "racks-medium",
       img2: "racks-heavy",
+      galeriaTitulo: "Tipos de rack y aplicaciones",
+      galeria: [
+        { img: "rack-3", cap: "Rack de mediana carga serie WM003" },
+        { img: "rack-2", cap: "Racks de mediana capacidad para almacén" },
+        { img: "rack-1", cap: "Estantería ligera y media para carga manual" },
+        { img: "rack-4", cap: "Estructura de rack selectivo para pallets (detalle)" },
+        { img: "rack-5", cap: "Sistema drive-in / radio shuttle de alta densidad" },
+        { img: "rack-6", cap: "Rack selectivo para pallets con montacargas en operación" },
+      ],
       stock: {
         title: "Mini rack metálico — disponible en stock",
         medida: "2 m de alto × 2 m de ancho · fondo 60 cm",
