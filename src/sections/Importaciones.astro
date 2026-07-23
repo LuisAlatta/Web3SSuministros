@@ -41,7 +41,7 @@ const { lineas, otras, intro } = importaciones;
                 src={img(l.img)!}
                 alt={l.nombre}
                 widths={[420, 720, 1000]}
-                sizes="(min-width: 900px) 46vw, 100vw"
+                sizes="(min-width: 900px) 42vw, 100vw"
                 class="imp-img"
               />
             )}
@@ -49,9 +49,9 @@ const { lineas, otras, intro } = importaciones;
               <Image
                 src={img(l.img2)!}
                 alt={`${l.nombre} — detalle`}
-                widths={[220, 360]}
-                sizes="180px"
-                class="imp-img-badge"
+                widths={[420, 720]}
+                sizes="(min-width: 900px) 42vw, 100vw"
+                class="imp-img"
               />
             )}
           </div>
@@ -109,6 +109,18 @@ const { lineas, otras, intro } = importaciones;
               </div>
             )}
 
+            {"certs" in l && l.certs && (
+              <ul class="imp-certs">
+                {l.certs.map((c) => (
+                  <li>
+                    <Icon name="shield" size={16} /> {c}
+                  </li>
+                ))}
+              </ul>
+            )}
+          </div>
+
+          <div class="imp-wide">
             {"galeria" in l && l.galeria && (
               <div class="imp-galeria">
                 <span class="imp-formatos-h">
@@ -204,16 +216,6 @@ const { lineas, otras, intro } = importaciones;
               </div>
             )}
 
-            {"certs" in l && l.certs && (
-              <ul class="imp-certs">
-                {l.certs.map((c) => (
-                  <li>
-                    <Icon name="shield" size={16} /> {c}
-                  </li>
-                ))}
-              </ul>
-            )}
-
             {guias.filter((g) => g.producto === l.id).length > 0 && (
               <div class="imp-guias">
                 {guias
@@ -284,34 +286,33 @@ const { lineas, otras, intro } = importaciones;
     border-top: 1px solid var(--line);
   }
 
-  /* — Media — */
+  /* — Media (imágenes apiladas) — */
   .imp-media {
-    position: relative;
-    align-self: stretch;
+    display: grid;
+    gap: 1rem;
+    align-self: start;
+    align-content: start;
   }
   .imp-img {
     width: 100%;
-    height: 100%;
-    min-height: 240px;
-    max-height: 440px;
+    aspect-ratio: 4 / 3;
     object-fit: cover;
     border-radius: var(--radius-lg);
     border: 1px solid var(--line);
     background: #fff;
     box-shadow: var(--shadow-card);
   }
-  .imp-img-badge {
-    position: absolute;
-    right: -0.6rem;
-    bottom: -0.9rem;
-    width: clamp(96px, 22%, 150px);
-    height: auto;
-    aspect-ratio: 1 / 1;
-    object-fit: cover;
-    border-radius: var(--radius);
-    border: 3px solid var(--bg);
-    box-shadow: var(--shadow-lg);
-    background: #fff;
+  .imp-img:only-child {
+    aspect-ratio: 5 / 4;
+  }
+
+  /* — Franja de ancho completo (galerías, tabla, stock, guías) — */
+  .imp-wide {
+    display: grid;
+    gap: 1.3rem;
+  }
+  .imp-wide > * {
+    margin-bottom: 0;
   }
 
   /* — Cuerpo — */
@@ -614,10 +615,26 @@ const { lineas, otras, intro } = importaciones;
 
   @media (min-width: 900px) {
     .imp-line {
-      grid-template-columns: minmax(0, 0.86fr) minmax(0, 1fr);
+      grid-template-columns: minmax(0, 0.82fr) minmax(0, 1fr);
+      column-gap: clamp(2rem, 4vw, 3.4rem);
+      row-gap: 1.8rem;
+    }
+    .imp-media {
+      grid-column: 1;
+      grid-row: 1;
+    }
+    .imp-body {
+      grid-column: 2;
+      grid-row: 1;
     }
     .imp-line.is-flip .imp-media {
-      order: 2;
+      grid-column: 2;
+    }
+    .imp-line.is-flip .imp-body {
+      grid-column: 1;
+    }
+    .imp-wide {
+      grid-column: 1 / -1;
     }
   }
   @media (max-width: 560px) {
