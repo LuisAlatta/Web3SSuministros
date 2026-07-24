@@ -155,7 +155,7 @@ const pilares = [
     font-size: clamp(1rem, 0.95rem + 0.4vw, 1.2rem);
   }
   .mueve .nos-ssub {
-    color: #ededed;
+    color: var(--text-muted);
   }
 
   /* — Nuestra historia (2 columnas) — */
@@ -179,9 +179,13 @@ const pilares = [
     overflow: hidden;
     box-shadow: var(--shadow-lg);
   }
+  .nos-hist-media {
+    min-width: 0;
+  }
   .nos-hist-media img {
     display: block;
     width: 100%;
+    max-width: 100%;
     height: 100%;
     object-fit: cover;
   }
@@ -250,8 +254,10 @@ const pilares = [
     border: 4px solid var(--amber);
     transition: transform var(--dur) var(--ease-out);
   }
-  .mueve-card:hover .mueve-badge {
-    transform: translate(-50%, -50%) scale(1.06);
+  @media (hover: hover) {
+    .mueve-card:hover .mueve-badge {
+      transform: translate(-50%, -50%) scale(1.06);
+    }
   }
   .mueve-card h3 {
     font-size: var(--text-h3);
@@ -332,7 +338,13 @@ const pilares = [
     transition: border-color var(--dur) var(--ease-out),
       color var(--dur) var(--ease-out);
   }
-  .nos-sect-list li:hover {
+  @media (hover: hover) {
+    .nos-sect-list li:hover {
+      border-color: var(--amber);
+      color: var(--amber);
+    }
+  }
+  .nos-sect-list li:active {
     border-color: var(--amber);
     color: var(--amber);
   }
@@ -388,7 +400,7 @@ const pilares = [
   }
   @media (min-width: 900px) {
     .nos-historia {
-      grid-template-columns: 1.05fr 0.95fr;
+      grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
     }
     .mueve-grid {
       grid-template-columns: repeat(3, 1fr);

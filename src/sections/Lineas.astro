@@ -353,12 +353,6 @@ const hardpadGruas = [
 </section>
 
 <style>
-  .lin-head {
-    margin-bottom: clamp(2.2rem, 4vw, 3.4rem);
-  }
-  .lin-head h2 {
-    margin-top: 0.9rem;
-  }
   .lin {
     border: 1px solid var(--line);
     border-radius: var(--radius-xl);
@@ -731,10 +725,11 @@ const hardpadGruas = [
   }
   .der-grid {
     display: grid;
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
     gap: 1rem;
   }
   .der-card {
+    min-width: 0;
     border: 1px solid var(--line);
     border-radius: var(--radius-lg);
     background: var(--steel-900);
@@ -777,12 +772,13 @@ const hardpadGruas = [
   }
   .der-gal {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 0.4rem;
     margin-top: 0.9rem;
   }
   .der-gal-img {
     width: 100%;
+    max-width: 100%;
     aspect-ratio: 1 / 1;
     object-fit: cover;
     border-radius: var(--radius-xs);
@@ -829,9 +825,11 @@ const hardpadGruas = [
   /* ===== HARDPAD ===== */
   .hp-media {
     position: relative;
+    min-width: 0;
   }
   .hp-media > :global(img:first-child) {
     width: 100%;
+    max-width: 100%;
     border-radius: var(--radius-lg);
     border: 1px solid var(--line-strong);
     aspect-ratio: 4 / 3;
@@ -839,7 +837,7 @@ const hardpadGruas = [
   }
   .hp-media-2 {
     position: absolute;
-    right: -10px;
+    right: 0;
     bottom: -22px;
     width: 42%;
     border-radius: var(--radius);
@@ -871,7 +869,7 @@ const hardpadGruas = [
   }
   .hp-gruas-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 0.8rem;
   }
   .hp-grua-item {
@@ -883,6 +881,7 @@ const hardpadGruas = [
   }
   .hp-grua-img {
     width: 100%;
+    max-width: 100%;
     aspect-ratio: 4 / 3;
     object-fit: cover;
     display: block;
@@ -896,7 +895,7 @@ const hardpadGruas = [
   }
   @media (min-width: 720px) {
     .hp-gruas-grid {
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(3, minmax(0, 1fr));
     }
   }
   .hp-benefits {
@@ -1020,7 +1019,7 @@ const hardpadGruas = [
       grid-template-columns: repeat(3, 1fr);
     }
     .der-grid {
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
     }
     .der-kits {
       grid-template-columns: 1fr 1fr;
@@ -1041,14 +1040,14 @@ const hardpadGruas = [
       align-items: start;
     }
     .hardpad {
-      grid-template-columns: 0.9fr 1.1fr;
+      grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
       align-items: center;
     }
     .hp-benefits {
       grid-template-columns: 1fr 1fr;
     }
     .der-grid {
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(3, minmax(0, 1fr));
     }
   }
 

@@ -155,13 +155,6 @@ const mapsLink = `https://www.google.com/maps/search/?api=1&query=${encodeURICom
 </script>
 
 <style>
-  .con-head {
-    max-width: 720px;
-    margin-bottom: clamp(2.2rem, 4vw, 3.4rem);
-  }
-  .con-head h2 {
-    margin: 0.9rem 0 1.2rem;
-  }
   .con-top {
     display: grid;
     gap: 1.6rem;
@@ -244,6 +237,10 @@ const mapsLink = `https://www.google.com/maps/search/?api=1&query=${encodeURICom
     gap: 1rem;
     align-items: flex-start;
   }
+  /* El texto (correo/URL largos) debe poder partir y encoger, no desbordar. */
+  .con-info li > * {
+    min-width: 0;
+  }
   .ci-ic {
     width: 46px;
     height: 46px;
@@ -265,8 +262,14 @@ const mapsLink = `https://www.google.com/maps/search/?api=1&query=${encodeURICom
   .con-info a,
   .con-info span {
     color: var(--text-muted);
+    overflow-wrap: anywhere;
   }
-  .con-info a:hover {
+  @media (hover: hover) {
+    .con-info a:hover {
+      color: var(--amber);
+    }
+  }
+  .con-info a:active {
     color: var(--amber);
   }
   .ci-phones {

@@ -86,6 +86,7 @@
 
   /* — Sombra / profundidad (sobre claro) — */
   --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
+  --shadow-md: 0 8px 20px -8px rgba(0, 0, 0, 0.22);
   --shadow-card: 0 14px 34px -18px rgba(0, 0, 0, 0.26);
   --shadow-lg: 0 28px 60px -26px rgba(0, 0, 0, 0.34);
   --shadow-amber: 0 12px 26px -12px rgba(251, 191, 36, 0.42);

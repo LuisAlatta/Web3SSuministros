@@ -55,6 +55,7 @@ import Icon from "../components/Icon.astro";
   }
   .intro-visual img {
     width: 100%;
+    max-width: 100%;
     height: 100%;
     object-fit: cover;
     aspect-ratio: 4 / 3;
@@ -62,7 +63,7 @@ import Icon from "../components/Icon.astro";
 
   @media (min-width: 760px) {
     .intro {
-      grid-template-columns: 1.05fr 0.95fr;
+      grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
     }
   }
 </style>

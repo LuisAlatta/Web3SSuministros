@@ -61,6 +61,19 @@ summary,
   touch-action: manipulation;
 }
 
+/* En pantallas táctiles (sin puntero fino) todo control da feedback inmediato
+   al pulsar, sin depender de :hover — que en táctil se queda "pegado". Cada
+   componente puede definir su propio :active para un efecto más específico. */
+@media (hover: none) {
+  a:active,
+  button:active,
+  summary:active,
+  [role="button"]:active {
+    opacity: 0.72;
+    transition: opacity var(--dur-fast) var(--ease-out);
+  }
+}
+
 ul {
   list-style: none;
 }

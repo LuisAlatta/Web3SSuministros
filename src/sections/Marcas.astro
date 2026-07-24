@@ -64,13 +64,6 @@ import Icon from "../components/Icon.astro";
 </section>
 
 <style>
-  .mar-head {
-    margin-bottom: clamp(2rem, 4vw, 3rem);
-  }
-  .mar-head h2 {
-    margin-top: 0.9rem;
-  }
-
   .bekaert {
     position: relative;
     overflow: hidden;
@@ -219,9 +212,16 @@ import Icon from "../components/Icon.astro";
       transform var(--dur) var(--ease-out),
       box-shadow var(--dur) var(--ease-out);
   }
-  .mar-wall li:hover {
+  @media (hover: hover) {
+    .mar-wall li:hover {
+      border-color: var(--amber);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-sm);
+    }
+  }
+  .mar-wall li:active {
     border-color: var(--amber);
-    transform: translateY(-2px);
+    transform: translateY(-1px);
     box-shadow: var(--shadow-sm);
   }
   .mar-wall li img {

@@ -151,21 +151,15 @@ const gallery = [
 </script>
 
 <style>
-  .cg-head {
-    margin-bottom: clamp(2rem, 4vw, 3rem);
-  }
-  .cg-head h2 {
-    margin-top: 0.9rem;
-  }
   .cg-top {
     display: grid;
     gap: 1.4rem;
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
   .cat-feature {
     display: grid;
     gap: 1.6rem;
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
     border: 1px solid var(--line);
     border-radius: var(--radius-xl);
     background: linear-gradient(180deg, var(--steel-850), var(--steel-900));
@@ -173,6 +167,7 @@ const gallery = [
   }
   .cat-cover img {
     width: 100%;
+    max-width: 100%;
     border-radius: var(--radius);
     border: 1px solid var(--line-strong);
   }
@@ -204,9 +199,15 @@ const gallery = [
     transition: border-color var(--dur) var(--ease-out),
       transform var(--dur) var(--ease-out);
   }
-  .cat-doc:hover {
+  @media (hover: hover) {
+    .cat-doc:hover {
+      border-color: var(--amber-line);
+      transform: translateY(-4px);
+    }
+  }
+  .cat-doc:active {
     border-color: var(--amber-line);
-    transform: translateY(-3px);
+    transform: translateY(-2px);
   }
   .cat-doc-ic {
     width: 48px;
@@ -221,6 +222,7 @@ const gallery = [
   .cat-doc-txt {
     display: grid;
     flex: 1;
+    min-width: 0;
   }
   .cat-doc-txt strong {
     font-family: var(--font-display);
@@ -249,11 +251,12 @@ const gallery = [
 
   .gallery {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 0.9rem;
   }
   .gal-item {
     position: relative;
+    min-width: 0;
     border: 1px solid var(--line);
     border-radius: var(--radius);
     overflow: hidden;
@@ -264,12 +267,15 @@ const gallery = [
   }
   .gal-item img {
     width: 100%;
+    max-width: 100%;
     height: 100%;
     object-fit: cover;
     transition: transform var(--dur-slow) var(--ease-out);
   }
-  .gal-item:hover img {
-    transform: scale(1.06);
+  @media (hover: hover) {
+    .gal-item:hover img {
+      transform: scale(1.06);
+    }
   }
   .gal-zoom {
     position: absolute;
@@ -286,8 +292,16 @@ const gallery = [
     opacity: 0;
     transition: opacity var(--dur) var(--ease-out);
   }
-  .gal-item:hover .gal-zoom {
-    opacity: 1;
+  @media (hover: hover) {
+    .gal-item:hover .gal-zoom {
+      opacity: 1;
+    }
+  }
+  /* En táctil no hay hover: mostramos la lupa para señalar que amplía. */
+  @media (hover: none) {
+    .gal-zoom {
+      opacity: 1;
+    }
   }
 
   .testi-grid {
@@ -363,17 +377,17 @@ const gallery = [
 
   @media (min-width: 760px) {
     .cg-top {
-      grid-template-columns: 1.3fr 1fr;
+      grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
     }
     .cat-feature {
-      grid-template-columns: 0.8fr 1.2fr;
+      grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
       align-items: center;
     }
     .gallery {
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(3, minmax(0, 1fr));
     }
     .testi-grid {
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(3, minmax(0, 1fr));
     }
   }
 </style>
