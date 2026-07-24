@@ -294,6 +294,22 @@ const waIntl = whatsapps[0].intl;
       render();
     });
 
+    // ---- Pre-filtro por categoría desde la URL (?cat=herramientas) ----
+    const params = new URLSearchParams(window.location.search);
+    const catParam = params.get("cat");
+    if (catParam) {
+      const target = checks.find((c) => c.value === catParam);
+      if (target) {
+        target.checked = true;
+        // Al llegar desde otra página, enfocamos el grid ya filtrado.
+        requestAnimationFrame(() => {
+          document
+            .querySelector("[data-grid]")
+            ?.scrollIntoView({ behavior: "smooth", block: "start" });
+        });
+      }
+    }
+
     apply();
     render();
   })();

@@ -258,3 +258,13 @@ strong {
     transform: none;
   }
 }
+
+/* En móvil mostramos todo de inmediato: sin animación de aparición al hacer
+   scroll, para una carga rápida, fluida y sin espacios en blanco. */
+@media (max-width: 768px) {
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}

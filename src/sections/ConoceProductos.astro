@@ -8,10 +8,10 @@ import { sellos } from "../data/content";
 import Icon from "../components/Icon.astro";
 
 const cats = [
-  { img: imgHerr, title: "Herramientas", href: "/productos" },
-  { img: imgSeg, title: "Seguridad Industrial", href: "/productos" },
-  { img: imgIzaje, title: "Sistemas de Izaje", href: "/lineas" },
-  { img: imgMetal, title: "Ferretería y más", href: "/productos" },
+  { img: imgHerr, title: "Herramientas", href: "/productos?cat=herramientas" },
+  { img: imgSeg, title: "Seguridad Industrial", href: "/productos?cat=seguridad" },
+  { img: imgIzaje, title: "Sistemas de Izaje", href: "/lineas#lineas" },
+  { img: imgMetal, title: "Ferretería y más", href: "/productos?cat=ferreteria" },
 ];
 ---
 
@@ -170,13 +170,14 @@ const cats = [
     align-items: center;
     text-align: center;
     gap: 1rem;
-    padding: clamp(1.4rem, 3vw, 1.8rem);
+    padding: clamp(1rem, 3vw, 1.8rem);
   }
   .ccat-body h3 {
     color: #fff;
-    font-size: clamp(1.3rem, 1rem + 1vw, 1.6rem);
+    font-size: clamp(0.95rem, 0.75rem + 1vw, 1.6rem);
     text-transform: uppercase;
     letter-spacing: 0.02em;
+    overflow-wrap: anywhere;
   }
   .ccat-btn {
     display: inline-flex;
