@@ -51,6 +51,16 @@ a {
   text-decoration: none;
 }
 
+/* Feedback táctil: quitamos el flash gris nativo y dejamos que cada control
+   defina su propio estado :active para una respuesta al toque inmediata. */
+a,
+button,
+summary,
+[role="button"] {
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
 ul {
   list-style: none;
 }
