@@ -277,10 +277,16 @@ const { lineas, otras, intro } = importaciones;
   /* — Bloque de línea — */
   .imp-line {
     display: grid;
+    grid-template-columns: minmax(0, 1fr);
     gap: clamp(1.6rem, 4vw, 3rem);
     align-items: start;
     padding-block: clamp(2.5rem, 5vw, 4rem);
     scroll-margin-top: 90px;
+  }
+  .imp-media,
+  .imp-body,
+  .imp-wide {
+    min-width: 0;
   }
   .imp-line + .imp-line {
     border-top: 1px solid var(--line);
@@ -289,12 +295,14 @@ const { lineas, otras, intro } = importaciones;
   /* — Media (imágenes apiladas) — */
   .imp-media {
     display: grid;
+    grid-template-columns: minmax(0, 1fr);
     gap: 1rem;
     align-self: start;
     align-content: start;
   }
   .imp-img {
     width: 100%;
+    max-width: 100%;
     aspect-ratio: 4 / 3;
     object-fit: cover;
     border-radius: var(--radius-lg);
@@ -309,6 +317,7 @@ const { lineas, otras, intro } = importaciones;
   /* — Franja de ancho completo (galerías, tabla, stock, guías) — */
   .imp-wide {
     display: grid;
+    grid-template-columns: minmax(0, 1fr);
     gap: 1.3rem;
   }
   .imp-wide > * {
@@ -316,6 +325,9 @@ const { lineas, otras, intro } = importaciones;
   }
 
   /* — Cuerpo — */
+  .imp-body {
+    overflow-wrap: break-word;
+  }
   .imp-body h2 {
     font-size: clamp(1.4rem, 1.1rem + 1.3vw, 2rem);
     margin: 0.5rem 0 0.4rem;
@@ -420,11 +432,12 @@ const { lineas, otras, intro } = importaciones;
   }
   .imp-galeria-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 0.7rem;
   }
   .imp-gal-item {
     margin: 0;
+    min-width: 0;
     border: 1px solid var(--line);
     border-radius: var(--radius);
     overflow: hidden;
@@ -432,6 +445,7 @@ const { lineas, otras, intro } = importaciones;
   }
   .imp-gal-img {
     width: 100%;
+    max-width: 100%;
     aspect-ratio: 4 / 3;
     object-fit: cover;
     display: block;
@@ -445,7 +459,7 @@ const { lineas, otras, intro } = importaciones;
   }
   @media (min-width: 900px) {
     .imp-galeria-grid {
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: repeat(4, minmax(0, 1fr));
     }
   }
 
@@ -589,6 +603,7 @@ const { lineas, otras, intro } = importaciones;
   /* — Otras (equipos y aceros) — */
   .imp-otras {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;
     gap: 1.5rem;
