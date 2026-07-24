@@ -641,8 +641,18 @@ export const importaciones = {
       tagline: "Control y contención de derrames de aceites, químicos y líquidos",
       resumen:
         "Absorbentes de polipropileno melt-blown para limpiar y contener derrames: paños (pads), rollos, barreras (booms), salchichas (socks), almohadas (pillows) y kits. Se ofrecen en tres líneas según el líquido a absorber.",
-      img: "panos-oil",
-      img2: "panos-caja",
+      img: "panos-aceite",
+      img2: "panos-universal",
+      galeriaTitulo: "Tipos y formatos",
+      galeria: [
+        { img: "panos-aceite", cap: "Absorbentes de aceite (Oil) — solo hidrocarburos" },
+        { img: "panos-quimico", cap: "Absorbentes de químicos (Hazchem)" },
+        { img: "panos-universal", cap: "Absorbentes universales (multiuso)" },
+        { img: "panos-rollo", cap: "Rollo de paños X80 multiuso" },
+        { img: "panos-contenedor", cap: "Contenedor de aceites portátil" },
+        { img: "panos-kit", cap: "Kit de derrame para aceite y químico" },
+        { img: "panos-tapete", cap: "Tapetes absorbentes para cilindro" },
+      ],
       tipos: [
         {
           n: "Oil / Aceite",
