@@ -134,7 +134,7 @@ const isActive = (href: string) =>
   .hdr-logo {
     display: inline-flex;
     align-items: center;
-    gap: 0.7rem;
+    gap: 0.35rem;
   }
   .hdr-logo-badge {
     height: 56px;
@@ -146,13 +146,13 @@ const isActive = (href: string) =>
     transform: scale(1.04);
   }
   .hdr-logo-wordmark {
-    height: 22px;
+    height: 20px;
     width: auto;
-    display: none;
+    display: block;
   }
   @media (min-width: 560px) {
     .hdr-logo-wordmark {
-      display: block;
+      height: 22px;
     }
   }
   .hdr-nav {
