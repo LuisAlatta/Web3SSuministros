@@ -43,7 +43,7 @@ const isActive = (href: string) =>
 
     <div class="hdr-actions">
       <a
-        class="btn btn-amber btn-sm"
+        class="btn btn-amber btn-sm hdr-cta"
         href={waLink(whatsapps[0].intl)}
         target="_blank"
         rel="noopener"
@@ -79,7 +79,7 @@ const isActive = (href: string) =>
       rel="noopener"
       data-mlink
     >
-      Escribir por WhatsApp
+      Cotiza aquí
     </a>
   </div>
 </header>
@@ -195,6 +195,10 @@ const isActive = (href: string) =>
     align-items: center;
     gap: 0.5rem;
   }
+  /* En móvil el CTA vive dentro del menú desplegable; se oculta en la barra */
+  .hdr-cta {
+    display: none;
+  }
   .btn-sm {
     --btn-pad-y: 0.6rem;
     --btn-pad-x: 1.1rem;
@@ -239,6 +243,9 @@ const isActive = (href: string) =>
   @media (min-width: 1000px) {
     .hdr-nav {
       display: flex;
+    }
+    .hdr-cta {
+      display: inline-flex;
     }
     .hdr-burger,
     .hdr-mobile {
