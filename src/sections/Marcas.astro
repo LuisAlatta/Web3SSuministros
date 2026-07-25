@@ -17,14 +17,24 @@ import Icon from "../components/Icon.astro";
         </div>
         <p class="bekaert-claim">"{marcaPrincipal.claim}"</p>
         <p class="bekaert-desc">{marcaPrincipal.description}</p>
-        <a
-          class="btn btn-amber"
-          href={waLink(whatsapps[0].intl, "Hola 3S, quiero consultar por elementos de izaje Bekaert.")}
-          target="_blank"
-          rel="noopener"
-        >
-          Consultar productos Bekaert
-        </a>
+        <div class="bekaert-cta">
+          <a
+            class="btn btn-amber"
+            href={waLink(whatsapps[0].intl, "Hola 3S, quiero consultar por elementos de izaje Bekaert.")}
+            target="_blank"
+            rel="noopener"
+          >
+            Consultar productos Bekaert
+          </a>
+          <a
+            class="btn btn-ghost"
+            href="/catalogos/elementos-de-izaje-bekaert.pdf"
+            target="_blank"
+            rel="noopener"
+          >
+            <Icon name="doc" size={18} /> Ver catálogo PDF
+          </a>
+        </div>
       </div>
       <ul class="bekaert-points">
         {
@@ -133,6 +143,14 @@ import Icon from "../components/Icon.astro";
     color: var(--text-muted);
     max-width: 56ch;
     margin-bottom: 1.8rem;
+  }
+  .bekaert-cta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+  }
+  .bekaert-cta .btn-ghost :global(svg) {
+    margin-right: 0.4rem;
   }
   .bekaert-points {
     position: relative;
