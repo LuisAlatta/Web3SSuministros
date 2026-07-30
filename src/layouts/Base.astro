@@ -7,7 +7,7 @@ import "@fontsource/barlow/700.css";
 import "@fontsource/barlow/800.css";
 import "../styles/tokens.css";
 import "../styles/global.css";
-import { site, GA_MEASUREMENT_ID, whatsapps } from "../data/site";
+import { site, GA_MEASUREMENT_ID, whatsapps, socials } from "../data/site";
 
 interface Props {
   title?: string;
@@ -24,12 +24,15 @@ const jsonLd = {
   "@context": "https://schema.org",
   "@type": "Store",
   name: site.legalName,
+  alternateName: site.shortName,
   image: `${site.domain}/og-image.jpg`,
+  logo: `${site.domain}/favicon-512.png`,
   "@id": site.domain,
   url: site.domain,
   telephone: `+${whatsapps[0].intl}`,
   email: site.email,
   description: site.description,
+  priceRange: "$$",
   address: {
     "@type": "PostalAddress",
     streetAddress: site.address.line,
@@ -37,7 +40,25 @@ const jsonLd = {
     addressRegion: site.address.city,
     addressCountry: "PE",
   },
-  areaServed: "Perú",
+  areaServed: {
+    "@type": "Country",
+    name: "Perú",
+  },
+  openingHoursSpecification: [
+    {
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+      opens: "08:00",
+      closes: "18:00",
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: "Saturday",
+      opens: "08:00",
+      closes: "13:00",
+    },
+  ],
+  sameAs: socials.map((s) => s.url),
   taxID: site.ruc,
 };
 ---

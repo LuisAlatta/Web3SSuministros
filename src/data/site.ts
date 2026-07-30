@@ -11,7 +11,7 @@ export const site = {
   attention: "Sra. Naydu",
   email: "ventas@3s-suministros.com",
   emailAlt: "3S.Suministros24@gmail.com",
-  domain: "https://web3s-suministros.vercel.app",
+  domain: "https://3s-suministros.com",
   address: {
     line: "Villa Aviación Mz. F Lt. 5",
     district: "Cerro Colorado",

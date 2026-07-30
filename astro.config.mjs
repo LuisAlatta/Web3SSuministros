@@ -1,8 +1,8 @@
 import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 
-// URL pública del sitio (ajustar cuando se conecte el dominio 3s-suministros.com)
-const SITE = 'https://web3s-suministros.vercel.app';
+// URL pública del sitio (dominio propio ya conectado)
+const SITE = 'https://3s-suministros.com';
 
 export default defineConfig({
   site: SITE,
