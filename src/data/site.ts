@@ -45,6 +45,9 @@ export const socials = [
 /* Google Analytics — pegar el ID de medición (G-XXXXXXX) para activarlo */
 export const GA_MEASUREMENT_ID = "";
 
+/* Google Tag Manager — ID del contenedor (GTM-XXXXXXX). Dentro de GTM se conecta GA4. */
+export const GTM_ID = "GTM-59QQ8STH";
+
 export const nav = [
   { label: "Inicio", href: "/" },
   { label: "Nosotros", href: "/nosotros" },
