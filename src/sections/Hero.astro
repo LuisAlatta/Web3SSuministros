@@ -210,10 +210,10 @@ const slides = [
     z-index: -1;
     background: radial-gradient(
         ellipse 90% 80% at 50% 50%,
-        rgba(var(--ink-rgb), 0.48) 0%,
-        rgba(var(--ink-rgb), 0.6) 100%
+        rgba(var(--ink-rgb), 0.3) 0%,
+        rgba(var(--ink-rgb), 0.44) 100%
       ),
-      linear-gradient(0deg, rgba(var(--ink-rgb), 0.4), transparent 55%);
+      linear-gradient(0deg, rgba(var(--ink-rgb), 0.28), transparent 55%);
   }
 
   .hero-inner {
@@ -230,11 +230,13 @@ const slides = [
     font-family: var(--font-display);
     font-weight: 700;
     line-height: 1.02;
+    text-shadow: 0 2px 16px rgba(0, 0, 0, 0.55), 0 1px 4px rgba(0, 0, 0, 0.6);
   }
   .hero .lead {
     color: var(--text-muted);
     max-width: 60ch;
     margin-inline: auto;
+    text-shadow: 0 1px 10px rgba(0, 0, 0, 0.55);
   }
   .hero-cta {
     display: flex;

@@ -48,8 +48,8 @@ const { title, subtitle, eyebrow, image, pos = "center 40%" } = Astro.props;
     inset: 0;
     background: linear-gradient(
       180deg,
-      rgba(var(--ink-rgb), 0.6),
-      rgba(var(--ink-rgb), 0.5)
+      rgba(var(--ink-rgb), 0.4),
+      rgba(var(--ink-rgb), 0.32)
     );
   }
   .phero-inner {
@@ -57,12 +57,14 @@ const { title, subtitle, eyebrow, image, pos = "center 40%" } = Astro.props;
   }
   .phero-inner .eyebrow {
     margin-bottom: 0.6rem;
+    text-shadow: 0 1px 8px rgba(0, 0, 0, 0.5);
   }
   .phero-inner h1 {
     font-size: clamp(1.9rem, 1.3rem + 3.2vw, 3.2rem);
     text-transform: uppercase;
     letter-spacing: 0.01em;
     text-wrap: balance;
+    text-shadow: 0 2px 12px rgba(0, 0, 0, 0.55), 0 1px 3px rgba(0, 0, 0, 0.6);
   }
   .phero-sub {
     margin-top: 0.7rem;
@@ -70,5 +72,6 @@ const { title, subtitle, eyebrow, image, pos = "center 40%" } = Astro.props;
     font-size: clamp(0.95rem, 0.9rem + 0.3vw, 1.1rem);
     max-width: 60ch;
     margin-inline: auto;
+    text-shadow: 0 1px 8px rgba(0, 0, 0, 0.55);
   }
 </style>
