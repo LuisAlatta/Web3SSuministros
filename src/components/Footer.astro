@@ -1,4 +1,6 @@
 ---
+import { Image } from "astro:assets";
+import wordmark from "../assets/logo/logo3s-horizontal.png";
 import { site, nav, navExtra, whatsapps, waLink, socials } from "../data/site";
 import { productosCategorias } from "../data/content";
 import Icon from "../components/Icon.astro";
@@ -12,7 +14,10 @@ const hasSocial = socials.some((s) => s.url !== "#");
   <div class="ft-banner">
     <div class="ft-hazard" aria-hidden="true"></div>
     <div class="container ft-banner-inner">
-      <p class="ft-banner-title">Suministros Industriales</p>
+      <div class="ft-banner-head">
+        <span class="ft-kicker">Catálogo</span>
+        <p class="ft-banner-title">Suministros Industriales</p>
+      </div>
       <ul class="ft-cats">
         {
           productosCategorias.map((c) => (
@@ -30,7 +35,26 @@ const hasSocial = socials.some((s) => s.url !== "#");
     </div>
   </div>
 
+  <!-- Cuerpo del pie -->
   <div class="container ft-inner">
+    <div class="ft-brand">
+      <a href="/" class="ft-logo" aria-label={`${site.shortName} — Inicio`}>
+        <Image src={wordmark} alt={site.shortName} width={420} densities={[1.5, 2]} />
+      </a>
+      <p class="ft-tagline">{site.tagline}.</p>
+      {
+        hasSocial && (
+          <div class="ft-social">
+            {socials.map((s) => (
+              <a href={s.url} target="_blank" rel="noopener" aria-label={s.label}>
+                <Icon name={s.icon} size={18} />
+              </a>
+            ))}
+          </div>
+        )
+      }
+    </div>
+
     <nav class="ft-col" aria-label="Navegación del pie">
       <h4>Navegación</h4>
       <ul class="ft-navlist">
@@ -39,111 +63,147 @@ const hasSocial = socials.some((s) => s.url !== "#");
       </ul>
     </nav>
 
-    <div class="ft-col">
+    <div class="ft-col ft-contact">
       <h4>Contacto</h4>
       <ul>
-        <li><a href={`mailto:${site.email}`}>{site.email}</a></li>
+        <li>
+          <a href={`mailto:${site.email}`}>
+            <Icon name="mail" size={17} /><span>{site.email}</span>
+          </a>
+        </li>
         {
           whatsapps.map((w) => (
             <li>
               <a href={waLink(w.intl)} target="_blank" rel="noopener">
-                {w.label}: {w.display}
+                <Icon name="whatsapp" size={17} />
+                <span>{w.label}: {w.display}</span>
               </a>
             </li>
           ))
         }
-        <li class="ft-addr">{site.address.full}</li>
+        <li class="ft-addr">
+          <Icon name="pin" size={17} /><span>{site.address.full}</span>
+        </li>
+        <li class="ft-hours">
+          <Icon name="star" size={17} /><span>{site.hours}</span>
+        </li>
       </ul>
     </div>
-
-    {
-      hasSocial && (
-        <div class="ft-col">
-          <h4>Síguenos</h4>
-          <div class="ft-social">
-            {socials.map((s) => (
-              <a href={s.url} target="_blank" rel="noopener" aria-label={s.label}>
-                <Icon name={s.icon} size={18} />
-              </a>
-            ))}
-          </div>
-        </div>
-      )
-    }
   </div>
 
-  <div class="container ft-bottom">
-    <p>© {year} {site.legalName} · RUC {site.ruc}</p>
+  <div class="ft-bottom">
+    <div class="container ft-bottom-inner">
+      <p>© {year} {site.legalName} · RUC {site.ruc}</p>
+      <p class="ft-made">Arequipa, Perú</p>
+    </div>
   </div>
 </footer>
 
 <style>
   .ft {
+    position: relative;
     background: var(--ink-2);
-    border-top: 1px solid var(--line);
+    border-top: 2px solid var(--amber);
   }
 
   /* — Banda industrial superior — */
   .ft-banner {
     position: relative;
-    background: linear-gradient(160deg, #12161d, #05070a 70%);
+    background: linear-gradient(160deg, #12161d, #05070a 72%);
     border-bottom: 1px solid var(--line);
     overflow: hidden;
+    isolation: isolate;
+  }
+  .ft-banner::after {
+    /* halo atmosférico ámbar */
+    content: "";
+    position: absolute;
+    top: -40%;
+    right: -10%;
+    width: min(560px, 70%);
+    aspect-ratio: 1;
+    background: radial-gradient(
+      circle,
+      rgba(var(--amber-rgb), 0.14),
+      transparent 62%
+    );
+    z-index: -1;
+    pointer-events: none;
   }
   .ft-hazard {
     position: absolute;
     inset: 0 auto 0 0;
-    width: clamp(14px, 2vw, 22px);
+    width: clamp(12px, 1.6vw, 18px);
     background: var(--hazard);
-    opacity: 0.9;
+    opacity: 0.92;
   }
   .ft-banner-inner {
-    padding-block: clamp(1.8rem, 4vw, 2.8rem);
-    padding-left: clamp(2.2rem, 5vw, 3.4rem);
+    padding-block: clamp(2rem, 4.5vw, 3rem);
+    padding-left: clamp(2rem, 5vw, 3.4rem);
+  }
+  .ft-banner-head {
+    margin-bottom: clamp(1.5rem, 3vw, 2.2rem);
+  }
+  .ft-kicker {
+    display: inline-block;
+    font-family: var(--font-display);
+    font-size: 0.72rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-wider);
+    color: var(--amber);
+    margin-bottom: 0.55rem;
   }
   .ft-banner-title {
     font-family: var(--font-display);
     font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 0.06em;
-    line-height: 1.05;
-    font-size: clamp(1.5rem, 1rem + 2.6vw, 2.8rem);
+    letter-spacing: 0.04em;
+    line-height: 1.02;
+    font-size: clamp(1.55rem, 1rem + 2.8vw, 3rem);
     color: #fff;
-    text-shadow: 0 2px 18px rgba(0, 0, 0, 0.5);
-    margin-bottom: clamp(1.4rem, 3vw, 2.1rem);
+    text-shadow: 0 2px 22px rgba(0, 0, 0, 0.55);
   }
   .ft-cats {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: clamp(1.1rem, 3vw, 1.8rem) 0.6rem;
+    gap: clamp(1.1rem, 3vw, 1.6rem) 0.6rem;
   }
   .ft-cats a {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 0.6rem;
+    gap: 0.7rem;
     text-align: center;
     color: var(--text-dim);
     transition: color var(--dur) var(--ease-out);
   }
   .ft-cat-badge {
+    position: relative;
     display: grid;
     place-items: center;
-    width: clamp(58px, 12vw, 76px);
-    height: clamp(58px, 12vw, 76px);
+    width: clamp(60px, 12vw, 78px);
+    height: clamp(60px, 12vw, 78px);
     border-radius: 50%;
     border: 1.5px solid var(--line-strong);
+    background: linear-gradient(
+      160deg,
+      rgba(255, 255, 255, 0.05),
+      rgba(255, 255, 255, 0)
+    );
     color: #fff;
     transition: border-color var(--dur) var(--ease-out),
       background var(--dur) var(--ease-out),
       transform var(--dur) var(--ease-out),
-      color var(--dur) var(--ease-out);
+      color var(--dur) var(--ease-out),
+      box-shadow var(--dur) var(--ease-out);
   }
   .ft-cat-label {
     font-family: var(--font-display);
     font-size: 0.72rem;
+    font-weight: 500;
     text-transform: uppercase;
-    letter-spacing: 0.06em;
+    letter-spacing: 0.05em;
     line-height: 1.25;
     max-width: 12ch;
   }
@@ -151,7 +211,8 @@ const hasSocial = socials.some((s) => s.url !== "#");
     border-color: var(--amber);
     background: var(--amber-tint);
     color: var(--amber);
-    transform: translateY(-3px);
+    transform: translateY(-4px);
+    box-shadow: 0 10px 24px -12px rgba(var(--amber-rgb), 0.6);
   }
   .ft-cats a:hover {
     color: #fff;
@@ -161,44 +222,74 @@ const hasSocial = socials.some((s) => s.url !== "#");
     box-shadow: 0 0 0 3px var(--amber-tint);
     border-color: var(--amber);
   }
+
+  /* — Cuerpo — */
   .ft-inner {
     display: grid;
-    gap: clamp(1.4rem, 3vw, 2rem);
+    gap: clamp(2rem, 4vw, 3rem);
     grid-template-columns: 1fr;
-    padding-block: clamp(1.6rem, 3vw, 2.2rem) 1.2rem;
+    padding-block: clamp(2.4rem, 4vw, 3.4rem) clamp(1.6rem, 3vw, 2.4rem);
+  }
+
+  /* Marca */
+  .ft-brand {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.1rem;
+  }
+  .ft-logo :global(img) {
+    height: clamp(40px, 6vw, 52px);
+    width: auto;
+    /* el wordmark es tinta oscura; lo volvemos blanco para el fondo negro */
+    filter: brightness(0) invert(1);
+  }
+  .ft-tagline {
+    color: var(--text-dim);
+    font-size: 0.95rem;
+    line-height: 1.55;
+    max-width: 34ch;
   }
   .ft-social {
     display: flex;
     gap: 0.6rem;
+    flex-wrap: wrap;
   }
   .ft-social a {
-    width: 44px;
-    height: 44px;
+    width: 42px;
+    height: 42px;
     display: grid;
     place-items: center;
-    border-radius: var(--radius);
+    border-radius: 50%;
     border: 1px solid var(--line-strong);
     color: var(--text-muted);
     transition: color var(--dur) var(--ease-out),
       border-color var(--dur) var(--ease-out),
-      background var(--dur) var(--ease-out);
+      background var(--dur) var(--ease-out),
+      transform var(--dur) var(--ease-out);
   }
   .ft-social a:hover {
-    background: var(--amber-tint);
+    color: var(--on-amber);
+    background: var(--amber);
+    border-color: var(--amber);
+    transform: translateY(-3px);
   }
-  .ft-social a:hover {
-    color: var(--amber);
-    border-color: var(--amber-line);
-  }
+
+  /* Columnas */
   .ft-col h4 {
-    font-size: 0.92rem;
-    letter-spacing: 0.06em;
+    font-family: var(--font-display);
+    font-size: 0.78rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-wide);
     color: var(--text);
-    margin-bottom: 0.9rem;
+    margin-bottom: 1.1rem;
+    padding-bottom: 0.6rem;
+    border-bottom: 1px solid var(--line);
   }
   .ft-col ul {
     display: grid;
-    gap: 0.55rem;
+    gap: 0.7rem;
   }
   .ft-navlist {
     grid-template-columns: 1fr 1fr;
@@ -209,19 +300,83 @@ const hasSocial = socials.some((s) => s.url !== "#");
     font-size: 0.92rem;
     transition: color var(--dur-fast) var(--ease-out);
   }
-  .ft-col a:hover {
+  .ft-navlist a {
+    position: relative;
+    display: inline-block;
+    padding-left: 0;
+    transition: color var(--dur-fast) var(--ease-out),
+      padding-left var(--dur) var(--ease-out);
+  }
+  .ft-navlist a:hover {
+    color: var(--amber);
+    padding-left: 0.5rem;
+  }
+  .ft-navlist a::before {
+    content: "›";
+    position: absolute;
+    left: -0.2rem;
+    opacity: 0;
+    color: var(--amber);
+    transition: opacity var(--dur) var(--ease-out);
+  }
+  .ft-navlist a:hover::before {
+    opacity: 1;
+  }
+
+  /* Contacto con íconos */
+  .ft-contact li {
+    display: block;
+  }
+  .ft-contact a,
+  .ft-contact .ft-addr,
+  .ft-contact .ft-hours {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.6rem;
+    color: var(--text-dim);
+    font-size: 0.92rem;
+    line-height: 1.4;
+  }
+  .ft-contact :global(svg) {
+    flex-shrink: 0;
+    margin-top: 0.1rem;
     color: var(--amber);
   }
-  .ft-addr {
-    color: var(--text-dim);
-    font-size: 0.88rem;
+  .ft-contact a:hover {
+    color: var(--amber);
+  }
+  .ft-addr span,
+  .ft-hours span {
     max-width: 30ch;
   }
+
+  /* — Barra inferior — */
   .ft-bottom {
-    text-align: center;
-    padding-block: 1rem 1.3rem;
+    border-top: 1px solid var(--line);
+  }
+  .ft-bottom-inner {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.6rem;
+    padding-block: 1.1rem 1.4rem;
     color: var(--text-dim);
-    font-size: 0.84rem;
+    font-size: 0.82rem;
+  }
+  .ft-made {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    letter-spacing: 0.04em;
+  }
+  .ft-made::before {
+    content: "";
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--amber);
+    box-shadow: 0 0 8px rgba(var(--amber-rgb), 0.8);
   }
 
   @media (min-width: 560px) {
@@ -231,8 +386,9 @@ const hasSocial = socials.some((s) => s.url !== "#");
   }
   @media (min-width: 760px) {
     .ft-inner {
-      grid-template-columns: 1.6fr 1.4fr 0.8fr;
+      grid-template-columns: 1.5fr 1fr 1.2fr;
       align-items: start;
+      gap: clamp(2rem, 5vw, 4rem);
     }
     .ft-cats {
       grid-template-columns: repeat(7, 1fr);
