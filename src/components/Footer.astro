@@ -1,5 +1,6 @@
 ---
 import { site, nav, navExtra, whatsapps, waLink, socials } from "../data/site";
+import { productosCategorias } from "../data/content";
 import Icon from "../components/Icon.astro";
 
 const year = new Date().getFullYear();
@@ -7,6 +8,28 @@ const hasSocial = socials.some((s) => s.url !== "#");
 ---
 
 <footer class="ft on-dark">
+  <!-- Banda industrial: título + accesos por categoría -->
+  <div class="ft-banner">
+    <div class="ft-hazard" aria-hidden="true"></div>
+    <div class="container ft-banner-inner">
+      <p class="ft-banner-title">Suministros Industriales</p>
+      <ul class="ft-cats">
+        {
+          productosCategorias.map((c) => (
+            <li>
+              <a href={`/productos?cat=${c.key}`} aria-label={c.label}>
+                <span class="ft-cat-badge">
+                  <Icon name={c.icon} size={26} />
+                </span>
+                <span class="ft-cat-label">{c.label}</span>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </div>
+
   <div class="container ft-inner">
     <nav class="ft-col" aria-label="Navegación del pie">
       <h4>Navegación</h4>
@@ -58,6 +81,85 @@ const hasSocial = socials.some((s) => s.url !== "#");
   .ft {
     background: var(--ink-2);
     border-top: 1px solid var(--line);
+  }
+
+  /* — Banda industrial superior — */
+  .ft-banner {
+    position: relative;
+    background: linear-gradient(160deg, #12161d, #05070a 70%);
+    border-bottom: 1px solid var(--line);
+    overflow: hidden;
+  }
+  .ft-hazard {
+    position: absolute;
+    inset: 0 auto 0 0;
+    width: clamp(14px, 2vw, 22px);
+    background: var(--hazard);
+    opacity: 0.9;
+  }
+  .ft-banner-inner {
+    padding-block: clamp(1.8rem, 4vw, 2.8rem);
+    padding-left: clamp(2.2rem, 5vw, 3.4rem);
+  }
+  .ft-banner-title {
+    font-family: var(--font-display);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    line-height: 1.05;
+    font-size: clamp(1.5rem, 1rem + 2.6vw, 2.8rem);
+    color: #fff;
+    text-shadow: 0 2px 18px rgba(0, 0, 0, 0.5);
+    margin-bottom: clamp(1.4rem, 3vw, 2.1rem);
+  }
+  .ft-cats {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: clamp(1.1rem, 3vw, 1.8rem) 0.6rem;
+  }
+  .ft-cats a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.6rem;
+    text-align: center;
+    color: var(--text-dim);
+    transition: color var(--dur) var(--ease-out);
+  }
+  .ft-cat-badge {
+    display: grid;
+    place-items: center;
+    width: clamp(58px, 12vw, 76px);
+    height: clamp(58px, 12vw, 76px);
+    border-radius: 50%;
+    border: 1.5px solid var(--line-strong);
+    color: #fff;
+    transition: border-color var(--dur) var(--ease-out),
+      background var(--dur) var(--ease-out),
+      transform var(--dur) var(--ease-out),
+      color var(--dur) var(--ease-out);
+  }
+  .ft-cat-label {
+    font-family: var(--font-display);
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    line-height: 1.25;
+    max-width: 12ch;
+  }
+  .ft-cats a:hover .ft-cat-badge {
+    border-color: var(--amber);
+    background: var(--amber-tint);
+    color: var(--amber);
+    transform: translateY(-3px);
+  }
+  .ft-cats a:hover {
+    color: #fff;
+  }
+  .ft-cats a:focus-visible .ft-cat-badge {
+    outline: none;
+    box-shadow: 0 0 0 3px var(--amber-tint);
+    border-color: var(--amber);
   }
   .ft-inner {
     display: grid;
@@ -122,10 +224,19 @@ const hasSocial = socials.some((s) => s.url !== "#");
     font-size: 0.84rem;
   }
 
+  @media (min-width: 560px) {
+    .ft-cats {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
   @media (min-width: 760px) {
     .ft-inner {
       grid-template-columns: 1.6fr 1.4fr 0.8fr;
       align-items: start;
+    }
+    .ft-cats {
+      grid-template-columns: repeat(7, 1fr);
+      gap: 0.8rem;
     }
   }
 </style>

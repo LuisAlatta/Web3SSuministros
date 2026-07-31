@@ -39,6 +39,8 @@ export function waLink(intl: string, message: string = defaultWaMessage) {
 /* Redes sociales */
 export const socials = [
   { label: "Facebook", url: "https://www.facebook.com/share/18r83L3S6p/", icon: "facebook" },
+  { label: "Instagram", url: "https://www.instagram.com/3s.suministros", icon: "instagram" },
+  { label: "LinkedIn", url: "https://www.linkedin.com/in/3s-suministros-990a66369", icon: "linkedin" },
   { label: "TikTok", url: "https://www.tiktok.com/@3s.suministros.y2", icon: "tiktok" },
 ] as const;
 
