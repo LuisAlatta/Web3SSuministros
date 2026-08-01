@@ -1,7 +1,5 @@
 ---
-import { Image } from "astro:assets";
-import wordmark from "../assets/logo/logo3s-horizontal.png";
-import { site, nav, navExtra, whatsapps, waLink, socials } from "../data/site";
+import { site, whatsapps, waLink, socials } from "../data/site";
 import { productosCategorias } from "../data/content";
 import Icon from "../components/Icon.astro";
 
@@ -10,37 +8,13 @@ const hasSocial = socials.some((s) => s.url !== "#");
 ---
 
 <footer class="ft on-dark">
-  <!-- Banda industrial: título + accesos por categoría -->
-  <div class="ft-banner">
-    <div class="ft-hazard" aria-hidden="true"></div>
-    <div class="container ft-banner-inner">
-      <div class="ft-banner-head">
-        <span class="ft-kicker">Catálogo</span>
-        <p class="ft-banner-title">Suministros Industriales</p>
-      </div>
-      <ul class="ft-cats">
-        {
-          productosCategorias.map((c) => (
-            <li>
-              <a href={`/productos?cat=${c.key}`} aria-label={c.label}>
-                <span class="ft-cat-badge">
-                  <Icon name={c.icon} size={26} />
-                </span>
-                <span class="ft-cat-label">{c.label}</span>
-              </a>
-            </li>
-          ))
-        }
-      </ul>
-    </div>
-  </div>
+  <div class="ft-hazard" aria-hidden="true"></div>
 
-  <!-- Cuerpo del pie -->
   <div class="container ft-inner">
+    <!-- Identidad -->
     <div class="ft-brand">
-      <a href="/" class="ft-logo" aria-label={`${site.shortName} — Inicio`}>
-        <Image src={wordmark} alt={site.shortName} width={420} densities={[1.5, 2]} />
-      </a>
+      <span class="ft-kicker">Catálogo</span>
+      <p class="ft-banner-title">Suministros Industriales</p>
       <p class="ft-tagline">{site.tagline}.</p>
       {
         hasSocial && (
@@ -55,17 +29,31 @@ const hasSocial = socials.some((s) => s.url !== "#");
       }
     </div>
 
-    <nav class="ft-col" aria-label="Navegación del pie">
-      <h4>Navegación</h4>
-      <ul class="ft-navlist">
-        {nav.map((l) => <li><a href={l.href}>{l.label}</a></li>)}
-        {navExtra.map((l) => <li><a href={l.href}>{l.label}</a></li>)}
-      </ul>
-    </nav>
+    <!-- Accesos por categoría -->
+    <ul class="ft-cats">
+      {
+        productosCategorias.map((c) => (
+          <li>
+            <a href={`/productos?cat=${c.key}`} aria-label={c.label}>
+              <span class="ft-cat-badge">
+                <Icon name={c.icon} size={26} />
+              </span>
+              <span class="ft-cat-label">{c.label}</span>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
 
-    <div class="ft-col ft-contact">
+    <!-- Contacto -->
+    <div class="ft-contact">
       <h4>Contacto</h4>
       <ul>
+        <li>
+          <a href={site.website.url} target="_blank" rel="noopener">
+            <Icon name="globe" size={17} /><span>{site.website.display}</span>
+          </a>
+        </li>
         <li>
           <a href={`mailto:${site.email}`}>
             <Icon name="mail" size={17} /><span>{site.email}</span>
@@ -102,25 +90,18 @@ const hasSocial = socials.some((s) => s.url !== "#");
 <style>
   .ft {
     position: relative;
-    background: var(--ink-2);
-    border-top: 2px solid var(--amber);
-  }
-
-  /* — Banda industrial superior — */
-  .ft-banner {
-    position: relative;
     background: linear-gradient(160deg, #12161d, #05070a 72%);
-    border-bottom: 1px solid var(--line);
+    border-top: 2px solid var(--amber);
     overflow: hidden;
     isolation: isolate;
   }
-  .ft-banner::after {
+  .ft::after {
     /* halo atmosférico ámbar */
     content: "";
     position: absolute;
-    top: -40%;
-    right: -10%;
-    width: min(560px, 70%);
+    top: -30%;
+    right: -8%;
+    width: min(620px, 60%);
     aspect-ratio: 1;
     background: radial-gradient(
       circle,
@@ -136,14 +117,18 @@ const hasSocial = socials.some((s) => s.url !== "#");
     width: clamp(12px, 1.6vw, 18px);
     background: var(--hazard);
     opacity: 0.92;
+    z-index: 1;
   }
-  .ft-banner-inner {
-    padding-block: clamp(2rem, 4.5vw, 3rem);
+
+  /* — Banda principal: identidad · categorías · contacto — */
+  .ft-inner {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: clamp(2rem, 4vw, 3rem);
+    padding-block: clamp(2.4rem, 4.5vw, 3.4rem);
     padding-left: clamp(2rem, 5vw, 3.4rem);
   }
-  .ft-banner-head {
-    margin-bottom: clamp(1.5rem, 3vw, 2.2rem);
-  }
+
   .ft-kicker {
     display: inline-block;
     font-family: var(--font-display);
@@ -223,14 +208,6 @@ const hasSocial = socials.some((s) => s.url !== "#");
     border-color: var(--amber);
   }
 
-  /* — Cuerpo — */
-  .ft-inner {
-    display: grid;
-    gap: clamp(2rem, 4vw, 3rem);
-    grid-template-columns: 1fr;
-    padding-block: clamp(2.4rem, 4vw, 3.4rem) clamp(1.6rem, 3vw, 2.4rem);
-  }
-
   /* Marca */
   .ft-brand {
     display: flex;
@@ -238,11 +215,11 @@ const hasSocial = socials.some((s) => s.url !== "#");
     align-items: flex-start;
     gap: 1.1rem;
   }
-  .ft-logo :global(img) {
-    height: clamp(40px, 6vw, 52px);
-    width: auto;
-    /* el wordmark es tinta oscura; lo volvemos blanco para el fondo negro */
-    filter: brightness(0) invert(1);
+  .ft-brand .ft-kicker {
+    margin-bottom: 0;
+  }
+  .ft-brand .ft-banner-title {
+    margin-bottom: 0.2rem;
   }
   .ft-tagline {
     color: var(--text-dim);
@@ -275,8 +252,8 @@ const hasSocial = socials.some((s) => s.url !== "#");
     transform: translateY(-3px);
   }
 
-  /* Columnas */
-  .ft-col h4 {
+  /* Contacto con íconos */
+  .ft-contact h4 {
     font-family: var(--font-display);
     font-size: 0.78rem;
     font-weight: 600;
@@ -287,43 +264,10 @@ const hasSocial = socials.some((s) => s.url !== "#");
     padding-bottom: 0.6rem;
     border-bottom: 1px solid var(--line);
   }
-  .ft-col ul {
+  .ft-contact ul {
     display: grid;
     gap: 0.7rem;
   }
-  .ft-navlist {
-    grid-template-columns: 1fr 1fr;
-    column-gap: 1.4rem;
-  }
-  .ft-col a {
-    color: var(--text-dim);
-    font-size: 0.92rem;
-    transition: color var(--dur-fast) var(--ease-out);
-  }
-  .ft-navlist a {
-    position: relative;
-    display: inline-block;
-    padding-left: 0;
-    transition: color var(--dur-fast) var(--ease-out),
-      padding-left var(--dur) var(--ease-out);
-  }
-  .ft-navlist a:hover {
-    color: var(--amber);
-    padding-left: 0.5rem;
-  }
-  .ft-navlist a::before {
-    content: "›";
-    position: absolute;
-    left: -0.2rem;
-    opacity: 0;
-    color: var(--amber);
-    transition: opacity var(--dur) var(--ease-out);
-  }
-  .ft-navlist a:hover::before {
-    opacity: 1;
-  }
-
-  /* Contacto con íconos */
   .ft-contact li {
     display: block;
   }
@@ -384,15 +328,22 @@ const hasSocial = socials.some((s) => s.url !== "#");
       grid-template-columns: repeat(4, 1fr);
     }
   }
-  @media (min-width: 760px) {
+  @media (min-width: 960px) {
     .ft-inner {
-      grid-template-columns: 1.5fr 1fr 1.2fr;
-      align-items: start;
-      gap: clamp(2rem, 5vw, 4rem);
+      grid-template-columns: minmax(0, 15rem) 1fr minmax(0, 16rem);
+      align-items: center;
+      gap: clamp(2rem, 4vw, 3.5rem);
     }
     .ft-cats {
       grid-template-columns: repeat(7, 1fr);
-      gap: 0.8rem;
+      gap: clamp(0.5rem, 1vw, 0.9rem);
+    }
+    .ft-cat-badge {
+      width: clamp(56px, 4.6vw, 72px);
+      height: clamp(56px, 4.6vw, 72px);
+    }
+    .ft-contact {
+      justify-self: end;
     }
   }
 </style>

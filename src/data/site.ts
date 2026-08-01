@@ -12,6 +12,7 @@ export const site = {
   email: "ventas@3s-suministros.com",
   emailAlt: "3S.Suministros24@gmail.com",
   domain: "https://3s-suministros.com",
+  website: { display: "www.3s-suministros.com", url: "https://www.3s-suministros.com" },
   address: {
     line: "Villa Aviación Mz. F Lt. 5",
     district: "Cerro Colorado",
