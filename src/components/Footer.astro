@@ -58,6 +58,11 @@ const hasSocial = socials.some((s) => s.url !== "#");
       <h4>Contacto</h4>
       <ul>
         <li>
+          <a href={site.website.url} target="_blank" rel="noopener">
+            <Icon name="globe" size={17} /><span>{site.website.display}</span>
+          </a>
+        </li>
+        <li>
           <a href={`mailto:${site.email}`}>
             <Icon name="mail" size={17} /><span>{site.email}</span>
           </a>
@@ -84,10 +89,7 @@ const hasSocial = socials.some((s) => s.url !== "#");
 
   <div class="ft-bottom">
     <div class="container ft-bottom-inner">
-      <p>
-        © {year} {site.legalName} · RUC {site.ruc} ·{" "}
-        <a class="ft-web" href={site.website.url} target="_blank" rel="noopener">{site.website.display}</a>
-      </p>
+      <p>© {year} {site.legalName} · RUC {site.ruc}</p>
     </div>
   </div>
 </footer>
