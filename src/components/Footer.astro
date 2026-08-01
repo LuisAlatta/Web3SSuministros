@@ -88,7 +88,6 @@ const hasSocial = socials.some((s) => s.url !== "#");
         © {year} {site.legalName} · RUC {site.ruc} ·{" "}
         <a class="ft-web" href={site.website.url} target="_blank" rel="noopener">{site.website.display}</a>
       </p>
-      <p class="ft-made">Arequipa, Perú</p>
     </div>
   </div>
 </footer>
@@ -314,7 +313,8 @@ const hasSocial = socials.some((s) => s.url !== "#");
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
+    text-align: center;
     gap: 0.6rem;
     padding-block: 1.1rem 1.4rem;
     color: var(--text-dim);
@@ -327,21 +327,6 @@ const hasSocial = socials.some((s) => s.url !== "#");
   .ft-web:hover {
     color: #fff;
   }
-  .ft-made {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.4rem;
-    letter-spacing: 0.04em;
-  }
-  .ft-made::before {
-    content: "";
-    width: 7px;
-    height: 7px;
-    border-radius: 50%;
-    background: var(--amber);
-    box-shadow: 0 0 8px rgba(var(--amber-rgb), 0.8);
-  }
-
   @media (min-width: 560px) {
     .ft-cats {
       grid-template-columns: repeat(4, 1fr);
