@@ -339,7 +339,7 @@ const hasSocial = socials.some((s) => s.url !== "#");
   }
   @media (min-width: 1024px) {
     .ft-inner {
-      grid-template-columns: 1fr minmax(0, 13.5rem);
+      grid-template-columns: 1fr minmax(0, 27rem);
       align-items: stretch;
       gap: clamp(1.5rem, 3vw, 3rem);
     }
@@ -358,11 +358,11 @@ const hasSocial = socials.some((s) => s.url !== "#");
     }
     /* Contacto: columna final que abarca título + fila de categorías */
     .ft-contact {
-      justify-self: end;
+      justify-self: stretch;
       align-self: start;
       padding-left: clamp(1.5rem, 2.5vw, 2.5rem);
       border-left: 1px solid var(--line);
-      min-width: 13.5rem;
+      min-width: 18rem;
     }
   }
 </style>
