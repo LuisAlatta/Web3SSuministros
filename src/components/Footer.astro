@@ -50,11 +50,6 @@ const hasSocial = socials.some((s) => s.url !== "#");
       <h4>Contacto</h4>
       <ul>
         <li>
-          <a href={site.website.url} target="_blank" rel="noopener">
-            <Icon name="globe" size={17} /><span>{site.website.display}</span>
-          </a>
-        </li>
-        <li>
           <a href={`mailto:${site.email}`}>
             <Icon name="mail" size={17} /><span>{site.email}</span>
           </a>
@@ -81,7 +76,10 @@ const hasSocial = socials.some((s) => s.url !== "#");
 
   <div class="ft-bottom">
     <div class="container ft-bottom-inner">
-      <p>© {year} {site.legalName} · RUC {site.ruc}</p>
+      <p>
+        © {year} {site.legalName} · RUC {site.ruc} ·{" "}
+        <a class="ft-web" href={site.website.url} target="_blank" rel="noopener">{site.website.display}</a>
+      </p>
       <p class="ft-made">Arequipa, Perú</p>
     </div>
   </div>
@@ -145,7 +143,7 @@ const hasSocial = socials.some((s) => s.url !== "#");
     text-transform: uppercase;
     letter-spacing: 0.04em;
     line-height: 1.02;
-    font-size: clamp(1.55rem, 1rem + 2.8vw, 3rem);
+    font-size: clamp(1.5rem, 1rem + 1.6vw, 2.1rem);
     color: #fff;
     text-shadow: 0 2px 22px rgba(0, 0, 0, 0.55);
   }
@@ -185,12 +183,12 @@ const hasSocial = socials.some((s) => s.url !== "#");
   }
   .ft-cat-label {
     font-family: var(--font-display);
-    font-size: 0.72rem;
+    font-size: 0.66rem;
     font-weight: 500;
     text-transform: uppercase;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.03em;
     line-height: 1.25;
-    max-width: 12ch;
+    max-width: 9ch;
   }
   .ft-cats a:hover .ft-cat-badge {
     border-color: var(--amber);
@@ -308,6 +306,13 @@ const hasSocial = socials.some((s) => s.url !== "#");
     color: var(--text-dim);
     font-size: 0.82rem;
   }
+  .ft-web {
+    color: var(--amber);
+    transition: color var(--dur-fast) var(--ease-out);
+  }
+  .ft-web:hover {
+    color: #fff;
+  }
   .ft-made {
     display: inline-flex;
     align-items: center;
@@ -328,19 +333,19 @@ const hasSocial = socials.some((s) => s.url !== "#");
       grid-template-columns: repeat(4, 1fr);
     }
   }
-  @media (min-width: 960px) {
+  @media (min-width: 1140px) {
     .ft-inner {
-      grid-template-columns: minmax(0, 15rem) 1fr minmax(0, 16rem);
+      grid-template-columns: auto 1fr minmax(0, 13.5rem);
       align-items: center;
-      gap: clamp(2rem, 4vw, 3.5rem);
+      gap: clamp(1.5rem, 3vw, 2.75rem);
     }
     .ft-cats {
       grid-template-columns: repeat(7, 1fr);
-      gap: clamp(0.5rem, 1vw, 0.9rem);
+      gap: clamp(0.35rem, 0.7vw, 0.7rem);
     }
     .ft-cat-badge {
-      width: clamp(56px, 4.6vw, 72px);
-      height: clamp(56px, 4.6vw, 72px);
+      width: clamp(48px, 3.8vw, 62px);
+      height: clamp(48px, 3.8vw, 62px);
     }
     .ft-contact {
       justify-self: end;
