@@ -10,45 +10,50 @@ const hasSocial = socials.some((s) => s.url !== "#");
 <footer class="ft on-dark">
   <div class="ft-hazard" aria-hidden="true"></div>
 
-  <div class="container ft-head">
-    <span class="ft-kicker">Catálogo</span>
-    <p class="ft-banner-title">Suministros Industriales</p>
-  </div>
-
   <div class="container ft-inner">
-    <!-- Identidad -->
-    <div class="ft-brand">
-      <p class="ft-tagline">{site.tagline}.</p>
-      {
-        hasSocial && (
-          <div class="ft-social">
-            {socials.map((s) => (
-              <a href={s.url} target="_blank" rel="noopener" aria-label={s.label}>
-                <Icon name={s.icon} size={18} />
-              </a>
-            ))}
-          </div>
-        )
-      }
+    <!-- Bloque principal: título arriba, identidad + categorías abajo -->
+    <div class="ft-main">
+      <div class="ft-head">
+        <span class="ft-kicker">Catálogo</span>
+        <p class="ft-banner-title">Suministros Industriales</p>
+      </div>
+
+      <div class="ft-row">
+        <!-- Identidad -->
+        <div class="ft-brand">
+          <p class="ft-tagline">{site.tagline}.</p>
+          {
+            hasSocial && (
+              <div class="ft-social">
+                {socials.map((s) => (
+                  <a href={s.url} target="_blank" rel="noopener" aria-label={s.label}>
+                    <Icon name={s.icon} size={18} />
+                  </a>
+                ))}
+              </div>
+            )
+          }
+        </div>
+
+        <!-- Accesos por categoría -->
+        <ul class="ft-cats">
+          {
+            productosCategorias.map((c) => (
+              <li>
+                <a href={`/productos?cat=${c.key}`} aria-label={c.label}>
+                  <span class="ft-cat-badge">
+                    <Icon name={c.icon} size={26} />
+                  </span>
+                  <span class="ft-cat-label">{c.label}</span>
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
     </div>
 
-    <!-- Accesos por categoría -->
-    <ul class="ft-cats">
-      {
-        productosCategorias.map((c) => (
-          <li>
-            <a href={`/productos?cat=${c.key}`} aria-label={c.label}>
-              <span class="ft-cat-badge">
-                <Icon name={c.icon} size={26} />
-              </span>
-              <span class="ft-cat-label">{c.label}</span>
-            </a>
-          </li>
-        ))
-      }
-    </ul>
-
-    <!-- Contacto -->
+    <!-- Contacto: columna final que abarca ambas filas -->
     <div class="ft-contact">
       <h4>Contacto</h4>
       <ul>
@@ -121,19 +126,25 @@ const hasSocial = socials.some((s) => s.url !== "#");
     z-index: 1;
   }
 
-  /* — Cabecera: título del catálogo — */
-  .ft-head {
-    padding-top: clamp(2.4rem, 4.5vw, 3.4rem);
-    padding-left: clamp(2rem, 5vw, 3.4rem);
-  }
-
-  /* — Banda principal: identidad · categorías · contacto — */
+  /* — Banda principal: [ título + (identidad · categorías) ] · contacto — */
   .ft-inner {
     display: grid;
     grid-template-columns: 1fr;
     gap: clamp(2rem, 4vw, 3rem);
-    padding-block: clamp(1.4rem, 2.5vw, 2rem) clamp(2.4rem, 4.5vw, 3.4rem);
+    padding-block: clamp(2.4rem, 4.5vw, 3.4rem);
     padding-left: clamp(2rem, 5vw, 3.4rem);
+  }
+
+  /* Bloque principal: título arriba, identidad + categorías abajo */
+  .ft-main {
+    display: grid;
+    gap: clamp(1.6rem, 3vw, 2.4rem);
+    align-content: start;
+  }
+  .ft-row {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: clamp(2rem, 4vw, 3rem);
   }
 
   .ft-kicker {
@@ -338,7 +349,12 @@ const hasSocial = socials.some((s) => s.url !== "#");
   }
   @media (min-width: 1024px) {
     .ft-inner {
-      grid-template-columns: minmax(0, 13rem) 1fr minmax(0, 13.5rem);
+      grid-template-columns: 1fr minmax(0, 13.5rem);
+      align-items: stretch;
+      gap: clamp(1.5rem, 3vw, 3rem);
+    }
+    .ft-row {
+      grid-template-columns: minmax(0, 13rem) 1fr;
       align-items: center;
       gap: clamp(1.5rem, 3vw, 2.75rem);
     }
@@ -350,8 +366,13 @@ const hasSocial = socials.some((s) => s.url !== "#");
       width: clamp(48px, 3.8vw, 62px);
       height: clamp(48px, 3.8vw, 62px);
     }
+    /* Contacto: columna final que abarca título + fila de categorías */
     .ft-contact {
       justify-self: end;
+      align-self: start;
+      padding-left: clamp(1.5rem, 2.5vw, 2.5rem);
+      border-left: 1px solid var(--line);
+      min-width: 13.5rem;
     }
   }
 </style>
